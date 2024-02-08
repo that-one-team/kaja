@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 _inputVec;
     bool _isGrounded = false;
+    bool _isJumping = false;
 
     Rigidbody _rb;
     Vector3 _vel;
@@ -44,8 +45,16 @@ public class PlayerController : MonoBehaviour
     void OnJump(InputAction.CallbackContext ctx)
     {
         if (!_isGrounded) return;
+        _isJumping = true;
         _rb.velocity = new(_rb.velocity.x, 0, _rb.velocity.z);
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
+
+        Invoke(nameof(ResetJump), 0.2f);
+    }
+
+    void ResetJump()
+    {
+        _isJumping = false;
     }
 
     void Update()

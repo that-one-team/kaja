@@ -376,6 +376,9 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 1
+  _slopeSpeedMultiplier: 20
+  _slopeStickForce: 80
+  _maxSlopeAngle: 40
 --- !u!114 &3642303665824424393
 MonoBehaviour:
   m_ObjectHideFlags: 0

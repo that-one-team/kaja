@@ -10,7 +10,7 @@ public class PlayerStart : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.GetComponent<Rigidbody>().MovePosition(transform.position);
+            player.transform.position = transform.position;
         }
         else
         {

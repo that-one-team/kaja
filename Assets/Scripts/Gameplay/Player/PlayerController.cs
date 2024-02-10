@@ -55,7 +55,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!_isGrounded) return;
+        if (!_isGrounded || GameManager.Instance.IsFrozen) return;
         _isJumping = true;
         _rb.velocity = new(_rb.velocity.x, 0, _rb.velocity.z);
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
@@ -70,7 +70,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void CheckSlide()
     {
-        if (!_isGrounded) return;
+        if (!_isGrounded || GameManager.Instance.IsFrozen) return;
 
         // TODO find a way to use new input system (new input system does not have hold button)
         _isSliding = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift);
@@ -81,6 +81,13 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     void Update()
     {
         _isGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
+
+        if (GameManager.Instance.IsFrozen)
+        {
+            _rb.velocity = Vector3.up * _rb.velocity.y;
+            return;
+        }
+
         _inputVec = PlayerInputs.Instance.Actions.Move.ReadValue<Vector2>();
 
         _rb.useGravity = !IsOnSlope();
@@ -92,6 +99,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsFrozen) return;
         _vel = (transform.right * _inputVec.x + transform.forward * _inputVec.y).normalized * _currMoveSpeed;
 
         if (IsOnSlope() && !_isJumping)

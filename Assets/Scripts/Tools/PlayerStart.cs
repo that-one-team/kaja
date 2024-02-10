@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerStart : MonoBehaviour
 {
     [SerializeField] GameObject _playerPrefab;
-    void Awake()
+    void Start()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
+        var player = PlayerController.Instance.transform.parent;
         if (player != null)
         {
             player.transform.position = transform.position;
+            PlayerController.Instance.GetComponent<Rigidbody>().MovePosition(transform.position);
         }
         else
         {

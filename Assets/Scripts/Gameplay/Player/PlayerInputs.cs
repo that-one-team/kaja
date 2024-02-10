@@ -6,6 +6,7 @@ public class PlayerInputs : MonoBehaviour
     GameplayActions _actions;
 
     public GameplayActions.PlayerActions Actions { get; private set; }
+    public GameplayActions.UIActions UI { get; private set; }
     public GameplayActions.ItemsActions Items { get; private set; }
 
     void Awake()
@@ -15,6 +16,7 @@ public class PlayerInputs : MonoBehaviour
         _actions = new();
         _actions.Enable();
         Actions = _actions.Player;
+        UI = _actions.UI;
         Items = _actions.Items;
     }
 }

@@ -18,6 +18,8 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.IsFrozen) return;
+
         _input = PlayerInputs.Instance.Actions.Move.ReadValue<Vector2>();
         _tilt = GetCameraTilt(_input.x);
 

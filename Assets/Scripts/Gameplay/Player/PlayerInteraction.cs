@@ -31,5 +31,10 @@ public class PlayerInteraction : MonoBehaviour
             if (item.Data.InteractionType == ItemInteractionType.LOOK_AT) return;
             PlayerInventory.Instance.AddItem(item);
         }
+
+        if (other.TryGetComponent<Interactable>(out Interactable interactable))
+        {
+            interactable.Interact();
+        }
     }
 }

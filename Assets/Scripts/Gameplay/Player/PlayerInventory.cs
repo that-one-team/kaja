@@ -18,7 +18,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     {
         get
         {
-            if (_currWeaponIndex < Weapons.Count)
+            if (_currWeaponIndex < Weapons.Count && _currWeaponIndex >= 0)
                 return _spawnedWeapons[_currWeaponIndex].GetComponent<Weapon>();
             return null;
         }

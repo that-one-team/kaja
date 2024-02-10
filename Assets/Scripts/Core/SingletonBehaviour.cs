@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonBehaviour<T> : MonoBehaviour
+public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public static SingletonBehaviour<T> Instance { get; private set; }
-    void Awake()
+    public static T Instance { get; private set; }
+
+    protected virtual void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            throw new System.Exception($"Instance {Instance.GetInstanceID()} already exists");
+        }
+        else
+            Instance = GetComponent<T>();
     }
 }

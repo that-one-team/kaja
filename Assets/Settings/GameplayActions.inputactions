@@ -822,6 +822,56 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Items",
+            "id": "9e81bde6-bcfd-4402-8d38-fb317338499f",
+            "actions": [
+                {
+                    "name": "SelectItem",
+                    "type": "Value",
+                    "id": "86693168-349b-4c90-954b-f93db5611ac8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "92860d76-132d-45c3-96a8-3ef71943bded",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e3501bf-1bfb-47d9-9852-2f51dcfe3701",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae6147b2-4c05-4e8e-889a-042cf7f0dc04",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "",
+                    "action": "SelectItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

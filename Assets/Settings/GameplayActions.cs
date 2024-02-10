@@ -844,6 +844,56 @@ public partial class @GameplayActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Items"",
+            ""id"": ""9e81bde6-bcfd-4402-8d38-fb317338499f"",
+            ""actions"": [
+                {
+                    ""name"": ""SelectItem"",
+                    ""type"": ""Value"",
+                    ""id"": ""86693168-349b-4c90-954b-f93db5611ac8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""92860d76-132d-45c3-96a8-3ef71943bded"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e3501bf-1bfb-47d9-9852-2f51dcfe3701"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae6147b2-4c05-4e8e-889a-042cf7f0dc04"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""SelectItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -928,6 +978,9 @@ public partial class @GameplayActions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Items
+        m_Items = asset.FindActionMap("Items", throwIfNotFound: true);
+        m_Items_SelectItem = m_Items.FindAction("SelectItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1181,6 +1234,52 @@ public partial class @GameplayActions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Items
+    private readonly InputActionMap m_Items;
+    private List<IItemsActions> m_ItemsActionsCallbackInterfaces = new List<IItemsActions>();
+    private readonly InputAction m_Items_SelectItem;
+    public struct ItemsActions
+    {
+        private @GameplayActions m_Wrapper;
+        public ItemsActions(@GameplayActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SelectItem => m_Wrapper.m_Items_SelectItem;
+        public InputActionMap Get() { return m_Wrapper.m_Items; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ItemsActions set) { return set.Get(); }
+        public void AddCallbacks(IItemsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ItemsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ItemsActionsCallbackInterfaces.Add(instance);
+            @SelectItem.started += instance.OnSelectItem;
+            @SelectItem.performed += instance.OnSelectItem;
+            @SelectItem.canceled += instance.OnSelectItem;
+        }
+
+        private void UnregisterCallbacks(IItemsActions instance)
+        {
+            @SelectItem.started -= instance.OnSelectItem;
+            @SelectItem.performed -= instance.OnSelectItem;
+            @SelectItem.canceled -= instance.OnSelectItem;
+        }
+
+        public void RemoveCallbacks(IItemsActions instance)
+        {
+            if (m_Wrapper.m_ItemsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IItemsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ItemsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ItemsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ItemsActions @Items => new ItemsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1246,5 +1345,9 @@ public partial class @GameplayActions: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IItemsActions
+    {
+        void OnSelectItem(InputAction.CallbackContext context);
     }
 }

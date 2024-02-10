@@ -5,12 +5,6 @@ public class Weapon : Item
 {
     bool _isReady = false;
 
-    public override void UpdateVisuals()
-    {
-        GetComponent<Billboard>().enabled = false;
-        base.UpdateVisuals();
-    }
-
     public void Equip()
     {
         transform.localPosition = Vector3.down;

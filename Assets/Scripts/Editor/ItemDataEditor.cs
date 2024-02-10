@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
 [CustomEditor(typeof(ItemData))]
 public class ItemDataEditor : Editor
@@ -11,9 +12,14 @@ public class ItemDataEditor : Editor
 
         if (GUILayout.Button("Generate Item"))
         {
+            var prefabsPath = $"Assets/Resources/Prefabs/Items/{item.FriendlyName}.prefab";
+            prefabsPath = AssetDatabase.GenerateUniqueAssetPath(prefabsPath);
+
             var spawned = ItemGod.SpawnItem(item, Vector3.one);
-            Selection.activeGameObject = spawned;
+            Selection.activeGameObject = PrefabUtility.SaveAsPrefabAssetAndConnect(spawned, prefabsPath, InteractionMode.UserAction);
             SceneView.FrameLastActiveSceneView(); // focus on object
+
+            AssetDatabase.SaveAssets();
         }
     }
 }

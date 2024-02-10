@@ -12,10 +12,17 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     public List<ItemData> Items { get; private set; } = new();
 
     private readonly List<GameObject> _spawnedWeapons = new(MAX_WEAPON_COUNT);
-    [ShowNativeProperty] int _weaponsCount => _spawnedWeapons.Count;
     private int _currWeaponIndex = -1;
 
-    public Weapon CurrentWeapon => _spawnedWeapons[_currWeaponIndex].GetComponent<Weapon>();
+    public Weapon CurrentWeapon
+    {
+        get
+        {
+            if (_currWeaponIndex < Weapons.Count)
+                return _spawnedWeapons[_currWeaponIndex].GetComponent<Weapon>();
+            return null;
+        }
+    }
 
     [Header("Settings")]
     [SerializeField] int _maxWeaponCount = 3;
@@ -53,7 +60,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         }
 
         OnItemAdd?.Invoke(itemToAdd);
-        Notifications.Instance.Notify("+ " + itemToAdd.name);
+        Notifications.Instance.Notify("Picked up " + itemToAdd.Data.FriendlyName);
         Destroy(itemToAdd.gameObject);
     }
 
@@ -92,15 +99,17 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         if (_currWeaponIndex == -1 && Weapons.Count > 0)
         {
             _currWeaponIndex = 0;
-            EquipWeapon(_currWeaponIndex);
+            EquipWeapon(_currWeaponIndex, force: true);
         }
     }
 
-    public void EquipWeapon(int index)
+    public void EquipWeapon(int index, bool force = false)
     {
-        if (Weapons.Count <= index || _currWeaponIndex == index) return;
+        if (Weapons.Count <= index || (_currWeaponIndex == index && !force)) return;
 
-        CurrentWeapon.Unequip();
+        if (CurrentWeapon != null)
+            CurrentWeapon.Unequip();
+
         _currWeaponIndex = index;
 
         var weapon = _spawnedWeapons[index].GetComponent<Weapon>();

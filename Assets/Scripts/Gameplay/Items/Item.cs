@@ -14,8 +14,7 @@ public class Item : MonoBehaviour
         col.isTrigger = true;
         col.radius = 1;
 
-        if (Data == null) return;
-        UpdateVisuals();
+        // UpdateVisuals();
     }
 
     [Button("Update visuals")]

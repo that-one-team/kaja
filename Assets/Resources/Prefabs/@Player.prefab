@@ -596,7 +596,7 @@ MonoBehaviour:
   _airDrag: 0
   _airMultiplier: 0.3
   _groundCheckOffset: 0
-  _groundCheckSize: {x: 1, y: 0.2, z: 1}
+  _groundCheckSize: {x: 0.5, y: 0.2, z: 0.5}
   _groundMask:
     serializedVersion: 2
     m_Bits: 1

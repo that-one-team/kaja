@@ -72,5 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Sandbox scenes
-SBOX_*.unity
-SBOX_*.unity.meta
+# SBOX_*.unity
+# SBOX_*.unity.meta

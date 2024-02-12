@@ -707,7 +707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialoguePanel: {fileID: 417203215}
   _dialogueText: {fileID: 1535381878}
-  _showSpeaker: 1
   _speakerText: {fileID: 751377793}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

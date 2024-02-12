@@ -7,19 +7,13 @@ public enum ItemType
     WEAPON
 }
 
-public enum ItemInteractionType
-{
-    LOOK_AT,
-    COLLIDE
-}
-
 [CreateAssetMenu(fileName = "Item Data", menuName = "proj/Item Data", order = 0)]
 public class ItemData : ScriptableObject
 {
     [Header("Item settings")]
     public string FriendlyName = "Item";
     public ItemType Type;
-    public ItemInteractionType InteractionType = ItemInteractionType.COLLIDE;
+    public InteractionType InteractionType = InteractionType.COLLIDE;
     public bool IsStackable = false;
 
     [Header("Visuals")]

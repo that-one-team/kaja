@@ -26,14 +26,15 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Item>(out Item item))
+        if (other.TryGetComponent(out Item item))
         {
-            if (item.Data.InteractionType == ItemInteractionType.LOOK_AT) return;
+            if (item.Data.InteractionType == InteractionType.LOOK_AT) return;
             PlayerInventory.Instance.AddItem(item);
         }
 
-        if (other.TryGetComponent<Interactable>(out Interactable interactable))
+        if (other.TryGetComponent(out Interactable interactable))
         {
+            if (interactable.InteractionType == InteractionType.LOOK_AT) return;
             interactable.Interact();
         }
     }

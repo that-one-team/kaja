@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fc68d59102124419eb681f29346aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InteractionType>k__BackingField: 0
   Data: {fileID: 11400000, guid: 09a19840bbfe5c94caeb30b778d2d204, type: 2}
 --- !u!114 &8893178
 MonoBehaviour:
@@ -2188,11 +2189,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 3772046308080030465, guid: 8947460e5716164449d050c9c810672d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}

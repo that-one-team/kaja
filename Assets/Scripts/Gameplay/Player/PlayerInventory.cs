@@ -107,13 +107,11 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     {
         if (Weapons.Count <= index || (_currWeaponIndex == index && !force)) return;
 
-        if (CurrentWeapon != null)
-            CurrentWeapon.Unequip();
+        var weapon = _spawnedWeapons[index].GetComponent<Weapon>();
+        if (CurrentWeapon != weapon)
+            CurrentWeapon?.Unequip();
 
         _currWeaponIndex = index;
-
-        var weapon = _spawnedWeapons[index].GetComponent<Weapon>();
-        weapon.gameObject.SetActive(true);
         weapon.Equip();
     }
 }

@@ -9,12 +9,17 @@ public class Weapon : Item
     public void Equip()
     {
         transform.localPosition = Vector3.down;
+        gameObject.SetActive(true);
         transform.DOLocalMoveY(0, _equipSpeed).OnComplete(() => _isReady = true);
     }
 
     public void Unequip()
     {
-        transform.DOLocalMoveY(Vector3.down.y, _equipSpeed).OnComplete(() => _isReady = false);
+        transform.DOLocalMoveY(Vector3.down.y, _equipSpeed).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+            _isReady = false;
+        });
     }
 
     public void Shoot()

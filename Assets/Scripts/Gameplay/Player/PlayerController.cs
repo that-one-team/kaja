@@ -22,7 +22,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     [SerializeField] float _slideHeight = 0.5f;
     [SerializeField] float _slideSpeed = 12f;
     float _startHeight;
-    bool _isSliding = false;
+    public bool IsSliding { get; private set; }
     Vector3 _slideDir;
 
     [Header("Slope")]
@@ -31,7 +31,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     [SerializeField] float _maxSlopeAngle;
     RaycastHit _slope;
     Vector2 _inputVec;
-    bool _isGrounded = false;
+    public bool IsGrounded { get; private set; }
     bool _isJumping = false;
     bool _hasSlideDir = false;
 
@@ -55,7 +55,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!_isGrounded || GameManager.Instance.IsFrozen) return;
+        if (!IsGrounded || GameManager.Instance.IsFrozen) return;
         _isJumping = true;
         _rb.velocity = new(_rb.velocity.x, 0, _rb.velocity.z);
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
@@ -70,11 +70,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void CheckSlide()
     {
-        if (!_isGrounded || GameManager.Instance.IsFrozen) return;
+        if (!IsGrounded || GameManager.Instance.IsFrozen) return;
 
         // TODO find a way to use new input system (new input system does not have hold button)
-        _isSliding = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift);
-        if (!_isSliding)
+        IsSliding = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift);
+        if (!IsSliding)
         {
             _slideDir = transform.forward;
             _hasSlideDir = false;
@@ -84,7 +84,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void Update()
     {
-        _isGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
+        IsGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
 
         if (GameManager.Instance.IsFrozen)
         {
@@ -114,13 +114,13 @@ public class PlayerController : SingletonBehaviour<PlayerController>
                 _rb.AddForce(Vector3.down * _slopeStickForce, ForceMode.Force);
         }
 
-        if (_isSliding)
+        if (IsSliding)
         {
             DoSlide();
         }
         else
         {
-            var mult = _isGrounded ? 1 : _airMultiplier;
+            var mult = IsGrounded ? 1 : _airMultiplier;
             _rb.AddForce(10f * mult * _vel, ForceMode.Force);
         }
     }
@@ -137,12 +137,12 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void SetHeight()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, _isSliding ? _slideHeight : _startHeight, transform.localScale.z), 20 * Time.deltaTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, IsSliding ? _slideHeight : _startHeight, transform.localScale.z), 20 * Time.deltaTime);
     }
 
     void ControlSpeed()
     {
-        _rb.drag = _isGrounded ? _groundDrag : 0;
+        _rb.drag = IsGrounded ? _groundDrag : 0;
 
         if (IsOnSlope() && _rb.velocity.magnitude > _currMoveSpeed && !_isJumping)
         {
@@ -180,7 +180,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = _isGrounded ? Color.red : Color.green;
+        Gizmos.color = IsGrounded ? Color.red : Color.green;
         Gizmos.DrawWireCube(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize / 2);
     }
 #endif

@@ -23,17 +23,17 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     [SerializeField] float _slideSpeed = 12f;
     float _startHeight;
     bool _isSliding = false;
-    Vector3 _slideDir, _lockedDir;
+    Vector3 _slideDir;
 
     [Header("Slope")]
     [SerializeField] float _slopeSpeedMultiplier = 20f;
     [SerializeField] float _slopeStickForce = 80f;
     [SerializeField] float _maxSlopeAngle;
     RaycastHit _slope;
-
     Vector2 _inputVec;
     bool _isGrounded = false;
     bool _isJumping = false;
+    bool _hasSlideDir = false;
 
     Rigidbody _rb;
     Vector3 _vel;
@@ -74,7 +74,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
         // TODO find a way to use new input system (new input system does not have hold button)
         _isSliding = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift);
-        if (!_isSliding) _lockedDir = Vector3.zero;
+        if (!_isSliding)
+        {
+            _slideDir = transform.forward;
+            _hasSlideDir = false;
+        }
     }
 
 
@@ -123,10 +127,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void DoSlide()
     {
-        if (_lockedDir == Vector3.zero)
-            _lockedDir = _vel.normalized;
-
-        _slideDir = _lockedDir != Vector3.zero ? _lockedDir : transform.forward;
+        if (_vel.normalized.magnitude > 0 && !_hasSlideDir)
+        {
+            _slideDir = _vel.normalized;
+            _hasSlideDir = true;
+        }
         _rb.AddForce(_slideSpeed * 10f * _slideDir, ForceMode.Force);
     }
 

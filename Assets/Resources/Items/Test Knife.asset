@@ -22,6 +22,8 @@ MonoBehaviour:
   LightColor: {r: 1, g: 1, b: 1, a: 1}
   PickupAudio: {fileID: 0}
   EquipAudio: {fileID: 0}
+  ShootAudio: {fileID: 0}
   FireRate: 0.5
+  Damage: 20
   IsProjectile: 0
   ProjectilePrefab: {fileID: 0}

@@ -1,16 +1,30 @@
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : Item
 {
     [SerializeField] float _equipSpeed = 0.2f;
-    bool _isReady = false;
+    protected bool IsReady = false;
+
+    bool _isShooting;
+    float _timer;
+
+    AudioSource _source;
+
+    [SerializeField] LayerMask _layerMask;
+
+    private void Start()
+    {
+        _timer = Data.FireRate;
+        _source = GetComponent<AudioSource>();
+    }
 
     public void Equip()
     {
         transform.localPosition = Vector3.down;
         gameObject.SetActive(true);
-        transform.DOLocalMoveY(0, _equipSpeed).OnComplete(() => _isReady = true);
+        transform.DOLocalMoveY(0, _equipSpeed).OnComplete(() => IsReady = true);
     }
 
     public void Unequip()
@@ -18,14 +32,33 @@ public class Weapon : Item
         transform.DOLocalMoveY(Vector3.down.y, _equipSpeed).OnComplete(() =>
         {
             gameObject.SetActive(false);
-            _isReady = false;
+            IsReady = false;
         });
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
-        if (!_isReady) return;
+        if (!IsReady) return;
+        if (_timer > 0 && _isShooting) return;
 
-        print("Shooting");
+        _isShooting = true;
+        _timer = Data.FireRate;
+        _source.PlayOneShot(Data.ShootAudio);
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000, _layerMask))
+        {
+            if (hit.collider.TryGetComponent(out LivingBeing being))
+            {
+                being.Damage(Data.Damage);
+            }
+        }
     }
+
+    private void Update()
+    {
+        if (!_isShooting) return;
+
+        _timer -= Time.deltaTime;
+    }
+
 }

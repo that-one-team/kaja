@@ -1,5 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEditor;
+using System.IO;
 
 public enum ItemType
 {
@@ -30,11 +32,19 @@ public class ItemData : ScriptableObject
     [AllowNesting]
     public AudioClip EquipAudio;
 
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
+    public AudioClip ShootAudio;
+
     [Header("Weapon settings")]
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
     public float FireRate = 0.5f;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
+    public int Damage = 20;
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
@@ -44,4 +54,11 @@ public class ItemData : ScriptableObject
     [AllowNesting]
     public GameObject ProjectilePrefab;
 
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        name = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(this));
+        FriendlyName = name;
+    }
+#endif
 }

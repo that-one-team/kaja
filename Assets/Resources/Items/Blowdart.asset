@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79f7478f9f92eb045a83ae15244f32f0, type: 3}
-  m_Name: Test Gun
+  m_Name: Blowdart
   m_EditorClassIdentifier: 
-  FriendlyName: Test Gun
+  FriendlyName: Blowdart
   Type: 1
   InteractionType: 1
   IsStackable: 0
@@ -22,6 +22,8 @@ MonoBehaviour:
   LightColor: {r: 1, g: 0.8533139, b: 0, a: 1}
   PickupAudio: {fileID: 0}
   EquipAudio: {fileID: 0}
+  ShootAudio: {fileID: 8300000, guid: b02e5b528f9bf1646b814652f27d42b9, type: 3}
   FireRate: 0.5
+  Damage: 50
   IsProjectile: 0
   ProjectilePrefab: {fileID: 0}

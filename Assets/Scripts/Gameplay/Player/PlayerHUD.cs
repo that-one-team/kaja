@@ -11,9 +11,25 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI _worldText;
     [SerializeField] TextMeshProUGUI _roomText;
 
+    [Header("Gameplay")]
+    [SerializeField] TextMeshProUGUI _hpText;
+
     void Start()
     {
         GameManager.Instance.OnChangeRoom += ChangeRoom;
+        Player.Instance.OnHurt += PlayerHurt;
+
+        PlayerHurt(Player.Instance.Health);
+    }
+
+    void PlayerHurt(int remaining)
+    {
+        _hpText.text = remaining.ToString();
+
+        var seq = DOTween.Sequence();
+        seq.Append(_hpText.transform.DOScale(1.5f, 0.15f));
+        seq.Append(_hpText.transform.DOScale(1f, 0.15f));
+        seq.Play();
     }
 
     void ChangeRoom(Room room)

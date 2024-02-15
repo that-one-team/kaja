@@ -45,9 +45,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         _currMoveSpeed = _moveSpeed;
 
         _startHeight = transform.localScale.y;

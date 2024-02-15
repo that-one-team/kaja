@@ -11689,7 +11689,7 @@ MonoBehaviour:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
       type: 3}
     Chance: 100
-  <MaxWaves>k__BackingField: 4
+  <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners:
   - {fileID: 1923442962}

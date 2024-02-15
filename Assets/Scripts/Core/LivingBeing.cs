@@ -27,6 +27,8 @@ public class LivingBeing : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (Health <= 0) return;
+
         Health -= damage;
         OnHurt?.Invoke(Health);
         if (Health <= 0)

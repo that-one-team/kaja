@@ -220,6 +220,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 70
   Data: {fileID: 11400000, guid: 8d1cc4b7a0fb1df4b90a8364a32be65e, type: 2}
+  _attackBoxSize: 1
+  _attackLayer:
+    serializedVersion: 2
+    m_Bits: 4
   _gruntsSfx:
   - {fileID: 8300000, guid: 9077e5e9f40d4d64e9417c6bd272ce07, type: 3}
   - {fileID: 8300000, guid: f77d976c6ce707941ba970281c99a7fe, type: 3}

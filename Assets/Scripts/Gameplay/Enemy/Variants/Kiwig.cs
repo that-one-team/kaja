@@ -7,20 +7,16 @@ public class Kiwig : Enemy
 
     protected override IEnumerator MoveState()
     {
-        Agent.isStopped = false;
+        Freeze(false);
+        // Agent.isStopped = false;
         while (Vector3.Distance(transform.position, Target.position) > 3f)
         {
             Agent.SetDestination(Target.position);
             yield return _wait;
         }
-        Agent.isStopped = true;
+        Freeze(true);
+        // Agent.isStopped = true;
         ChangeState(EnemyState.ATTACKING);
     }
 
-    protected override IEnumerator AttackState()
-    {
-        print("attacking player");
-        yield return new WaitForSeconds(2);
-        ChangeState(EnemyState.MOVING);
-    }
 }

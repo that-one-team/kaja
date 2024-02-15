@@ -20,6 +20,9 @@ public class Enemy : LivingBeing
     [Expandable]
     public EnemyData Data;
 
+    [SerializeField] float _attackBoxSize = 1;
+    [SerializeField] LayerMask _attackLayer;
+
     public EnemyState CurrentState { get; protected set; }
     Coroutine _currentStateRoutine;
 
@@ -27,8 +30,9 @@ public class Enemy : LivingBeing
     protected Rigidbody RB;
 
     protected Transform Target;
-
     AudioSource _source;
+
+    Transform _visual;
 
     [Header("FX")]
     [SerializeField] AudioClip[] _gruntsSfx;
@@ -40,12 +44,13 @@ public class Enemy : LivingBeing
         RB = GetComponent<Rigidbody>();
         RB.freezeRotation = true;
         RB.mass = 2;
+        _visual = transform.GetChild(0);
     }
 
     private void Awake()
     {
+        OnValidate();
         _source = GetComponent<AudioSource>();
-        RB = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Data.MoveSpeed;
         Agent.angularSpeed = 0;
@@ -108,11 +113,6 @@ public class Enemy : LivingBeing
         yield break;
     }
 
-    protected virtual IEnumerator AttackState()
-    {
-        yield break;
-    }
-
     protected virtual IEnumerator StunnedState()
     {
         Freeze(true);
@@ -123,9 +123,39 @@ public class Enemy : LivingBeing
         ChangeState(EnemyState.MOVING);
     }
 
-    void Freeze(bool isFrozen)
+    protected virtual IEnumerator AttackState()
+    {
+        StartCoroutine(Data.AttackType == EnemyAttackType.MELEE ? AttackMelee() : AttackRanged());
+        yield return new WaitForSeconds(Data.FireRate);
+        ChangeState(EnemyState.MOVING);
+    }
+
+    protected virtual IEnumerator AttackMelee()
+    {
+        yield return new WaitForSeconds(Data.AttackDelay);
+        if (Physics.Raycast(transform.position + transform.up, _visual.forward, out RaycastHit hit, 3, _attackLayer))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                hit.collider.GetComponent<Player>().Damage(Data.Damage);
+            }
+        }
+    }
+
+    protected virtual IEnumerator AttackRanged()
+    {
+        yield break;
+    }
+
+    protected void Freeze(bool isFrozen)
     {
         RB.isKinematic = !isFrozen;
         Agent.enabled = !isFrozen;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + _visual.forward + transform.up, _attackBoxSize);
     }
 }

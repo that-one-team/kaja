@@ -15,6 +15,11 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     Transform _player;
 
+    private void Start()
+    {
+        Freeze(false);
+    }
+
     public void PauseGame(bool isPaused = false)
     {
         IsPaused = isPaused;
@@ -37,6 +42,13 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
 
         return _player;
+    }
+
+    public void Freeze(bool isFrozen)
+    {
+        IsFrozen = isFrozen;
+        Cursor.lockState = IsFrozen ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = IsFrozen;
     }
 
 }

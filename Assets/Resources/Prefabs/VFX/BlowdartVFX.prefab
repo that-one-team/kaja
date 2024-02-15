@@ -89,7 +89,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 2}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -99,15 +99,15 @@ LineRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0.04389186
-        outSlope: 0.04389186
+        inSlope: -0.026684256
+        outSlope: -0.026684256
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.8136882
+        outWeight: 0.33460075
       - serializedVersion: 3
         time: 1
-        value: 0.044649392
+        value: 0.053583413
         inSlope: 0.23025087
         outSlope: 0.23025087
         tangentMode: 0
@@ -120,7 +120,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+      key1: {r: 1, g: 1, b: 1, a: 0.80784315}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

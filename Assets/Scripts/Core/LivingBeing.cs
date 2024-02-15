@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LivingBeing : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class LivingBeing : MonoBehaviour
     public int MaxHealth = 100;
     public int Health { get; protected set; }
 
-    private void Start()
+    public event Action<int> OnHurt;
+
+    private void OnEnable()
     {
         Health = MaxHealth;
     }
@@ -25,6 +28,7 @@ public class LivingBeing : MonoBehaviour
     public void Damage(int damage)
     {
         Health -= damage;
+        OnHurt?.Invoke(Health);
         if (Health <= 0)
             Die();
     }
@@ -34,8 +38,8 @@ public class LivingBeing : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
-        Destroy(gameObject);
         OnDie?.Invoke(this);
+        Destroy(gameObject);
     }
 
     // slowly return health back to max

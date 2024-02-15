@@ -1,18 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Kiwig : MonoBehaviour
+public class Kiwig : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    readonly WaitForEndOfFrame _wait = new();
+
+    protected override IEnumerator MoveState()
     {
-        
+        Agent.isStopped = false;
+        while (Vector3.Distance(transform.position, Target.position) > 3f)
+        {
+            Agent.SetDestination(Target.position);
+            yield return _wait;
+        }
+        Agent.isStopped = true;
+        ChangeState(EnemyState.ATTACKING);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override IEnumerator AttackState()
     {
-        
+        print("attacking player");
+        yield return new WaitForSeconds(2);
+        ChangeState(EnemyState.MOVING);
     }
 }

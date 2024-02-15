@@ -9,11 +9,17 @@ public class RoomVolume : Volume
     [Dropdown("GetRooms")]
     [SerializeField] Room _room;
     GameObject _blocker;
+    [SerializeField] AudioClip _blockerSfx;
+
+    AudioSource _source;
 
     private void OnValidate()
     {
         if (_room == null) return;
         name = "V_" + _room.FriendlyName + " Volume";
+
+        _source = GetComponent<AudioSource>();
+        _source.spatialBlend = 0.75f;
     }
 
 
@@ -24,6 +30,8 @@ public class RoomVolume : Volume
 
         _blocker = transform.GetChild(0).gameObject;
         _blocker.SetActive(false);
+
+        _source = GetComponent<AudioSource>();
     }
 
     public override void OnEnter()
@@ -34,6 +42,7 @@ public class RoomVolume : Volume
 
     void OnRoomStart(int enemyCount)
     {
+        _source.PlayOneShot(_blockerSfx);
         _blocker.transform.localScale = new Vector3(_blocker.transform.localScale.x, 0, _blocker.transform.localScale.z);
         _blocker.SetActive(true);
         _blocker.transform.DOScaleY(1, 1);
@@ -41,6 +50,7 @@ public class RoomVolume : Volume
 
     void OnRoomEnd()
     {
+        _source.PlayOneShot(_blockerSfx);
         _blocker.transform.DOScaleY(0, 1).OnComplete(() =>
         {
             _blocker.SetActive(false);

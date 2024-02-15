@@ -44,14 +44,26 @@ public class Weapon : Item
         _isShooting = true;
         _timer = Data.FireRate;
         _source.PlayOneShot(Data.ShootAudio);
+        Vector3 endpoint = transform.forward * 10000;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000, _layerMask))
         {
             if (hit.collider.TryGetComponent(out LivingBeing being))
             {
                 being.Damage(Data.Damage);
+                if (being is Enemy)
+                    (being as Enemy).Knockback(transform.forward * Data.KnockbackForce);
             }
+
+            endpoint = hit.point;
         }
+
+        var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<LineRenderer>();
+        vfx.SetPositions(new Vector3[] { vfx.gameObject.transform.position, endpoint });
+        var startColor = new Color2(vfx.startColor, vfx.endColor);
+        var endColor = new Color2(new Color(1, 1, 1, 0), new Color(1, 1, 1, 0));
+
+        vfx.DOColor(startColor, endColor, 5f).OnComplete(() => Destroy(vfx.gameObject));
     }
 
     private void Update()

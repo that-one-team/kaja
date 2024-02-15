@@ -20,10 +20,14 @@ public class ItemData : ScriptableObject
 
     [Header("Visuals")]
     public Texture2D WorldSprite;
+
     [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
     public Texture2D HandSprite;
     public float Scale = 1;
     public Color LightColor = Color.white;
+
+    public GameObject UseItemVFX;
 
     [Header("Audio")]
     public AudioClip PickupAudio;
@@ -45,6 +49,10 @@ public class ItemData : ScriptableObject
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
     public int Damage = 20;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
+    public float KnockbackForce = 10;
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]

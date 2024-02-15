@@ -20,10 +20,13 @@ MonoBehaviour:
   HandSprite: {fileID: 2800000, guid: f316f04e84fad764ba9e281b20497137, type: 3}
   Scale: 1
   LightColor: {r: 1, g: 1, b: 1, a: 1}
+  UseItemVFX: {fileID: 5610879303654009046, guid: cc36c7ed738ea9b40aeffb34e76568fe,
+    type: 3}
   PickupAudio: {fileID: 0}
   EquipAudio: {fileID: 0}
   ShootAudio: {fileID: 0}
   FireRate: 0.5
   Damage: 20
+  KnockbackForce: 10
   IsProjectile: 0
   ProjectilePrefab: {fileID: 0}

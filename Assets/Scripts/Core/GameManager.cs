@@ -13,6 +13,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public int PlayerScore { get; private set; } = 0;
 
+    Transform _player;
+
     public void PauseGame(bool isPaused = false)
     {
         IsPaused = isPaused;
@@ -25,6 +27,16 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         ActiveRoom = room;
         OnChangeRoom?.Invoke(room);
+    }
+
+    public Transform GetPlayer()
+    {
+        if (_player == null)
+        {
+            _player = GameObject.Find("Player").transform;
+        }
+
+        return _player;
     }
 
 }

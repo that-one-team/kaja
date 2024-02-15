@@ -11,9 +11,8 @@ public class EnemyData : ScriptableObject
 {
     public string FriendlyName;
     public Texture Spritesheet;
+    public int ScoreRequirement = 0;
     public float MoveSpeed;
     public EnemyAttackType AttackType;
-
-    [Tooltip("Does not run away after using certain skill")]
-    public float Pride;
+    public float StunDuration = 1;
 }

@@ -58,12 +58,10 @@ public class Weapon : Item
             endpoint = hit.point;
         }
 
-        var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<LineRenderer>();
-        vfx.SetPositions(new Vector3[] { vfx.gameObject.transform.position, endpoint });
-        var startColor = new Color2(vfx.startColor, vfx.endColor);
-        var endColor = new Color2(new Color(1, 1, 1, 0), new Color(1, 1, 1, 0));
+        if (Data.UseItemVFX == null) return;
 
-        vfx.DOColor(startColor, endColor, 5f).OnComplete(() => Destroy(vfx.gameObject));
+        var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
+        vfx.DoVFX(Data, vfx.transform.position, endpoint);
     }
 
     private void Update()

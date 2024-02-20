@@ -5,7 +5,8 @@ using UnityEngine;
 public enum InteractionType
 {
     LOOK_AT,
-    COLLIDE
+    COLLIDE,
+    BUTTON
 }
 
 public class Interactable : MonoBehaviour

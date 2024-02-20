@@ -949,6 +949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df9f96fc9c3be44ea87a513eaa48c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactionRange: 0
+  _interactionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5912176361873513197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d9615241a98804aa7d7103fb491185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxWeaponCount: 3
+  _maxWeaponCount: 4
   _weaponPrefab: {fileID: 5275148716733515225, guid: a363ad5825136b64a9422fe5d617bdca,
     type: 3}
   _weaponHolder: {fileID: 1434118857892045763}

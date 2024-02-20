@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TOT.Common;
 using UnityEngine;
 
@@ -35,5 +33,8 @@ public class PlayerFootsteps : MonoBehaviour
 
             _timeSinceLastStep = Time.time;
         }
+
     }
+
+
 }

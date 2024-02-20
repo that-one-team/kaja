@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 {
-    [ShowNonSerializedField] private const int MAX_WEAPON_COUNT = 3;
+    [ShowNonSerializedField][ReadOnly] private const int MAX_WEAPON_COUNT = 4;
 
     public List<ItemData> Weapons { get; private set; } = new();
     public List<ItemData> Items { get; private set; } = new();
@@ -25,9 +25,9 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     }
 
     [Header("Settings")]
-    [SerializeField] int _maxWeaponCount = 3;
     [SerializeField] GameObject _weaponPrefab;
     [SerializeField] Transform _weaponHolder;
+    [SerializeField] ItemData _startingWeapon;
 
     public event Action<Item> OnItemAdd;
     public event Action<Item> OnReplaceItem;
@@ -36,19 +36,22 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     private void Start()
     {
-        for (int i = 0; i < _maxWeaponCount; i++)
+        for (int i = 0; i < MAX_WEAPON_COUNT; i++)
         {
             var wep = Instantiate(_weaponPrefab, _weaponHolder).GetComponent<Weapon>();
             wep.gameObject.SetActive(false);
             _spawnedWeapons.Add(wep.gameObject);
         }
+        // AddItem(_startingWeapon);
+        Weapons.Add(_startingWeapon);
+        UpdateWeaponsVisuals();
     }
 
     public void AddItem(Item itemToAdd)
     {
         if (itemToAdd.Data.Type == ItemType.WEAPON)
         {
-            if (Weapons.Count == _maxWeaponCount)
+            if (Weapons.Count == MAX_WEAPON_COUNT)
             {
                 StartCoroutine(ReplaceItem(itemToAdd));
             }

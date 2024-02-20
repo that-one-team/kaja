@@ -91,4 +91,14 @@ public class ToolsWindow : EditorWindow
             }
         }
     }
+
+    void ConvertToDoor(GameObject door)
+    {
+        if (GUILayout.Button("Convert to door"))
+        {
+            if (door == null) return;
+            if (!door.TryGetComponent<DoorInteractable>(out _))
+                door.AddComponent<DoorInteractable>();
+        }
+    }
 }

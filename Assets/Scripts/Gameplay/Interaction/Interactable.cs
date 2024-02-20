@@ -12,7 +12,7 @@ public enum InteractionType
 public class Interactable : MonoBehaviour
 {
     [field: SerializeField]
-    public InteractionType InteractionType { get; private set; }
+    public InteractionType InteractionType { get; protected set; }
 
     public virtual void Interact()
     {

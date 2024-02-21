@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -13,13 +15,22 @@ public class PlayerHUD : MonoBehaviour
 
     [Header("Gameplay")]
     [SerializeField] TextMeshProUGUI _hpText;
+    [SerializeField] Image _skillPickupIndicator;
 
     void Start()
     {
         GameManager.Instance.OnChangeRoom += ChangeRoom;
         Player.Instance.OnHurt += PlayerHurt;
+        PlayerSkills.Instance.OnSkillPickup += SkillPickup;
 
         PlayerHurt(Player.Instance.Health);
+    }
+
+    void SkillPickup(SkillData skill)
+    {
+        _skillPickupIndicator.gameObject.SetActive(true);
+        _skillPickupIndicator.color = skill.PickupIndicatorColor;
+        _skillPickupIndicator.DOFade(0, 0.5f).SetDelay(0.5f).OnComplete(() => _skillPickupIndicator.gameObject.SetActive(false));
     }
 
     void PlayerHurt(int remaining)

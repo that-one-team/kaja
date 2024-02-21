@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class DoorInteractable : Interactable
 {
+    [Header("Door settings")]
     [SerializeField] bool _canOnlyOpenOnce = true;
     [SerializeField] float _targetY = 90;
     [SerializeField] float _openSpeed = 0.5f;
@@ -22,7 +23,7 @@ public class DoorInteractable : Interactable
 
     private void OnValidate()
     {
-        InteractionType = InteractionType.BUTTON;
+        InteractionType = InteractionType.LOOK_AT;
         _source = GetComponent<AudioSource>();
         _source.spatialBlend = 1;
     }

@@ -1,3 +1,4 @@
+using NaughtyAttributes.Test;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
 
     bool _hasInteraction;
     RaycastHit _hit;
+    GameObject _lastHit;
 
     void Start()
     {
@@ -35,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (obj.TryGetComponent(out Interactable interactable))
         {
-            if (interactable.InteractionType != InteractionType.BUTTON) return;
+            if (interactable.InteractionType != InteractionType.LOOK_AT) return;
 
             interactable.Interact();
         }
@@ -44,8 +46,22 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         _hasInteraction = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out _hit, _interactionRange, _interactionMask);
-    }
 
+        if (_hasInteraction && _hit.collider.TryGetComponent(out Interactable interactable))
+        {
+            _lastHit = _hit.collider.gameObject;
+            interactable.ShowOutlines(true);
+        }
+        else
+        {
+            if (_lastHit == null) return;
+            if (_lastHit.TryGetComponent(out Interactable inter))
+            {
+                inter.ShowOutlines(false);
+                _lastHit = null;
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -59,6 +75,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (interactable.InteractionType != InteractionType.COLLIDE) return;
             interactable.Interact();
+        }
+
+        if (other.TryGetComponent(out Skill skill))
+        {
+            if (skill.InteractionType != InteractionType.COLLIDE) return;
+            skill.Interact();
         }
     }
 }

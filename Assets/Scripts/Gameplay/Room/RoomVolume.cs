@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
@@ -43,9 +44,16 @@ public class RoomVolume : Volume
     void OnRoomStart(int enemyCount)
     {
         _source.PlayOneShot(_blockerSfx);
-        _blocker.transform.localScale = new Vector3(_blocker.transform.localScale.x, 0, _blocker.transform.localScale.z);
         _blocker.SetActive(true);
-        _blocker.transform.DOScaleY(1, 1);
+        _blocker.GetComponent<Collider>().enabled = false;
+        _blocker.GetComponentInChildren<ParticleSystem>().Play();
+        StartCoroutine(EnableCol());
+
+        IEnumerator EnableCol()
+        {
+            yield return new WaitForSeconds(0.2f);
+            _blocker.GetComponent<Collider>().enabled = true;
+        }
     }
 
     void OnRoomEnd()
@@ -55,6 +63,7 @@ public class RoomVolume : Volume
         {
             _blocker.SetActive(false);
         });
+        _blocker.GetComponentInChildren<ParticleSystem>().Play();
     }
 
     public DropdownList<Room> GetRooms() => Room.GetRoomValues();

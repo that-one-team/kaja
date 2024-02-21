@@ -7,16 +7,19 @@ public class PlayerStart : MonoBehaviour
     [SerializeField] GameObject _playerPrefab;
     void Start()
     {
-        var player = PlayerController.Instance.transform.parent;
-        if (player != null)
+        if (PlayerController.Instance != null)
         {
+            var player = PlayerController.Instance.transform.parent;
             player.transform.position = transform.position;
-            PlayerController.Instance.GetComponent<Rigidbody>().MovePosition(transform.position);
         }
         else
         {
             Instantiate(_playerPrefab, transform.position, Quaternion.identity);
         }
+
+        var rb = PlayerController.Instance.GetComponent<Rigidbody>();
+        rb.MovePosition(transform.position);
+        rb.MoveRotation(transform.rotation);
     }
 
     private void OnDrawGizmos()

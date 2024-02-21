@@ -12168,7 +12168,7 @@ Transform:
   m_GameObject: {fileID: 1891527407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.5, y: 0, z: -4.2000003}
+  m_LocalPosition: {x: -16.5, y: 0, z: 4.0000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12187,7 +12187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractionType>k__BackingField: 2
-  _canOnlyOpenOnce: 1
+  _canOnlyOpenOnce: 0
   _targetY: 90
   _openSpeed: 0.2
   _doorSound: {fileID: 8300000, guid: 70bacaf47f5322545a262e87fa0e99d8, type: 3}

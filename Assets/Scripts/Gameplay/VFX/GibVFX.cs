@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class DeathGibVFX : MonoBehaviour
+public class GibVFX : MonoBehaviour
 {
     AudioSource _source;
 
@@ -10,7 +10,7 @@ public class DeathGibVFX : MonoBehaviour
         _source = GetComponent<AudioSource>();
     }
 
-    public void DoGib(AudioClip clip)
+    public virtual void DoGib(AudioClip clip)
     {
         _source.spatialBlend = 1;
         _source.PlayOneShot(clip);

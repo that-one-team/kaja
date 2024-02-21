@@ -238,6 +238,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf9e29c36c4d30d47bace5876df15eaf, type: 3}
   _deathGib: {fileID: 4122459857451818459, guid: ff9bdd6ca1429174f8117cf4f0734e33,
     type: 3}
+  _hurtGib: {fileID: 3897552783870387739, guid: a067379b913d4c6458ab6fdddd886151,
+    type: 3}
 --- !u!82 &3855461761699852976
 AudioSource:
   m_ObjectHideFlags: 0

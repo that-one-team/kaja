@@ -31,9 +31,19 @@ public class DoorInteractable : Interactable
     {
         if (_canOnlyOpenOnce && _isOpened) return;
 
-        var targ = _isOpened ? _y : _targetY;
+        var sign = Mathf.Sign(Vector3.Dot(transform.forward, Camera.main.transform.forward));
+        var targ = _isOpened ? _y : _targetY * sign;
         transform.DOLocalRotate(Vector3.up * targ, _openSpeed).SetEase(Ease.OutBack);
         _isOpened = !_isOpened;
         _source.PlayOneShot(_doorSound);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        var col = other.collider;
+        if (col.CompareTag("Player") && col.GetComponent<PlayerController>().IsSliding)
+        {
+            Interact();
+        }
     }
 }

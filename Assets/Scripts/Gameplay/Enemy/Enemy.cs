@@ -38,6 +38,7 @@ public class Enemy : LivingBeing
     [SerializeField] AudioClip[] _gruntsSfx;
     [SerializeField] AudioClip[] _deathSfx;
     [SerializeField] GameObject _deathGib;
+    [SerializeField] GameObject _hurtGib;
 
     private void OnValidate()
     {
@@ -65,12 +66,13 @@ public class Enemy : LivingBeing
     void OnHurtEvent(int remainingHealth)
     {
         ChangeState(EnemyState.STUNNED);
-        _source.PlayOneShot(_gruntsSfx.SelectRandom());
+        if (_hurtGib != null)
+            Instantiate(_hurtGib, transform.position + Vector3.up, Quaternion.LookRotation(transform.forward)).GetComponent<GibVFX>().DoGib(_gruntsSfx.SelectRandom());
     }
 
     public override void Die()
     {
-        Instantiate(_deathGib, transform.position, Quaternion.identity).GetComponent<DeathGibVFX>().DoGib(_deathSfx.SelectRandom());
+        Instantiate(_deathGib, transform.position + Vector3.up, Quaternion.identity).GetComponent<GibVFX>().DoGib(_deathSfx.SelectRandom());
         base.Die();
     }
 

@@ -9,7 +9,6 @@ public class PickupInteractable : Interactable
 {
     Rigidbody _rb;
     bool _isBeingPickedUp = false;
-
     Transform _cam;
 
     private void Start()
@@ -25,6 +24,7 @@ public class PickupInteractable : Interactable
         _isBeingPickedUp = true;
         _rb.useGravity = false;
         _rb.drag = 20;
+        PlayerInventory.Instance.EquipWeapon(99, force: true);
     }
 
     void OnFire(InputAction.CallbackContext ctx)
@@ -34,12 +34,12 @@ public class PickupInteractable : Interactable
         _rb.useGravity = true;
         _isBeingPickedUp = false;
         _rb.AddForce(_cam.transform.forward * 50, ForceMode.Impulse);
+        PlayerInventory.Instance.EquipWeapon(PlayerInventory.Instance.CurrentWeaponIndex, force: true);
     }
 
     void Update()
     {
         if (!_isBeingPickedUp) return;
-        PlayerInventory.Instance.EquipWeapon(0, force: true);
 
         var point = _cam.position + _cam.forward * 3;
 

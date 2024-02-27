@@ -12,6 +12,7 @@ public enum EnemyState
     STUNNED
 }
 
+[RequireComponent(typeof(SpritesheetAnimation))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
@@ -34,6 +35,8 @@ public class Enemy : LivingBeing
 
     Transform _visual;
 
+    SpritesheetAnimation _anim;
+
     [Header("FX")]
     [SerializeField] AudioClip[] _gruntsSfx;
     [SerializeField] AudioClip[] _deathSfx;
@@ -51,6 +54,7 @@ public class Enemy : LivingBeing
     private void Awake()
     {
         OnValidate();
+        _anim = GetComponent<SpritesheetAnimation>();
         _source = GetComponent<AudioSource>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Data.MoveSpeed;
@@ -112,6 +116,7 @@ public class Enemy : LivingBeing
 
     protected virtual IEnumerator MoveState()
     {
+        _anim.SetAnimation(AnimationIndex.MOVE);
         yield break;
     }
 
@@ -119,14 +124,16 @@ public class Enemy : LivingBeing
     {
         Freeze(true);
 
-        // TODO switch to stunned spritesheet
+        _anim.SetAnimation(AnimationIndex.STUNNED);
         yield return new WaitForSeconds(Data.StunDuration);
         Freeze(false);
+        _anim.SetAnimation(AnimationIndex.MOVE);
         ChangeState(EnemyState.MOVING);
     }
 
     protected virtual IEnumerator AttackState()
     {
+        _anim.SetAnimation(AnimationIndex.ATTACK);
         StartCoroutine(Data.AttackType == EnemyAttackType.MELEE ? AttackMelee() : AttackRanged());
         yield return new WaitForSeconds(Data.FireRate);
         ChangeState(EnemyState.MOVING);

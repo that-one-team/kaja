@@ -24,8 +24,17 @@ public class ItemData : ScriptableObject
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
     public Texture2D HandSprite;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
+    public Vector3 Offset;
     public float Scale = 1;
     public Color LightColor = Color.white;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [Header("Animations")]
+    [AllowNesting]
+    public Vector3 EndPose = new(0.2f, -0.2f, 0);
 
     public GameObject UseItemVFX;
 
@@ -40,9 +49,8 @@ public class ItemData : ScriptableObject
     [AllowNesting]
     public AudioClip ShootAudio;
 
-    [Header("Weapon settings")]
-
     [ShowIf("Type", ItemType.WEAPON)]
+    [Header("Weapon settings")]
     [AllowNesting]
     public float FireRate = 0.5f;
 

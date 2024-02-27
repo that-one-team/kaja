@@ -11,25 +11,32 @@ public class Weapon : Item
     float _timer;
 
     AudioSource _source;
-
     [SerializeField] LayerMask _layerMask;
+
+    // too lazy to rewrite this to Data.Offset LMAO
+    Vector3 _offset;
 
     private void Start()
     {
         _timer = Data.FireRate;
         _source = GetComponent<AudioSource>();
+
+        _offset = Data.Offset;
+
+        transform.localScale = Vector3.one * Data.Scale;
     }
 
     public void Equip()
     {
-        transform.localPosition = Vector3.down;
+        print("equipped " + Data.FriendlyName);
+        transform.localPosition = Data.Offset + Vector3.down;
         gameObject.SetActive(true);
-        transform.DOLocalMoveY(0, _equipSpeed).OnComplete(() => IsReady = true);
+        transform.DOLocalMove(Data.Offset, _equipSpeed).OnComplete(() => IsReady = true);
     }
 
     public void Unequip()
     {
-        transform.DOLocalMoveY(Vector3.down.y, _equipSpeed).OnComplete(() =>
+        transform.DOLocalMove(_offset + Vector3.down, _equipSpeed).OnComplete(() =>
         {
             gameObject.SetActive(false);
             IsReady = false;
@@ -45,6 +52,7 @@ public class Weapon : Item
         _timer = Data.FireRate;
         _source.PlayOneShot(Data.ShootAudio);
         Vector3 endpoint = transform.forward * 10000;
+        DoAnimation();
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000, _layerMask))
         {
@@ -71,4 +79,11 @@ public class Weapon : Item
         _timer -= Time.deltaTime;
     }
 
+    protected virtual void DoAnimation()
+    {
+        var seq = DOTween.Sequence();
+        seq.Append(transform.DOLocalMove(_offset + Data.EndPose, 0.05f));
+        seq.Append(transform.DOLocalMove(_offset, 0.2f));
+        seq.Play();
+    }
 }

@@ -12,14 +12,14 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     public List<ItemData> Items { get; private set; } = new();
 
     private readonly List<GameObject> _spawnedWeapons = new(MAX_WEAPON_COUNT);
-    private int _currWeaponIndex = -1;
+    public int CurrentWeaponIndex { get; private set; } = -1;
 
     public Weapon CurrentWeapon
     {
         get
         {
-            if (_currWeaponIndex < Weapons.Count && _currWeaponIndex >= 0)
-                return _spawnedWeapons[_currWeaponIndex].GetComponent<Weapon>();
+            if (CurrentWeaponIndex < Weapons.Count && CurrentWeaponIndex >= 0)
+                return _spawnedWeapons[CurrentWeaponIndex].GetComponent<Weapon>();
             return null;
         }
     }
@@ -99,22 +99,31 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             onHand.GetComponent<Weapon>().UpdateVisuals();
         }
 
-        if (_currWeaponIndex == -1 && Weapons.Count > 0)
+        if (CurrentWeaponIndex == -1 && Weapons.Count > 0)
         {
-            _currWeaponIndex = 0;
-            EquipWeapon(_currWeaponIndex, force: true);
+            CurrentWeaponIndex = 0;
+            EquipWeapon(CurrentWeaponIndex, force: true);
         }
     }
 
     public void EquipWeapon(int index, bool force = false)
     {
-        if (Weapons.Count <= index || (_currWeaponIndex == index && !force)) return;
+        if (index == 99)
+        {
+            foreach (var weap in _spawnedWeapons)
+            {
+                weap.GetComponent<Weapon>().Unequip();
+            }
+            return;
+        }
+
+        if (Weapons.Count <= index || (CurrentWeaponIndex == index && !force)) return;
 
         var weapon = _spawnedWeapons[index].GetComponent<Weapon>();
         if (CurrentWeapon != weapon)
             CurrentWeapon?.Unequip();
 
-        _currWeaponIndex = index;
+        CurrentWeaponIndex = index;
         weapon.Equip();
     }
 }

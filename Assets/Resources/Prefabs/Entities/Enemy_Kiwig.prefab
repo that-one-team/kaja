@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 6088666920665962238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3400620858528691205}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3adae7c7bd31aa046905c773a51aa2a0, type: 2}
+  - {fileID: 2100000, guid: df296cb57950fe3439e2c3e656835998, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockY: 1
+  _flip: 1
 --- !u!1 &7433149801036346582
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ GameObject:
   - component: {fileID: 4298431200722025189}
   - component: {fileID: 2564109445911638583}
   - component: {fileID: 3855461761699852976}
+  - component: {fileID: 3261200514644829740}
   m_Layer: 0
   m_Name: Enemy_Kiwig
   m_TagString: Player
@@ -336,3 +338,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3261200514644829740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433149801036346582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdde35930e92a1c459426b8049ccb60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationSpeed: 4

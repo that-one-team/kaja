@@ -475,7 +475,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128352737}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 642b543f4176ae140a7470349ab2cd3b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -758,6 +758,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1943981616}
+    - target: {fileID: 1760831057309134586, guid: 3385b05c554d1bc4c848b660cffa5f68,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 9.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760831057309134586, guid: 3385b05c554d1bc4c848b660cffa5f68,
+        type: 3}
+      propertyPath: MinDistance
+      value: 3.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2253171829331342566, guid: 3385b05c554d1bc4c848b660cffa5f68,
         type: 3}
       propertyPath: m_Mesh
@@ -8994,7 +9004,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1039061048}
 --- !u!33 &1514243530

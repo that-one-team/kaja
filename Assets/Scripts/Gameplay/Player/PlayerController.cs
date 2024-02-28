@@ -25,6 +25,10 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     public bool IsSliding { get; private set; }
     Vector3 _slideDir;
 
+    [Header("Stair")]
+    [SerializeField] float _stepLookAhead = 0.1f;
+    [SerializeField] float _stepHeight = 0.3f;
+
     [Header("Slope")]
     [SerializeField] float _slopeSpeedMultiplier = 20f;
     [SerializeField] float _slopeStickForce = 80f;
@@ -37,6 +41,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     Rigidbody _rb;
     Vector3 _vel;
+    float _radius;
 
     void Start()
     {
@@ -46,8 +51,9 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _rb.freezeRotation = true;
 
         _currMoveSpeed = _moveSpeed;
-
         _startHeight = transform.localScale.y;
+
+        _radius = GetComponent<CapsuleCollider>().radius;
     }
 
     void OnJump(InputAction.CallbackContext ctx)
@@ -55,7 +61,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         if (!IsGrounded || GameManager.Instance.IsFrozen) return;
         _isJumping = true;
         _rb.velocity = new(_rb.velocity.x, 0, _rb.velocity.z);
-        _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
+        var dir = IsSliding ? transform.up + transform.forward : transform.up;
+        _rb.AddForce(dir * _jumpForce, ForceMode.Impulse);
 
         Invoke(nameof(ResetJump), 0.2f);
     }
@@ -67,10 +74,10 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void CheckSlide()
     {
-        if (!IsGrounded || GameManager.Instance.IsFrozen) return;
+        if (GameManager.Instance.IsFrozen) return;
 
         // TODO find a way to use new input system (new input system does not have hold button)
-        IsSliding = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift);
+        IsSliding = IsGrounded && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftShift));
         if (!IsSliding)
         {
             _slideDir = transform.forward;
@@ -78,6 +85,22 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         }
     }
 
+    // todo stairs r broken
+    // void CheckStairs()
+    // {
+    //     if (!IsGrounded && _isJumping) return;
+
+    //     var pos = transform.position + Vector3.up * _stepHeight;
+
+    //     if (!Physics.Raycast(pos, _vel.normalized, _radius + (_stepLookAhead * 0.5f), _groundMask, QueryTriggerInteraction.Ignore)) return;
+    //     if (!Physics.Raycast(pos, _vel.normalized, _radius + _stepLookAhead, _groundMask, QueryTriggerInteraction.Ignore)) return;
+
+    //     var candidate = pos + _vel.normalized * (_radius + _stepLookAhead);
+    //     if (Physics.Raycast(candidate, Vector3.down, out RaycastHit hit, _stepHeight * 2, _groundMask, QueryTriggerInteraction.Ignore))
+    //     {
+    //         if (Vector3.Angle(Vector3.up, hit.normal) <= _maxSlopeAngle) _rb.position = hit.point;
+    //     }
+    // }
 
     void Update()
     {
@@ -94,6 +117,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _rb.useGravity = !IsOnSlope();
         ControlSpeed();
 
+        // CheckStairs();
         CheckSlide();
         SetHeight();
     }

@@ -25,9 +25,9 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     public bool IsSliding { get; private set; }
     Vector3 _slideDir;
 
-    [Header("Stair")]
-    [SerializeField] float _stepLookAhead = 0.1f;
-    [SerializeField] float _stepHeight = 0.3f;
+    // [Header("Stair")]
+    // [SerializeField] float _stepLookAhead = 0.1f;
+    // [SerializeField] float _stepHeight = 0.3f;
 
     [Header("Slope")]
     [SerializeField] float _slopeSpeedMultiplier = 20f;

@@ -28,17 +28,20 @@ public class Weapon : Item
 
     public void Equip()
     {
-        print("equipped " + Data.FriendlyName);
         transform.localPosition = Data.Offset + Vector3.down;
         gameObject.SetActive(true);
         transform.DOLocalMove(Data.Offset, _equipSpeed).OnComplete(() => IsReady = true);
+        Start();
+        if (Data.EquipAudio != null)
+            _source.PlayOneShot(Data.EquipAudio, 0.5f);
+
     }
 
     public void Unequip()
     {
         transform.DOLocalMove(_offset + Vector3.down, _equipSpeed).OnComplete(() =>
         {
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             IsReady = false;
         });
     }
@@ -47,6 +50,7 @@ public class Weapon : Item
     {
         if (!IsReady) return;
         if (_timer > 0 && _isShooting) return;
+        if (PlayerInventory.Instance.CurrentWeapon != this) return;
 
         _isShooting = true;
         _timer = Data.FireRate;
@@ -54,6 +58,40 @@ public class Weapon : Item
         Vector3 endpoint = transform.forward * 10000;
         DoAnimation();
 
+        if (Data.IsProjectile) ProjectileShoot();
+        else HitscanShoot(ref endpoint);
+
+        // i didnt use clause guard for this cuz i wanted it to look nice LMAO
+        if (Data.UseItemVFX != null)
+        {
+            var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
+            vfx.DoVFX(Data, vfx.transform.position, endpoint);
+        }
+    }
+
+    private void Update()
+    {
+        if (!_isShooting) return;
+        _timer -= Time.deltaTime;
+    }
+
+    protected virtual void ProjectileShoot()
+    {
+        var projectile = Instantiate(Data.ProjectilePrefab, Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.rotation);
+        if (projectile.TryGetComponent(out Projectile proj))
+        {
+            proj.Spawn(Data.Damage, Camera.main.transform.forward * Data.ProjectileForce);
+        }
+        else
+            Destroy(projectile);
+
+        var player = PlayerController.Instance.gameObject;
+        var forceMult = player.GetComponent<Rigidbody>().velocity.magnitude > 0 ? 0.5f : 1;
+        player.GetComponent<Rigidbody>().AddForce(-player.transform.forward * Data.KnockbackForce * forceMult, ForceMode.Impulse);
+    }
+
+    protected virtual void HitscanShoot(ref Vector3 endpoint)
+    {
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000, _layerMask))
         {
             if (hit.collider.TryGetComponent(out LivingBeing being))
@@ -65,18 +103,6 @@ public class Weapon : Item
 
             endpoint = hit.point;
         }
-
-        if (Data.UseItemVFX == null) return;
-
-        var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
-        vfx.DoVFX(Data, vfx.transform.position, endpoint);
-    }
-
-    private void Update()
-    {
-        if (!_isShooting) return;
-
-        _timer -= Time.deltaTime;
     }
 
     protected virtual void DoAnimation()

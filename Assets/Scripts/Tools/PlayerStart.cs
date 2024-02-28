@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStart : MonoBehaviour
 {
     [SerializeField] GameObject _playerPrefab;
-    void Start()
+    void Awake()
     {
         if (PlayerController.Instance != null)
         {

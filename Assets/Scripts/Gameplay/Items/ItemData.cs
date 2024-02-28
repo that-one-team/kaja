@@ -70,6 +70,10 @@ public class ItemData : ScriptableObject
     [AllowNesting]
     public GameObject ProjectilePrefab;
 
+    [ShowIf("IsProjectile")]
+    [AllowNesting]
+    public float ProjectileForce;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {

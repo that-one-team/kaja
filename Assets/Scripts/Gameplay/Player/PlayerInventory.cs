@@ -42,7 +42,6 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             wep.gameObject.SetActive(false);
             _spawnedWeapons.Add(wep.gameObject);
         }
-        // AddItem(_startingWeapon);
         Weapons.Add(_startingWeapon);
         UpdateWeaponsVisuals();
     }
@@ -60,6 +59,12 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
                 Weapons.Add(itemToAdd.Data);
                 UpdateWeaponsVisuals();
             }
+        }
+
+        // pickup sound
+        if (itemToAdd.Data.PickupAudio != null)
+        {
+            GetComponent<AudioSource>().PlayOneShot(itemToAdd.Data.PickupAudio, 0.3f);
         }
 
         OnItemAdd?.Invoke(itemToAdd);

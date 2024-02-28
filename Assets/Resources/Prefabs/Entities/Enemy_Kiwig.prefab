@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3261200514644829740}
   m_Layer: 0
   m_Name: Enemy_Kiwig
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

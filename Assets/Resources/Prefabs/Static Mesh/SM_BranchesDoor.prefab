@@ -4899,17 +4899,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.25
+      value: -12.92555
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.6887784
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: -14.1650305
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
         type: 3}
@@ -5025,7 +5025,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7829567774855380424, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
         type: 3}
       propertyPath: m_Name
@@ -5096,10 +5097,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -2307678168004880545}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d46d42c0bbd4ccc43a8e083cd39b33e7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4199954413001011318}
   m_SourcePrefab: {fileID: 100100000, guid: d46d42c0bbd4ccc43a8e083cd39b33e7, type: 3}
 --- !u!4 &7170961692645065889 stripped
 Transform:
@@ -5149,7 +5146,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5251,17 +5248,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4199954413001011318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7552412356571782683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035625d04e597ac44ad623bce1381f70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _room: {fileID: 0}
-  _blockerSfx: {fileID: 8300000, guid: 70bacaf47f5322545a262e87fa0e99d8, type: 3}

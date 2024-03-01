@@ -73,6 +73,7 @@ MonoBehaviour:
   _undamageable: Player
   _speedRequirement: 5
   _hitVFX: {fileID: 0}
+  _knockbackForce: 100
 --- !u!54 &134296988137959331
 Rigidbody:
   m_ObjectHideFlags: 0

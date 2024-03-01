@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float _speedRequirement;
     [SerializeField] GameObject _hitVFX;
     int _damage = 10;
+    [SerializeField] float _knockbackForce;
 
     Rigidbody _rb;
 
@@ -29,12 +30,15 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _rb.useGravity = true;
+        // if (_knockbackForce != 0)
+        // _rb.AddExplosionForce(_knockbackForce, transform.position, 5f);
 
         if (other.collider.TryGetComponent(out LivingBeing being) && !other.collider.CompareTag(_undamageable))
             being.Damage(_damage);
 
         if (_hitVFX != null)
             Instantiate(_hitVFX, transform.position, Quaternion.identity);
+
 
         if (_speedRequirement > 0 && _rb.velocity.magnitude >= _speedRequirement)
             Destroy(gameObject);

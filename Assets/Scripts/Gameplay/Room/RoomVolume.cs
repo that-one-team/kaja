@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -19,8 +20,8 @@ public class RoomVolume : Volume
         if (_room == null) return;
         name = "V_" + _room.FriendlyName + " Volume";
 
-        _source = GetComponent<AudioSource>();
-        _source.spatialBlend = 0.75f;
+        if (_blockerSfx == null)
+            _blockerSfx = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/Environment/sfx_door.wav");
     }
 
 
@@ -33,6 +34,7 @@ public class RoomVolume : Volume
         _blocker.SetActive(false);
 
         _source = GetComponent<AudioSource>();
+        _source.spatialBlend = 0.75f;
     }
 
     public override void OnEnter()

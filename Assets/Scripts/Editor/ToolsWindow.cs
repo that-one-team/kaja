@@ -84,7 +84,7 @@ public class ToolsWindow : EditorWindow
 
             if (volume.transform.childCount == 0)
             {
-                var blockerPref = Resources.Load("Prefabs/Static Mesh/SM_DoorBlocker", typeof(GameObject));
+                var blockerPref = Resources.Load("Prefabs/Static Mesh/SM_BranchesDoor", typeof(GameObject));
                 var blocker = Instantiate(blockerPref, volume.transform) as GameObject;
                 blocker.transform.position = volume.transform.position + (Vector3.right * 3.25f);
                 blocker.SetActive(false);

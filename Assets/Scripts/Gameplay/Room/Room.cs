@@ -16,7 +16,7 @@ public struct RoomSpawnable
 public class Room : MonoBehaviour
 {
     [field: SerializeField] public string FriendlyName { get; private set; }
-
+    public bool IsBossRoom = false;
     [SerializeField] List<RoomSpawnable> _spawnableEnemies = new();
 
     [field: SerializeField] public int MaxWaves { get; private set; } = 1;

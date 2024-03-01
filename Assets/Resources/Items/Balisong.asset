@@ -21,7 +21,7 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   Scale: 1
   LightColor: {r: 1, g: 1, b: 1, a: 1}
-  EndPose: {x: -2, y: 0.4, z: 0}
+  EndPose: {x: -0.5, y: 0.6, z: 0}
   UseItemVFX: {fileID: 5610879303654009046, guid: cc36c7ed738ea9b40aeffb34e76568fe,
     type: 3}
   PickupAudio: {fileID: 0}

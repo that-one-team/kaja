@@ -11,6 +11,12 @@ public class EnemySpawner : MonoBehaviour
     int _enemiesToSpawn;
     float _spawnInterval = 5;
 
+    private void Start()
+    {
+        if (_spawnRange.Max == 0) _spawnRange = new(1, 1);
+        if (Room == null) Room = GetComponentInParent<Room>();
+    }
+
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
         int maxSpawn = Room.CurrentWave * Mathf.Max(GameManager.Instance.PlayerScore / 100, 1);
@@ -41,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
         var size = transform.localScale / 2;
         // TODO replace 1 with 0 once using actual models
         var offset = 1;
-        var loc = new Vector3(transform.localPosition.x + Random.Range(-size.x, size.x), transform.localPosition.y + offset, transform.localPosition.z + Random.Range(-size.z, size.z));
+        var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
 
         var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
         e.OnDie += OnEnemyDie;

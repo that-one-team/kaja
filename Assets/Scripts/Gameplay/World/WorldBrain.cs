@@ -14,6 +14,7 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
     [SerializeField] int _maxRooms;
     [SerializeField] float _roomSpacing = 50;
     [SerializeField] List<GameObject> _roomsPrefabs;
+    [SerializeField] GameObject _bossRoomPrefab;
     [SerializeField] List<Room> _roomPool = new();
 
     public Room NextRoom { get; private set; }
@@ -22,6 +23,8 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
     int _lastRoomIdx = -1;
 
     public event Action<Room> OnChangeRoom;
+    public event Action OnRoomComplete;
+
 
     private void Start()
     {
@@ -41,18 +44,25 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
             _roomPool.Add(Instantiate(room, _roomSpacing * i * Vector3.right, Quaternion.identity).GetComponent<Room>());
         }
 
-        // set room camera to next room
+        _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * Vector3.right, Quaternion.identity).GetComponent<Room>());
+
         ChangeRoom(null);
         MoveCameraToNextRoom();
     }
 
     public void ChangeRoom(Room room)
     {
+        CurrentRoom = room;
         if (room != null)
             _lastRoomIdx = _roomPool.LastIndexOf(CurrentRoom);
-        CurrentRoom = room;
         OnChangeRoom?.Invoke(room);
         NextRoom = _roomPool[_lastRoomIdx + 1];
+    }
+
+    public void CompleteRoom()
+    {
+        OnRoomComplete?.Invoke();
+        MoveCameraToNextRoom();
     }
 
     public void MoveCameraToNextRoom()
@@ -61,6 +71,6 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
         var camPos = NextRoom.RoomStartPosition;
         _roomPortalCamera.transform.SetPositionAndRotation(camPos.position, camPos.rotation);
 
-        _roomPortalCamera.GetComponent<RoomCamera>().SetPositionInRoom(NextRoom.RoomStartPosition);
+        _roomPortalCamera.GetComponent<RoomCamera>().SetPositionInRoom(NextRoom);
     }
 }

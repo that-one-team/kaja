@@ -90,6 +90,7 @@ public class Room : MonoBehaviour
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
         WorldBrain.Instance.ChangeRoom(null);
+        WorldBrain.Instance.CompleteRoom();
         IsRoomComplete = true;
     }
 

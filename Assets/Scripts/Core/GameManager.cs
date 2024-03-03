@@ -6,10 +6,6 @@ public class GameManager : SingletonBehaviour<GameManager>
     public bool IsPaused { get; private set; }
     public bool IsFrozen { get; set; }
 
-    public Room ActiveRoom { get; private set; }
-    public string CurrentWorld { get; set; }
-
-
     public int PlayerScore { get; private set; } = 0;
 
     Transform _player;

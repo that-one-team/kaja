@@ -46,8 +46,8 @@ public class PlayerHUD : MonoBehaviour
     void ChangeRoom(Room room)
     {
         if (room == null) return;
-        _worldText.text = GameManager.Instance.CurrentWorld;
-        _roomText.text = GameManager.Instance.ActiveRoom.FriendlyName;
+        _worldText.text = WorldBrain.Instance.name;
+        _roomText.text = WorldBrain.Instance.CurrentRoom.FriendlyName;
         _newRoomGroup.gameObject.SetActive(true);
 
         _newRoomGroup.alpha = 0;

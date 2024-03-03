@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a798ef7d31e1be4da0faef9a4fda80e
+guid: 4e133ed9c5956d742a6934a70f2b7097
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Emission
-    second: {fileID: 2100000, guid: 762bb7dde7190994d9acdb007756a1b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_GamePalette
-    second: {fileID: 2100000, guid: e68ff50fb266add4488c359911350347, type: 2}
+      name: MAT_VFX_Godray_cone
+    second: {fileID: 2100000, guid: d3b3b74c755984f428c31146ca6aac16, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

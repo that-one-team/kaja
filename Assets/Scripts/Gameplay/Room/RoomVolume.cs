@@ -12,6 +12,7 @@ public class RoomVolume : Volume
     [SerializeField] Room _room;
     GameObject _blocker;
     [SerializeField] AudioClip _blockerSfx;
+    [SerializeField] bool _spawnBlockers = true;
 
     AudioSource _source;
 
@@ -45,6 +46,7 @@ public class RoomVolume : Volume
 
     void OnRoomStart(int enemyCount)
     {
+        if (!_spawnBlockers) return;
         _source.PlayOneShot(_blockerSfx);
         _blocker.SetActive(true);
         _blocker.GetComponent<Collider>().enabled = false;
@@ -60,6 +62,7 @@ public class RoomVolume : Volume
 
     void OnRoomEnd()
     {
+        if (!_spawnBlockers) return;
         _source.PlayOneShot(_blockerSfx);
         _blocker.transform.DOScaleY(0, 1).OnComplete(() =>
         {

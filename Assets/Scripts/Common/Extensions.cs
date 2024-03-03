@@ -20,5 +20,7 @@ namespace TOT.Common
             var rnd = new System.Random();
             return list.ElementAt(rnd.Next(list.Count()));
         }
+
+        public static IList<T> Shuffle<T>(this IList<T> list) => list.OrderBy(x => Guid.NewGuid()).ToList();
     }
 }

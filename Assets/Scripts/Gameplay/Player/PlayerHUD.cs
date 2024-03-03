@@ -19,7 +19,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.OnChangeRoom += ChangeRoom;
+        WorldBrain.Instance.OnChangeRoom += ChangeRoom;
         Player.Instance.OnHurt += PlayerHurt;
         PlayerSkills.Instance.OnSkillPickup += SkillPickup;
 

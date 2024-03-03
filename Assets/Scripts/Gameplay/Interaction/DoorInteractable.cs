@@ -10,6 +10,8 @@ public class DoorInteractable : Interactable
     [SerializeField] float _openSpeed = 0.5f;
     [SerializeField] AudioClip _doorSound;
 
+    public bool IsLocked = false;
+
     bool _isOpened = false;
     float _y;
 
@@ -30,6 +32,7 @@ public class DoorInteractable : Interactable
 
     public override void Interact()
     {
+        if (IsLocked) return;
         if (_canOnlyOpenOnce && _isOpened) return;
 
         var sign = Mathf.Sign(Vector3.Dot(transform.forward, Camera.main.transform.forward));

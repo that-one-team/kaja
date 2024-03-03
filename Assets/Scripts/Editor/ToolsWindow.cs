@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using PlasticGui.WorkspaceWindow.BrowseRepository;
 
 public class ToolsWindow : EditorWindow
 {
@@ -26,12 +27,22 @@ public class ToolsWindow : EditorWindow
 
         PlaceEnemySpawner();
         ConvertToEnemySpawner(selected);
+
+        if (GUILayout.Button("Snap to player height")) SnapToPlayerHeight(selected);
     }
 
     static void ReloadAssets()
     {
         _spawnerMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/Materials/Volumes/VOL_Spawner.mat", typeof(Material));
         _roomVolumeMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/Materials/Volumes/VOL_Room.mat", typeof(Material));
+    }
+
+    void SnapToPlayerHeight(GameObject camera)
+    {
+        if (camera == null) return;
+
+        if (Physics.Raycast(camera.transform.position, Vector3.down, out RaycastHit hit, 100))
+            camera.transform.position = hit.point + (Vector3.up * 1.52f);
     }
 
     void PlaceEnemySpawner()

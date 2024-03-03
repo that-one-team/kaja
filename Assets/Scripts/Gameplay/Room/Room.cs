@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 [Serializable]
@@ -28,6 +27,8 @@ public class Room : MonoBehaviour
 
     [SerializeField] List<EnemySpawner> _spawners = new();
 
+    [field: SerializeField] public Transform RoomStartPosition { get; private set; }
+
     public bool IsRoomActive { get; private set; }
     public bool IsRoomComplete { get; private set; }
 
@@ -45,7 +46,7 @@ public class Room : MonoBehaviour
 
         OnRoomStart?.Invoke(0);
         IsRoomActive = true;
-        GameManager.Instance.ChangeRoom(this);
+        WorldBrain.Instance.ChangeRoom(this);
 
         NextWave();
     }
@@ -87,7 +88,7 @@ public class Room : MonoBehaviour
         print("[ROOM] " + FriendlyName + " complete!");
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
-        GameManager.Instance.ChangeRoom(null);
+        WorldBrain.Instance.ChangeRoom(null);
         IsRoomComplete = true;
     }
 

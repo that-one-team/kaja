@@ -9,7 +9,6 @@ public class GameManager : SingletonBehaviour<GameManager>
     public Room ActiveRoom { get; private set; }
     public string CurrentWorld { get; set; }
 
-    public event System.Action<Room> OnChangeRoom;
 
     public int PlayerScore { get; private set; } = 0;
 
@@ -28,11 +27,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         Time.timeScale = isPaused ? 0 : 1;
     }
 
-    public void ChangeRoom(Room room)
-    {
-        ActiveRoom = room;
-        OnChangeRoom?.Invoke(room);
-    }
+
 
     public Transform GetPlayer()
     {

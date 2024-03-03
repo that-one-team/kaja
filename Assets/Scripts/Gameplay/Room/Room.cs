@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
     [SerializeField] List<EnemySpawner> _spawners = new();
 
     [field: SerializeField] public Transform RoomStartPosition { get; private set; }
+    [field: SerializeField] public Transform PortalSpawn { get; private set; }
 
     public bool IsRoomActive { get; private set; }
     public bool IsRoomComplete { get; private set; }

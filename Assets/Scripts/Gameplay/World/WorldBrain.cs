@@ -25,6 +25,7 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
 
     private void Start()
     {
+        if (_roomsPrefabs.Count == 0) return;
         SpawnRooms();
     }
 
@@ -56,8 +57,10 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
 
     public void MoveCameraToNextRoom()
     {
+        if (_roomPortalCamera == null) return;
         var camPos = NextRoom.RoomStartPosition;
-
         _roomPortalCamera.transform.SetPositionAndRotation(camPos.position, camPos.rotation);
+
+        _roomPortalCamera.GetComponent<RoomCamera>().SetPositionInRoom(NextRoom.RoomStartPosition);
     }
 }

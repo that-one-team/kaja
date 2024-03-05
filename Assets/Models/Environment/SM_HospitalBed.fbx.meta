@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 551d777335d7c5140a62b222094d434e
+guid: eb0fabe58d7418847bb299a32da5ae6d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_OxygenTank_Bronze
-    second: {fileID: 2100000, guid: 392d50dd8ae041949be6d4129c3bac7e, type: 2}
+      name: MAT_GamePalette
+    second: {fileID: 2100000, guid: e68ff50fb266add4488c359911350347, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_OxygenTank_Handle
-    second: {fileID: 2100000, guid: ab71e7a4b231a774caac11a8680c89f2, type: 2}
+      name: MAT_GamePalette_Shiny
+    second: {fileID: 2100000, guid: 000ab86d325ba7b4e93f9161c15a5a94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_OxygenTank_Tank
-    second: {fileID: 2100000, guid: 04be60d8a35704547bf0de1c68f0cb00, type: 2}
+      name: MAT_HospitalBed
+    second: {fileID: 2100000, guid: aa420a7adadc5a34f8fdfbc7048eb8e8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

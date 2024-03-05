@@ -3,7 +3,22 @@ guid: 66a29f9b71550814eb092bbd5dc047e9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_GamePalette
+    second: {fileID: 2100000, guid: e68ff50fb266add4488c359911350347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Monitor
+    second: {fileID: 2100000, guid: 309e29fc5e8a141498d21b9bdf26d90e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Monitor_Screen
+    second: {fileID: 2100000, guid: 01ea4479adc720b459cc305207566082, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

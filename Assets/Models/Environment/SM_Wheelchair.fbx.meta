@@ -3,7 +3,17 @@ guid: 181edb63a516f134ba44debbb7ae5493
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_GamePalette_Shiny
+    second: {fileID: 2100000, guid: 000ab86d325ba7b4e93f9161c15a5a94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Wheelchair
+    second: {fileID: 2100000, guid: d8825e8a2d51b02469963888071b5ce7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

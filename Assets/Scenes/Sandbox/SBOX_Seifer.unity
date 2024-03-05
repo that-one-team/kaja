@@ -1176,6 +1176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _room: {fileID: 2031968690}
+  _blockerSpawnZones: []
+  BlockerPrefab: {fileID: 0}
   _blockerSfx: {fileID: 8300000, guid: 6824d8d1bf3896c49920b05ccf331d5a, type: 3}
   _spawnBlockers: 1
 --- !u!82 &305884213

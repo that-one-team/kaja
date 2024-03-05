@@ -56,7 +56,9 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
         if (room != null)
             _lastRoomIdx = _roomPool.LastIndexOf(CurrentRoom);
         OnChangeRoom?.Invoke(room);
-        NextRoom = _roomPool[_lastRoomIdx + 1];
+
+        if (_roomPool.Count > 0)
+            NextRoom = _roomPool[_lastRoomIdx + 1];
     }
 
     public void CompleteRoom()

@@ -93,13 +93,9 @@ public class ToolsWindow : EditorWindow
             if (!volume.TryGetComponent<RoomVolume>(out _))
                 volume.AddComponent<RoomVolume>();
 
-            if (volume.transform.childCount == 0)
-            {
-                var blockerPref = Resources.Load("Prefabs/Static Mesh/SM_BranchesDoor", typeof(GameObject));
-                var blocker = Instantiate(blockerPref, volume.transform) as GameObject;
-                blocker.transform.position = volume.transform.position + (Vector3.right * 3.25f);
-                blocker.SetActive(false);
-            }
+            RoomVolume vol = volume.GetComponent<RoomVolume>();
+            var blockerPref = Resources.Load("Prefabs/Static Mesh/SM_BranchesDoor", typeof(GameObject)) as GameObject;
+            vol.BlockerPrefab = blockerPref;
         }
     }
 

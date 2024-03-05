@@ -10,9 +10,12 @@ public class RoomVolume : Volume
 {
     [Dropdown("GetRooms")]
     [SerializeField] Room _room;
-    GameObject _blocker;
+    [SerializeField] List<Transform> _blockerSpawnZones;
+    public GameObject BlockerPrefab;
     [SerializeField] AudioClip _blockerSfx;
     [SerializeField] bool _spawnBlockers = true;
+
+    readonly List<GameObject> _blockers = new();
 
     AudioSource _source;
 
@@ -31,11 +34,15 @@ public class RoomVolume : Volume
         _room.OnRoomStart += OnRoomStart;
         _room.OnRoomEnd += OnRoomEnd;
 
-        _blocker = transform.GetChild(0).gameObject;
-        _blocker.SetActive(false);
-
         _source = GetComponent<AudioSource>();
         _source.spatialBlend = 0.75f;
+
+        foreach (var spawn in _blockerSpawnZones)
+        {
+            var blocker = Instantiate(BlockerPrefab, spawn.transform.position, spawn.transform.rotation, spawn);
+            blocker.SetActive(false);
+            _blockers.Add(blocker);
+        }
     }
 
     public override void OnEnter()
@@ -48,15 +55,18 @@ public class RoomVolume : Volume
     {
         if (!_spawnBlockers) return;
         _source.PlayOneShot(_blockerSfx);
-        _blocker.SetActive(true);
-        _blocker.GetComponent<Collider>().enabled = false;
-        _blocker.GetComponentInChildren<ParticleSystem>().Play();
-        StartCoroutine(EnableCol());
+        foreach (var blocker in _blockers)
+        {
+            blocker.SetActive(true);
+            blocker.GetComponent<Collider>().enabled = false;
+            blocker.GetComponentInChildren<ParticleSystem>().Play();
+            StartCoroutine(EnableCol(blocker));
+        }
 
-        IEnumerator EnableCol()
+        static IEnumerator EnableCol(GameObject blocker)
         {
             yield return new WaitForSeconds(0.2f);
-            _blocker.GetComponent<Collider>().enabled = true;
+            blocker.GetComponent<Collider>().enabled = true;
         }
     }
 
@@ -64,11 +74,14 @@ public class RoomVolume : Volume
     {
         if (!_spawnBlockers) return;
         _source.PlayOneShot(_blockerSfx);
-        _blocker.transform.DOScaleY(0, 1).OnComplete(() =>
+        foreach (var blocker in _blockers)
         {
-            _blocker.SetActive(false);
-        });
-        _blocker.GetComponentInChildren<ParticleSystem>().Play();
+            blocker.transform.DOScaleY(0, 1).OnComplete(() =>
+            {
+                blocker.SetActive(false);
+            });
+            blocker.GetComponentInChildren<ParticleSystem>().Play();
+        }
     }
 
     public DropdownList<Room> GetRooms() => Room.GetRoomValues();

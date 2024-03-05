@@ -24,8 +24,7 @@ public class RoomVolume : Volume
         if (_room == null) return;
         name = "V_" + _room.FriendlyName + " Volume";
 
-        if (_blockerSfx == null)
-            _blockerSfx = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/Environment/sfx_door.wav");
+        _blockerSfx = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/Environment/sfx_treedoor.wav");
     }
 
 

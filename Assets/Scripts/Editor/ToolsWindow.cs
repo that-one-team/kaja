@@ -56,6 +56,7 @@ public class ToolsWindow : EditorWindow
 
     void ConvertToEnemySpawner(GameObject selected)
     {
+        ReloadAssets();
         if (GUILayout.Button("Convert to Enemy spawner"))
         {
             if (selected == null) return;

@@ -28,6 +28,7 @@ MonoBehaviour:
   EquipAudio: {fileID: 8300000, guid: 5e5a4e0b40e973f4ba0ba518b4dfa817, type: 3}
   ShootAudio: {fileID: 8300000, guid: 519a9a7e7b1062b429277f339df942e4, type: 3}
   FireRate: 0.5
+  InitialAmmo: 10
   Damage: 50
   KnockbackForce: 10
   IsProjectile: 0

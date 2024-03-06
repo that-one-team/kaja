@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [Tag]
     [SerializeField] string _undamageable;
     [SerializeField] float _speedRequirement;
+    [SerializeField] float _explosionRadius = 5f;
     [SerializeField] GameObject _hitVFX;
     int _damage = 10;
     [SerializeField] float _knockbackForce;
@@ -30,8 +31,8 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _rb.useGravity = true;
-        // if (_knockbackForce != 0)
-        // _rb.AddExplosionForce(_knockbackForce, transform.position, 5f);
+        if (_knockbackForce != 0)
+            DoExplosion();
 
         if (other.collider.TryGetComponent(out LivingBeing being) && !other.collider.CompareTag(_undamageable))
             being.Damage(_damage);
@@ -42,5 +43,18 @@ public class Projectile : MonoBehaviour
 
         if (_speedRequirement > 0 && _rb.velocity.magnitude >= _speedRequirement)
             Destroy(gameObject);
+    }
+
+    void DoExplosion()
+    {
+        Collider[] cols = { };
+        int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, cols);
+        for (int i = 0; i < count; i++)
+        {
+            var obj = cols[i];
+            if (!obj.TryGetComponent(out Rigidbody rb)) return;
+            rb.AddExplosionForce(_knockbackForce * 2, transform.position, _explosionRadius, 2, ForceMode.Impulse);
+        }
+
     }
 }

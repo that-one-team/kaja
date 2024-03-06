@@ -52,13 +52,17 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         {
             if (Weapons.Count == MAX_WEAPON_COUNT)
             {
-                StartCoroutine(ReplaceItem(itemToAdd));
+                // StartCoroutine(ReplaceItem(itemToAdd));
+                // !Play *Source engine disabled button sound*
+                return;
             }
-            else
-            {
+
+            if (!Weapons.Contains(itemToAdd.Data))
                 Weapons.Add(itemToAdd.Data);
-                UpdateWeaponsVisuals();
-            }
+            else
+                AddAmmoToWeapon(itemToAdd.Data);
+
+            UpdateWeaponsVisuals();
         }
 
         // pickup sound
@@ -130,5 +134,14 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
         CurrentWeaponIndex = index;
         weapon.Equip();
+    }
+
+    void AddAmmoToWeapon(ItemData weapon)
+    {
+        foreach (var weap in _spawnedWeapons)
+        {
+            var wep = weap.GetComponent<Weapon>();
+            wep.Ammo += weapon.InitialAmmo;
+        }
     }
 }

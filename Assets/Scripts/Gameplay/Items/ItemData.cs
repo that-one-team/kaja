@@ -9,6 +9,10 @@ public enum ItemType
     WEAPON
 }
 
+// !WARNING: I DIDNT USE SEPARATE STRUCTS FOR WEAPON SETTINGS BECAUSE I AM LAZY :D
+// glhf looking at this monstrosity (only because i used NaughtyAttributes so a designer (was supposed to be Aaron) who will implement weapons will have easy time)
+// i ended up being the said designer.........
+// its ok it looks cool in-editor
 [CreateAssetMenu(fileName = "Item Data", menuName = "proj/Item Data", order = 0)]
 public class ItemData : ScriptableObject
 {
@@ -53,6 +57,10 @@ public class ItemData : ScriptableObject
     [Header("Weapon settings")]
     [AllowNesting]
     public float FireRate = 0.5f;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
+    public int InitialAmmo = 10;
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]

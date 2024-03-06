@@ -7,6 +7,8 @@ public class Weapon : Item
     [SerializeField] float _equipSpeed = 0.2f;
     protected bool IsReady = false;
 
+    public int Ammo;
+
     bool _isShooting;
     float _timer;
 
@@ -18,6 +20,7 @@ public class Weapon : Item
 
     private void Start()
     {
+        Ammo = Data.InitialAmmo;
         _timer = Data.FireRate;
         _source = GetComponent<AudioSource>();
 
@@ -34,7 +37,6 @@ public class Weapon : Item
         Start();
         if (Data.EquipAudio != null)
             _source.PlayOneShot(Data.EquipAudio, 0.5f);
-
     }
 
     public void Unequip()
@@ -50,6 +52,7 @@ public class Weapon : Item
     {
         if (!IsReady) return;
         if (_timer > 0 && _isShooting) return;
+        if (Ammo <= 0) return;
         if (PlayerInventory.Instance.CurrentWeapon != this) return;
 
         _isShooting = true;
@@ -67,6 +70,8 @@ public class Weapon : Item
             var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
             vfx.DoVFX(Data, vfx.transform.position, endpoint);
         }
+
+        Ammo--;
     }
 
     private void Update()

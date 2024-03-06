@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +33,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     [Header("Slope")]
     [SerializeField] float _slopeSpeedMultiplier = 20f;
     [SerializeField] float _slopeStickForce = 80f;
-    [SerializeField] float _maxSlopeAngle;
+    [SerializeField] float _minSlopeAngle;
     RaycastHit _slope;
     Vector2 _inputVec;
     public bool IsGrounded { get; private set; }
@@ -104,7 +105,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void Update()
     {
-        IsGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
+        // IsGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
+        IsGrounded = Physics.CheckSphere(transform.position, _groundCheckSize.magnitude, _groundMask);
 
         if (GameManager.Instance.IsFrozen)
         {
@@ -185,7 +187,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         if (Physics.Raycast(transform.position, Vector3.down, out _slope, 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, _slope.normal);
-            return angle < _maxSlopeAngle && angle != 0;
+            print(angle);
+            return angle > _minSlopeAngle && angle != 0;
         }
 
         return false;
@@ -196,13 +199,15 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 #if UNITY_EDITOR
     private void OnGUI()
     {
-        GUI.Label(new Rect(20, 20, 1000, 100), $"Vel: {_vel.x} | {_vel.y} | {_vel.z}\nSpeed: {_rb.velocity.magnitude}");
+        var vel = _rb.velocity;
+        GUI.Label(new Rect(20, 20, 1000, 100), $"Vel: {vel.x:0.00} | {vel.y:0.00} | {vel.z:0.00}\nSpeed: {_rb.velocity.magnitude}\nIs Grounded: {IsGrounded}\nIs On Slope: {IsOnSlope()}");
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = IsGrounded ? Color.red : Color.green;
-        Gizmos.DrawWireCube(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize / 2);
+        // Gizmos.DrawWireCube(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize / 2);
+        Gizmos.DrawWireSphere(transform.position, _groundCheckSize.magnitude);
     }
 #endif
 }

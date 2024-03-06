@@ -26,9 +26,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     public bool IsSliding { get; private set; }
     Vector3 _slideDir;
 
-    // [Header("Stair")]
-    // [SerializeField] float _stepLookAhead = 0.1f;
-    // [SerializeField] float _stepHeight = 0.3f;
+    [Header("Stairs")]
+    [SerializeField] Transform _stepRayUpper;
+    [SerializeField] Transform _stepRayLower;
+    [SerializeField] float _stepHeight = 0.3f;
+    [SerializeField] float _stepSmooth = 0.1f;
 
     [Header("Slope")]
     [SerializeField] float _slopeSpeedMultiplier = 20f;
@@ -55,6 +57,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _startHeight = transform.localScale.y;
 
         _radius = GetComponent<CapsuleCollider>().radius;
+
+        _stepRayUpper.position = new(_stepRayUpper.position.x, _stepHeight, _stepRayUpper.position.z);
     }
 
     void OnJump(InputAction.CallbackContext ctx)
@@ -86,26 +90,42 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         }
     }
 
-    // todo stairs r broken
-    // void CheckStairs()
-    // {
-    //     if (!IsGrounded && _isJumping) return;
+    // todo monster code, i got this from a tutorial, too lazy to fix...
+    void StairStepping()
+    {
+        float lowerDist = _rb.velocity.normalized.magnitude * 0.2f, upperDist = _rb.velocity.normalized.magnitude * 0.3f;
+        if (Physics.Raycast(_stepRayLower.position, transform.TransformDirection(Vector3.forward), out _, lowerDist, _groundMask))
+        {
+            if (!Physics.Raycast(_stepRayUpper.position, transform.TransformDirection(Vector3.forward), out _, upperDist, _groundMask))
+            {
+                MoveRb();
+            }
+        }
 
-    //     var pos = transform.position + Vector3.up * _stepHeight;
+        if (Physics.Raycast(_stepRayLower.position, transform.TransformDirection(1.5f, 0, 1), out _, lowerDist, _groundMask))
+        {
+            if (!Physics.Raycast(_stepRayUpper.position, transform.TransformDirection(1.5f, 0, 1), out _, upperDist, _groundMask))
+            {
+                MoveRb();
+            }
+        }
 
-    //     if (!Physics.Raycast(pos, _vel.normalized, _radius + (_stepLookAhead * 0.5f), _groundMask, QueryTriggerInteraction.Ignore)) return;
-    //     if (!Physics.Raycast(pos, _vel.normalized, _radius + _stepLookAhead, _groundMask, QueryTriggerInteraction.Ignore)) return;
+        if (Physics.Raycast(_stepRayLower.position, transform.TransformDirection(-1.5f, 0, 1), out _, lowerDist, _groundMask))
+        {
+            if (!Physics.Raycast(_stepRayUpper.position, transform.TransformDirection(-1.5f, 0, 1), out _, upperDist, _groundMask))
+            {
+                MoveRb();
+            }
+        }
 
-    //     var candidate = pos + _vel.normalized * (_radius + _stepLookAhead);
-    //     if (Physics.Raycast(candidate, Vector3.down, out RaycastHit hit, _stepHeight * 2, _groundMask, QueryTriggerInteraction.Ignore))
-    //     {
-    //         if (Vector3.Angle(Vector3.up, hit.normal) <= _maxSlopeAngle) _rb.position = hit.point;
-    //     }
-    // }
+        void MoveRb()
+        {
+            _rb.position += Vector3.up * _stepSmooth;
+        }
+    }
 
     void Update()
     {
-        // IsGrounded = Physics.CheckBox(transform.position + Vector3.up * _groundCheckOffset, _groundCheckSize, Quaternion.identity, _groundMask);
         IsGrounded = Physics.CheckSphere(transform.position, _groundCheckSize.magnitude, _groundMask);
 
         if (GameManager.Instance.IsFrozen)
@@ -119,7 +139,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _rb.useGravity = !IsOnSlope();
         ControlSpeed();
 
-        // CheckStairs();
         CheckSlide();
         SetHeight();
     }
@@ -146,6 +165,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
             var mult = IsGrounded ? 1 : _airMultiplier;
             _rb.AddForce(10f * mult * _vel, ForceMode.Force);
         }
+
+        // StairStepping();
     }
 
     void DoSlide()
@@ -187,7 +208,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         if (Physics.Raycast(transform.position, Vector3.down, out _slope, 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, _slope.normal);
-            print(angle);
             return angle > _minSlopeAngle && angle != 0;
         }
 

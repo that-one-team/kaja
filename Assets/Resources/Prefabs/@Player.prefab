@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &93336851615601964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3159372299819379127}
+  m_Layer: 2
+  m_Name: StepCheckUpper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3159372299819379127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93336851615601964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5854769363145494577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &166864255721219853
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +956,8 @@ Transform:
   - {fileID: 6342687072501282380}
   - {fileID: 3919449123444974020}
   - {fileID: 8827328988086184386}
+  - {fileID: 3159372299819379127}
+  - {fileID: 1173367928354299013}
   m_Father: {fileID: 6083171140544227957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &343688907184671379
@@ -1001,6 +1034,10 @@ MonoBehaviour:
     m_Bits: 1
   _slideHeight: 0.5
   _slideSpeed: 50
+  _stepRayUpper: {fileID: 3159372299819379127}
+  _stepRayLower: {fileID: 1173367928354299013}
+  _stepHeight: 0.5
+  _stepSmooth: 0.1
   _slopeSpeedMultiplier: 20
   _slopeStickForce: 100
   _minSlopeAngle: 10
@@ -1291,6 +1328,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f63a5e979d7394d99431140496ddb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5092879551268851259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173367928354299013}
+  m_Layer: 2
+  m_Name: StepCheckLow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1173367928354299013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092879551268851259}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5854769363145494577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5197412750746715535
 GameObject:
   m_ObjectHideFlags: 0

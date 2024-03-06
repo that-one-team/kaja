@@ -12565,7 +12565,7 @@ MonoBehaviour:
   _room: {fileID: 6796648439170015149}
   _blockerSpawnZones: []
   BlockerPrefab: {fileID: 0}
-  _blockerSfx: {fileID: 8300000, guid: 70bacaf47f5322545a262e87fa0e99d8, type: 3}
+  _blockerSfx: {fileID: 8300000, guid: 6824d8d1bf3896c49920b05ccf331d5a, type: 3}
   _spawnBlockers: 0
 --- !u!1 &1782440037935785406
 GameObject:

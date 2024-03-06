@@ -15,7 +15,6 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     float _currMoveSpeed;
 
     [Header("Ground Check")]
-    [SerializeField] float _groundCheckOffset = 0.1f;
     [SerializeField] Vector3 _groundCheckSize = Vector3.one / 2;
     [SerializeField] LayerMask _groundMask;
 

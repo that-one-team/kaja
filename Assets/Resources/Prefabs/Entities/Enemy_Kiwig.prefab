@@ -238,6 +238,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bdc67d494a869964094624e33abd8b51, type: 3}
   - {fileID: 8300000, guid: 92120c5742414d646a1af081b525286f, type: 3}
   - {fileID: 8300000, guid: cf9e29c36c4d30d47bace5876df15eaf, type: 3}
+  _attackSfx: {fileID: 8300000, guid: 785d33917670feb429449ecc737d31bd, type: 3}
+  _attackGib: {fileID: 5239413943325640167, guid: 55cf2e8f20e5f1b428befaf03401742b,
+    type: 3}
   _deathGib: {fileID: 4122459857451818459, guid: ff9bdd6ca1429174f8117cf4f0734e33,
     type: 3}
   _hurtGib: {fileID: 3897552783870387739, guid: a067379b913d4c6458ab6fdddd886151,

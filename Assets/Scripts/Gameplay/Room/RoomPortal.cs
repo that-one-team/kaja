@@ -4,25 +4,25 @@ using UnityEngine;
 public class RoomPortal : SingletonBehaviour<RoomPortal>
 {
     public Transform OffsetPos;
-    [SerializeField] DoorInteractable _door;
+    public DoorInteractable Door;
 
     private void Start()
     {
-        WorldBrain.Instance.OnChangeRoom += MoveToRoom;
-        WorldBrain.Instance.OnRoomComplete += CompletedRoom;
+        WorldManager.Instance.CurrentWorld.OnChangeRoom += MoveToRoom;
+        WorldManager.Instance.CurrentWorld.OnRoomComplete += CompletedRoom;
     }
 
     private void CompletedRoom()
     {
-        _door.IsLocked = false;
-        WorldBrain.Instance.MoveCameraToNextRoom();
+        Door.IsLocked = false;
+        WorldManager.Instance.CurrentWorld.MoveCameraToNextRoom();
     }
 
     public void MoveToRoom(Room room)
     {
         if (room == null) return;
-        _door.Interact();
-        _door.IsLocked = true;
+        Door.Interact();
+        Door.IsLocked = true;
         transform.SetPositionAndRotation(room.PortalSpawn.position, room.PortalSpawn.rotation);
         Misc.SnapToGround(gameObject);
     }

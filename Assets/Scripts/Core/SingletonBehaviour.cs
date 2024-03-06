@@ -15,5 +15,12 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
             Instance = GetComponent<T>();
+
+        PostAwake();
+    }
+
+    protected virtual void PostAwake()
+    {
+
     }
 }

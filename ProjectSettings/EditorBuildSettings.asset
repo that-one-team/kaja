@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Core/SCN_Core.unity
+    guid: 85ef5a4630c480d41b27f5504cf1f4dc
+  - enabled: 1
+    path: Assets/Scenes/Worlds/SCN_World_Hub.unity
+    guid: a9da377fd7c71034fa53e7d8af374b95
+  - enabled: 1
     path: Assets/Scenes/Worlds/SCN_World_MentalHospital.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Worlds/SCN_World_Biringan.unity
+    guid: adf5cbdc57b83a64ba8c68cc97ac0665
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4e98b947c57e3cc46ac2c3ad129b079f,
       type: 2}

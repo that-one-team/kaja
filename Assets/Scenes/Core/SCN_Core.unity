@@ -450,6 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091931478}
   - component: {fileID: 1091931479}
+  - component: {fileID: 1091931480}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -484,6 +485,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ea7d8d9fed25a488aaef8763cf4fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1091931480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091931477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcafcdedec7d0e24d9edf8cffdc7c7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _worldsToLoad:
+  - SCN_World_Biringan
+  - SCN_World_MentalHospital
+  _startingWorld: SCN_World_Hub
 --- !u!1 &1535381876
 GameObject:
   m_ObjectHideFlags: 0

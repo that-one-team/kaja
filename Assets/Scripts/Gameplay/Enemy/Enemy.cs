@@ -31,7 +31,7 @@ public class Enemy : LivingBeing
     protected Rigidbody RB;
 
     protected Transform Target;
-    AudioSource _source;
+    AudioSource _audio;
 
     Transform _visual;
 
@@ -40,6 +40,8 @@ public class Enemy : LivingBeing
     [Header("FX")]
     [SerializeField] AudioClip[] _gruntsSfx;
     [SerializeField] AudioClip[] _deathSfx;
+    [SerializeField] AudioClip _attackSfx;
+    [SerializeField] GameObject _attackGib;
     [SerializeField] GameObject _deathGib;
     [SerializeField] GameObject _hurtGib;
 
@@ -55,7 +57,7 @@ public class Enemy : LivingBeing
     {
         OnValidate();
         _anim = GetComponent<SpritesheetAnimation>();
-        _source = GetComponent<AudioSource>();
+        _audio = GetComponent<AudioSource>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Data.MoveSpeed;
         Agent.angularSpeed = 0;
@@ -142,13 +144,16 @@ public class Enemy : LivingBeing
     protected virtual IEnumerator AttackMelee()
     {
         yield return new WaitForSeconds(Data.AttackDelay);
+        var pos = transform.position + _visual.forward + Vector3.up;
         if (Physics.Raycast(transform.position + transform.up, _visual.forward, out RaycastHit hit, 3, _attackLayer))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 hit.collider.GetComponent<Player>().Damage(Data.Damage);
+                pos = hit.point - (_visual.forward * 0.9f);
             }
         }
+        Instantiate(_attackGib, pos, Quaternion.LookRotation(_visual.forward)).GetComponent<GibVFX>().DoGib(_attackSfx);
     }
 
     protected virtual IEnumerator AttackRanged()

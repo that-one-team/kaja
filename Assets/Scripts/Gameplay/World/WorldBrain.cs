@@ -4,11 +4,13 @@ using System.Linq;
 using TOT.Common;
 using UnityEngine;
 
-public class WorldBrain : SingletonBehaviour<WorldBrain>
+public class WorldBrain : MonoBehaviour
 {
     [Header("General settings")]
     public new string name;
     [SerializeField] Camera _roomPortalCamera;
+    [SerializeField] PlayerStart _playerSpawnPoint;
+    public bool HasCustomRooms = true;
 
     [Header("Room spawner")]
     [SerializeField] int _maxRooms;
@@ -25,11 +27,24 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
     public event Action<Room> OnChangeRoom;
     public event Action OnRoomComplete;
 
+    private void OnEnable()
+    {
+
+    }
 
     private void Start()
     {
-        if (_roomsPrefabs.Count == 0) return;
-        SpawnRooms();
+        print("world brain");
+        if (WorldManager.Instance.CurrentWorld == null)
+            WorldManager.Instance.SetWorld(this);
+        if (_playerSpawnPoint)
+            _playerSpawnPoint.enabled = false;
+
+        if (_roomsPrefabs.Count > 0 && !HasCustomRooms)
+            SpawnRooms();
+
+        if (_playerSpawnPoint)
+            _playerSpawnPoint.enabled = true;
     }
 
     public void SpawnRooms()
@@ -41,10 +56,11 @@ public class WorldBrain : SingletonBehaviour<WorldBrain>
         {
             var room = shuffled[i >= shuffled.Count ? 0 : i];
 
-            _roomPool.Add(Instantiate(room, _roomSpacing * i * Vector3.right, Quaternion.identity).GetComponent<Room>());
+            _roomPool.Add(Instantiate(room, _roomSpacing * i * transform.right, Quaternion.identity, transform).GetComponent<Room>());
         }
 
-        _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * Vector3.right, Quaternion.identity).GetComponent<Room>());
+        if (_bossRoomPrefab)
+            _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * transform.right, Quaternion.identity).GetComponent<Room>());
 
         ChangeRoom(null);
         MoveCameraToNextRoom();

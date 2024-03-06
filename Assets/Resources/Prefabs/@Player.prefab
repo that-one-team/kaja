@@ -436,14 +436,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095412235515432255}
-  m_LocalRotation: {x: -0, y: -0.14935851, z: -0, w: 0.9887831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.7}
-  m_LocalScale: {x: 0.0019205426, y: 0.0019205426, z: 0.0019205426}
+  m_LocalScale: {x: 0.0025, y: 0.0025, z: 0.0025}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5187729377436165432}
   m_Father: {fileID: 2745511412079384828}
-  m_LocalEulerAnglesHint: {x: 0, y: -17.18, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.0905, y: -0.019999996}
@@ -1027,7 +1027,6 @@ MonoBehaviour:
   _groundDrag: 5
   _airDrag: 0
   _airMultiplier: 0.3
-  _groundCheckOffset: 0
   _groundCheckSize: {x: 0.2, y: 0.2, z: 0.2}
   _groundMask:
     serializedVersion: 2
@@ -1473,7 +1472,7 @@ GameObject:
   - component: {fileID: 4349095859221822514}
   - component: {fileID: 2450767828814381904}
   m_Layer: 3
-  m_Name: HUD
+  m_Name: Sanity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1486,18 +1485,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5594720375929545150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.20829056, y: 0.20829056, z: 0.20829056}
+  m_LocalRotation: {x: 0, y: -0.12074329, z: 0, w: 0.99268377}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3371121350373835467}
   m_Father: {fileID: 2044832602033816575}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -255, y: 109}
-  m_SizeDelta: {x: 0, y: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -13.87, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -2.7999878, y: -25.17}
+  m_SizeDelta: {x: 264.45532, y: 176.46811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7115375201737858996
 CanvasRenderer:
@@ -1514,7 +1513,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5594720375929545150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1550,7 +1549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _smoothing: 8
-  _swayMultiplier: 0.5
+  _swayMultiplier: 20
 --- !u!1 &5863141951113372537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1611,7 @@ GameObject:
   - component: {fileID: 2828120350088227382}
   - component: {fileID: 4184278771271598863}
   - component: {fileID: 5889976475405088830}
+  - component: {fileID: 790691082133235009}
   m_Layer: 5
   m_Name: World Text
   m_TagString: Untagged
@@ -1668,7 +1668,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Current world
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 91f8efea32fe29840bf88d3090075ada, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1732,9 +1732,23 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &790691082133235009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521822433389368438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70211cf2858d38b4780d280a2928d72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _smoothing: 8
+  _swayMultiplier: 20
 --- !u!1 &6540807972830363072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,10 +1871,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'HP: 100'
+  m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 91f8efea32fe29840bf88d3090075ada, type: 2}
+  m_sharedMaterial: {fileID: 7369279900945263793, guid: 91f8efea32fe29840bf88d3090075ada,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1884,8 +1899,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 101.68
-  m_fontSizeBase: 101.68
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1968,6 +1983,7 @@ GameObject:
   - component: {fileID: 701481697923079266}
   - component: {fileID: 6197224712301559764}
   - component: {fileID: 5375724858133199867}
+  - component: {fileID: 8450479221538781556}
   m_Layer: 5
   m_Name: Room Text
   m_TagString: Untagged
@@ -2024,7 +2040,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Room
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 91f8efea32fe29840bf88d3090075ada, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2088,9 +2104,23 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8450479221538781556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7606680855687790505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70211cf2858d38b4780d280a2928d72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _smoothing: 8
+  _swayMultiplier: 20
 --- !u!1 &7725063955963399446
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -17,9 +18,19 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] Image _skillPickupIndicator;
 
+    WorldBrain _currentWorld;
+
     void Start()
     {
-        WorldBrain.Instance.OnChangeRoom += ChangeRoom;
+        WorldManager.OnWorldChange += Initialize;
+
+    }
+
+    private void Initialize(WorldBrain brain)
+    {
+        print("player hud");
+        _currentWorld = WorldManager.Instance.CurrentWorld;
+        _currentWorld.OnChangeRoom += ChangeRoom;
         Player.Instance.OnHurt += PlayerHurt;
         PlayerSkills.Instance.OnSkillPickup += SkillPickup;
 
@@ -46,8 +57,8 @@ public class PlayerHUD : MonoBehaviour
     void ChangeRoom(Room room)
     {
         if (room == null) return;
-        _worldText.text = WorldBrain.Instance.name;
-        _roomText.text = WorldBrain.Instance.CurrentRoom.FriendlyName;
+        _worldText.text = _currentWorld.name;
+        _roomText.text = _currentWorld.CurrentRoom.FriendlyName;
         _newRoomGroup.gameObject.SetActive(true);
 
         _newRoomGroup.alpha = 0;

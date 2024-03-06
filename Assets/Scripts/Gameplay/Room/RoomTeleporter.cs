@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class RoomTeleporter : MonoBehaviour
@@ -12,7 +13,7 @@ public class RoomTeleporter : MonoBehaviour
     private void Start()
     {
         _player = PlayerController.Instance.transform;
-        _world = WorldBrain.Instance;
+        _world = WorldManager.Instance.CurrentWorld;
     }
 
     private void Update()
@@ -37,6 +38,7 @@ public class RoomTeleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GetComponentInParent<RoomPortal>().Door.IsLocked) return;
         if (other.CompareTag("Player")) _isPlayerEnter = true;
     }
 

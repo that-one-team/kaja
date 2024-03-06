@@ -8,8 +8,13 @@ public class RoomPortal : SingletonBehaviour<RoomPortal>
 
     private void Start()
     {
-        WorldManager.Instance.CurrentWorld.OnChangeRoom += MoveToRoom;
-        WorldManager.Instance.CurrentWorld.OnRoomComplete += CompletedRoom;
+        WorldManager.Instance.OnWorldChange += Init;
+    }
+
+    private void Init(WorldBrain brain)
+    {
+        brain.OnChangeRoom += MoveToRoom;
+        brain.OnRoomComplete += CompletedRoom;
     }
 
     private void CompletedRoom()

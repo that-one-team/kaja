@@ -12,8 +12,11 @@ public class RoomTeleporter : MonoBehaviour
 
     private void Start()
     {
-        _player = PlayerController.Instance.transform;
-        _world = WorldManager.Instance.CurrentWorld;
+        WorldManager.Instance.OnWorldChange += (WorldBrain brain) =>
+        {
+            _player = PlayerController.Instance.transform;
+            _world = WorldManager.Instance.CurrentWorld;
+        };
     }
 
     private void Update()

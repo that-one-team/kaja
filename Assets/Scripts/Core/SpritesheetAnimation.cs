@@ -32,7 +32,6 @@ public class SpritesheetAnimation : MonoBehaviour
 
     public void SetAnimation(AnimationIndex index)
     {
-        print("[ANIM]: set animation to " + index);
         AnimationIndex = index;
     }
 }

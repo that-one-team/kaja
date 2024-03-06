@@ -21,7 +21,7 @@ public class DialogueManager : SingletonBehaviour<DialogueManager>
     private void Start()
     {
         _dialoguePanel.gameObject.SetActive(false);
-
+        WorldManager.Instance.OnWorldChange += (WorldBrain brain) =>
         PlayerInputs.Instance.UI.Next.performed += OnNext;
     }
 

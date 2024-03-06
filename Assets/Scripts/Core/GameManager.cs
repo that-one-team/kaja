@@ -10,7 +10,7 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     Transform _player;
 
-    private void Start()
+    void Start()
     {
         Freeze(false);
     }
@@ -23,17 +23,17 @@ public class GameManager : SingletonBehaviour<GameManager>
         Time.timeScale = isPaused ? 0 : 1;
     }
 
-
-
     public Transform GetPlayer()
     {
         if (_player == null)
         {
-            _player = GameObject.Find("Player").transform;
+            _player = GameObject.Find("@Player(Clone)").transform;
         }
 
         return _player;
     }
+
+    public Transform SetPlayer(Transform player) => _player = player;
 
     public void Freeze(bool isFrozen)
     {

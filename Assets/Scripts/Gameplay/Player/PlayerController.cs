@@ -90,6 +90,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     }
 
     // todo monster code, i got this from a tutorial, too lazy to fix...
+    // 07/03/2024 - doesnt even work LMAOOOO
     void StairStepping()
     {
         float lowerDist = _rb.velocity.normalized.magnitude * 0.2f, upperDist = _rb.velocity.normalized.magnitude * 0.3f;

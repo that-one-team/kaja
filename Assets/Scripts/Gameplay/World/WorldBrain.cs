@@ -1,16 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using TOT.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldBrain : MonoBehaviour
 {
     [Header("General settings")]
     public new string name;
+    [Scene] public string SceneName;
+
+    public Scene Scene { get => SceneManager.GetSceneByName(SceneName); }
+
     [SerializeField] Camera _roomPortalCamera;
-    [SerializeField] PlayerStart _playerSpawnPoint;
+    [field: SerializeField] public PlayerStart PlayerSpawnPoint { get; private set; }
     public bool HasCustomRooms = true;
+    public bool IsHub = false;
 
     [Header("Room spawner")]
     [SerializeField] int _maxRooms;
@@ -27,24 +34,23 @@ public class WorldBrain : MonoBehaviour
     public event Action<Room> OnChangeRoom;
     public event Action OnRoomComplete;
 
-    private void OnEnable()
+    private void Start()
     {
+        if (WorldManager.Instance.CurrentWorld == null)
+            WorldManager.Instance.ChangeWorld(this, () =>
+            {
+                PlayerSpawnPoint.TeleportPlayer();
+            });
+
+        WorldManager.Instance.OnWorldChange += WorldStart;
 
     }
 
-    private void Start()
+    private void WorldStart(WorldBrain brain)
     {
-        print("world brain");
-        if (WorldManager.Instance.CurrentWorld == null)
-            WorldManager.Instance.SetWorld(this);
-        if (_playerSpawnPoint)
-            _playerSpawnPoint.enabled = false;
 
         if (_roomsPrefabs.Count > 0 && !HasCustomRooms)
             SpawnRooms();
-
-        if (_playerSpawnPoint)
-            _playerSpawnPoint.enabled = true;
     }
 
     public void SpawnRooms()
@@ -73,7 +79,7 @@ public class WorldBrain : MonoBehaviour
             _lastRoomIdx = _roomPool.LastIndexOf(CurrentRoom);
         OnChangeRoom?.Invoke(room);
 
-        if (_roomPool.Count > 0)
+        if (_roomPool.Count > 1)
             NextRoom = _roomPool[_lastRoomIdx + 1];
     }
 

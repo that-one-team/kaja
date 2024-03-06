@@ -65,7 +65,7 @@ public class Enemy : LivingBeing
         OnHurt += OnHurtEvent;
 
         RB.isKinematic = true;
-        Target = GameManager.Instance.GetPlayer();
+        Target = PlayerController.Instance.transform; // :middle_finger:
         ChangeState(EnemyState.MOVING);
     }
 
@@ -89,7 +89,7 @@ public class Enemy : LivingBeing
 
     protected void ChangeState(EnemyState state)
     {
-        print("[Enemy]: Changed state to " + state);
+        // print("[Enemy]: Changed state to " + state);
         switch (state)
         {
             case EnemyState.MOVING:

@@ -22,19 +22,15 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-        WorldManager.OnWorldChange += Initialize;
-
+        WorldManager.Instance.OnWorldChange += Initialize;
     }
 
     private void Initialize(WorldBrain brain)
     {
-        print("player hud");
         _currentWorld = WorldManager.Instance.CurrentWorld;
         _currentWorld.OnChangeRoom += ChangeRoom;
         Player.Instance.OnHurt += PlayerHurt;
         PlayerSkills.Instance.OnSkillPickup += SkillPickup;
-
-        PlayerHurt(Player.Instance.Health);
     }
 
     void SkillPickup(SkillData skill)

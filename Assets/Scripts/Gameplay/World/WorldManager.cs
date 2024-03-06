@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class WorldManager : SingletonBehaviour<WorldManager>
 {
     public WorldBrain CurrentWorld { get; private set; }
-    public static event Action<WorldBrain> OnWorldChange;
+    public event Action<WorldBrain> OnWorldChange;
 
     [SerializeField][Scene] List<string> _worldsToLoad;
     readonly Queue<string> _worldPool = new();
@@ -17,36 +17,77 @@ public class WorldManager : SingletonBehaviour<WorldManager>
     [SerializeField] string _startingWorld;
     [SerializeField] bool DEBUG_LoadRooms = false;
 
-    public List<WorldBrain> WorldPool { get; private set; }
+    WorldBrain _nextWorld;
 
     protected override void PostAwake()
     {
-        print("world manager");
 #if UNITY_EDITOR
         if (!DEBUG_LoadRooms) return;
 #endif
         var load = SceneManager.LoadSceneAsync(_startingWorld, LoadSceneMode.Additive);
         load.completed += (AsyncOperation op) =>
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(_startingWorld));
+            {
+                var scn = SceneManager.GetSceneByName(_startingWorld);
+                SceneManager.SetActiveScene(scn);
+            };
 
         LoadOtherWorlds();
     }
 
-    void LoadOtherWorlds()
+    public void LoadOtherWorlds()
     {
+        _worldPool.Clear();
         var shuffled = _worldsToLoad.Shuffle();
         foreach (var world in shuffled) _worldPool.Enqueue(world);
-        LoadNextWorld();
+        _worldPool.Enqueue(_startingWorld);
     }
 
     public void LoadNextWorld()
     {
-        SceneManager.LoadSceneAsync(_worldPool.Peek(), LoadSceneMode.Additive);
+        var tryRemove = _worldPool.TryDequeue(out string next);
+        if (!tryRemove)
+        {
+            LoadOtherWorlds();
+            LoadNextWorld(); // call func again
+            return;
+        }
+
+        var load = SceneManager.LoadSceneAsync(next, LoadSceneMode.Additive);
+
+        load.completed += (AsyncOperation op) =>
+        {
+            foreach (var obj in SceneManager.GetSceneByName(next).GetRootGameObjects())
+            {
+                if (obj.TryGetComponent(out WorldBrain brain))
+                {
+                    _nextWorld = brain;
+                }
+            }
+        };
+
     }
 
-    public void SetWorld(WorldBrain world)
+    public void UnloadPreviousWorld()
     {
+        if (CurrentWorld != null)
+            SceneManager.UnloadSceneAsync(CurrentWorld.SceneName);
+    }
+
+    public void NextWorld()
+    {
+        _nextWorld.PlayerSpawnPoint.TeleportPlayer();
+        SceneManager.MoveGameObjectToScene(GameManager.Instance.GetPlayer().gameObject, _nextWorld.Scene);
+        ChangeWorld(_nextWorld);
+    }
+
+    public void ChangeWorld(WorldBrain world, Action onWorldChange = null)
+    {
+        UnloadPreviousWorld();
         CurrentWorld = world;
+        if (_nextWorld != null)
+            SceneManager.SetActiveScene(_nextWorld.Scene);
+
+        onWorldChange?.Invoke();
         OnWorldChange?.Invoke(world);
     }
 }

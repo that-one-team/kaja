@@ -368,7 +368,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Biringan
+  SceneName: SCN_World_Biringan
   _roomPortalCamera: {fileID: 829358355}
+  <PlayerSpawnPoint>k__BackingField: {fileID: 0}
+  HasCustomRooms: 0
+  IsHub: 0
   _maxRooms: 5
   _roomSpacing: 50
   _roomsPrefabs:

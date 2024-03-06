@@ -36,17 +36,9 @@ public class Room : MonoBehaviour
     public event Action<int> OnRoomStart;
     public event Action OnRoomEnd;
 
-    WorldBrain _currentWorld;
-
     void Start()
     {
         _spawners = GetComponentsInChildren<EnemySpawner>().ToList();
-        WorldManager.OnWorldChange += Initialize;
-    }
-
-    private void Initialize(WorldBrain brain)
-    {
-        _currentWorld = brain;
     }
 
     public void StartRoom()
@@ -55,7 +47,7 @@ public class Room : MonoBehaviour
 
         OnRoomStart?.Invoke(0);
         IsRoomActive = true;
-        _currentWorld.ChangeRoom(this);
+        WorldManager.Instance.CurrentWorld.ChangeRoom(this);
 
         NextWave();
     }
@@ -97,8 +89,8 @@ public class Room : MonoBehaviour
         print("[ROOM] " + FriendlyName + " complete!");
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
-        _currentWorld.ChangeRoom(null);
-        _currentWorld.CompleteRoom();
+        WorldManager.Instance.CurrentWorld.ChangeRoom(null);
+        WorldManager.Instance.CurrentWorld.CompleteRoom();
         IsRoomComplete = true;
     }
 

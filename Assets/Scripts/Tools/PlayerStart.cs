@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,21 +6,17 @@ using UnityEngine;
 public class PlayerStart : MonoBehaviour
 {
     [SerializeField] GameObject _playerPrefab;
-    void Awake()
+
+    public void TeleportPlayer()
     {
-        if (PlayerController.Instance != null)
-        {
-            var player = PlayerController.Instance.transform.parent;
-            player.transform.position = transform.position;
-        }
-        else
-        {
+        if (PlayerController.Instance == null)
             Instantiate(_playerPrefab, transform.position, Quaternion.identity);
-        }
 
         var rb = PlayerController.Instance.GetComponent<Rigidbody>();
         rb.MovePosition(transform.position);
         rb.MoveRotation(transform.rotation);
+        var player = PlayerController.Instance.transform;
+        player.rotation = transform.rotation; // stupid ass code fuck you unity not working
     }
 
     private void OnDrawGizmos()

@@ -18,14 +18,19 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] Image _skillPickupIndicator;
     [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] TextMeshProUGUI _timerText;
 
     WorldBrain _currentWorld;
+
+    GameStopwatch _timer;
 
     void Start()
     {
         Initialize(WorldManager.Instance.CurrentWorld);
         WorldManager.Instance.OnWorldChange += Initialize;
         PlayerScore.Instance.OnAddScore += (int score) => _scoreText.text = score.ToString();
+
+        _timer = GameStopwatch.Instance;
     }
 
     private void Initialize(WorldBrain brain)
@@ -67,6 +72,12 @@ public class PlayerHUD : MonoBehaviour
         seq.Append(_newRoomGroup.DOFade(0, 0.2f).SetDelay(3));
         seq.AppendCallback(() => _newRoomGroup.gameObject.SetActive(false));
         seq.Play();
+    }
+
+    void Update()
+    {
+        var time = TimeSpan.FromSeconds(_timer.CurrentTime);
+        _timerText.text = time.ToString(@"mm\:ss");
     }
 
 }

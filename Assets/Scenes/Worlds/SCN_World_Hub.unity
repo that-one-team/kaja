@@ -1209,11 +1209,36 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5549559303581763566, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 419e2d770b381434285bb25c8290e3c5, type: 2}
+    - target: {fileID: -3368752650692918891, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 419e2d770b381434285bb25c8290e3c5, type: 2}
+    - target: {fileID: -2940411116118634973, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 470cb7067cdd5c548be3c7c43f1fdfe0, type: 2}
+    - target: {fileID: -1333899346513714411, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 419e2d770b381434285bb25c8290e3c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
         type: 3}
       propertyPath: m_Name
       value: SM_Room_Hub
       objectReference: {fileID: 0}
+    - target: {fileID: 5706374788583495608, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 419e2d770b381434285bb25c8290e3c5, type: 2}
     - target: {fileID: 6761323209716178261, guid: 2a798ef7d31e1be4da0faef9a4fda80e,
         type: 3}
       propertyPath: m_LocalScale.x

@@ -17,16 +17,19 @@ public class Weapon : Item
 
     // too lazy to rewrite this to Data.Offset LMAO
     Vector3 _offset;
+    bool _hasBeenEquipped;
 
     private void Start()
     {
-        Ammo = Data.InitialAmmo;
+        if (!_hasBeenEquipped)
+            Ammo = Data.InitialAmmo;
         _timer = Data.FireRate;
         _source = GetComponent<AudioSource>();
 
         _offset = Data.Offset;
 
         transform.localScale = Vector3.one * Data.Scale;
+        _hasBeenEquipped = true;
     }
 
     public void Equip()

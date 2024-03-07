@@ -29,6 +29,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     [SerializeField] Transform _weaponHolder;
     [SerializeField] ItemData _startingWeapon;
 
+    public event Action<Weapon> OnWeaponEquip;
     public event Action<Item> OnItemAdd;
     public event Action<Item> OnReplaceItem;
 
@@ -133,6 +134,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             CurrentWeapon?.Unequip();
 
         CurrentWeaponIndex = index;
+        OnWeaponEquip?.Invoke(weapon);
         weapon.Equip();
     }
 

@@ -31,6 +31,10 @@ public class ItemData : ScriptableObject
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
+    public Sprite UISprite;
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
     public Vector3 Offset;
     public float Scale = 1;
     public Color LightColor = Color.white;

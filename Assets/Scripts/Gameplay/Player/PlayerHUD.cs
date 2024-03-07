@@ -20,6 +20,11 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI _scoreText;
     [SerializeField] TextMeshProUGUI _timerText;
 
+    [Header("Weapons")]
+    [SerializeField] Image _currentWeaponImage;
+    [SerializeField] TextMeshProUGUI _currentWeaponText;
+    [SerializeField] TextMeshProUGUI _currentWeaponAmmo;
+
     WorldBrain _currentWorld;
 
     GameStopwatch _timer;
@@ -29,8 +34,14 @@ public class PlayerHUD : MonoBehaviour
         Initialize(WorldManager.Instance.CurrentWorld);
         WorldManager.Instance.OnWorldChange += Initialize;
         PlayerScore.Instance.OnAddScore += (int score) => _scoreText.text = score.ToString();
-
+        PlayerInventory.Instance.OnWeaponEquip += EquipWeapon;
         _timer = GameStopwatch.Instance;
+    }
+
+    private void EquipWeapon(Weapon weapon)
+    {
+        _currentWeaponText.text = weapon.Data.FriendlyName;
+        _currentWeaponImage.sprite = weapon.Data.UISprite;
     }
 
     private void Initialize(WorldBrain brain)
@@ -78,6 +89,10 @@ public class PlayerHUD : MonoBehaviour
     {
         var time = TimeSpan.FromSeconds(_timer.CurrentTime);
         _timerText.text = time.ToString(@"mm\:ss");
+
+        var currWeapon = PlayerInventory.Instance.CurrentWeapon;
+        if (currWeapon != null)
+            _currentWeaponAmmo.text = currWeapon.Data.InitialAmmo == 0 ? "-" : currWeapon.Ammo.ToSafeString();
     }
 
 }

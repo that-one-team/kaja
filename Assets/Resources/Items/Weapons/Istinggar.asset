@@ -18,6 +18,7 @@ MonoBehaviour:
   IsStackable: 0
   WorldSprite: {fileID: 2800000, guid: 025a0e49ff307664fb5356a3f6f314da, type: 3}
   HandSprite: {fileID: 2800000, guid: 025a0e49ff307664fb5356a3f6f314da, type: 3}
+  UISprite: {fileID: 21300000, guid: 56db7f9028dadc84eb0c4721f65e5d26, type: 3}
   Offset: {x: 0, y: 0, z: 0}
   Scale: 1
   LightColor: {r: 1, g: 1, b: 1, a: 1}

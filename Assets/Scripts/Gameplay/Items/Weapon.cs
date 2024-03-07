@@ -52,7 +52,7 @@ public class Weapon : Item
     {
         if (!IsReady) return;
         if (_timer > 0 && _isShooting) return;
-        if (Ammo <= 0) return;
+        if (Data.InitialAmmo != 0 && Ammo <= 0) return;
         if (PlayerInventory.Instance.CurrentWeapon != this) return;
 
         _isShooting = true;
@@ -70,8 +70,8 @@ public class Weapon : Item
             var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
             vfx.DoVFX(Data, vfx.transform.position, endpoint);
         }
-
-        Ammo--;
+        if (Data.InitialAmmo != 0)
+            Ammo--;
     }
 
     private void Update()

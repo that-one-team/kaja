@@ -13,6 +13,7 @@ public class EnemyData : ScriptableObject
     public string FriendlyName;
     public Texture Spritesheet;
     public int ScoreRequirement = 0;
+    public int ScoreToGive = 10;
     public float MoveSpeed;
 
     [Header("Attacks")]

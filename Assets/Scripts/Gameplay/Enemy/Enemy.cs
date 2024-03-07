@@ -79,6 +79,7 @@ public class Enemy : LivingBeing
     public override void Die()
     {
         Instantiate(_deathGib, transform.position + Vector3.up, Quaternion.identity).GetComponent<GibVFX>().DoGib(_deathSfx.SelectRandom());
+        PlayerScore.Instance.AddScore(Mathf.RoundToInt(Data.ScoreToGive * Mathf.Pow(1.05f, GameStopwatch.Instance.CurrentTime)));
         base.Die();
     }
 

@@ -77,6 +77,7 @@ public class WorldManager : SingletonBehaviour<WorldManager>
     {
         _nextWorld.PlayerSpawnPoint.TeleportPlayer();
         SceneManager.MoveGameObjectToScene(GameManager.Instance.GetPlayer().gameObject, _nextWorld.Scene);
+        GameStopwatch.Instance.IsActive = !(_nextWorld.Scene.name == "SCN_World_Hub");
         ChangeWorld(_nextWorld);
     }
 

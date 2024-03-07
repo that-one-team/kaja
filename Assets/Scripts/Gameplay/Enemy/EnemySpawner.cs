@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
-        int maxSpawn = Room.CurrentWave * Mathf.Max(GameManager.Instance.PlayerScore / 100, 1);
+        int maxSpawn = Room.CurrentWave * Mathf.Max(PlayerScore.Instance.Score / 100, 1);
         _enemiesToSpawn = maxSpawn;
         StartCoroutine(StartSpawning(enemies));
         return maxSpawn;

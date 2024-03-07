@@ -17,6 +17,7 @@ public class PlayerHUD : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] TextMeshProUGUI _hpText;
     [SerializeField] Image _skillPickupIndicator;
+    [SerializeField] TextMeshProUGUI _scoreText;
 
     WorldBrain _currentWorld;
 
@@ -24,6 +25,7 @@ public class PlayerHUD : MonoBehaviour
     {
         Initialize(WorldManager.Instance.CurrentWorld);
         WorldManager.Instance.OnWorldChange += Initialize;
+        PlayerScore.Instance.OnAddScore += (int score) => _scoreText.text = score.ToString();
     }
 
     private void Initialize(WorldBrain brain)

@@ -64,7 +64,8 @@ public class WorldBrain : MonoBehaviour
             _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * transform.right, Quaternion.identity).GetComponent<Room>());
 
         // get player start in first room
-        PlayerSpawnPoint = _roomPool[0].RoomStartPosition.GetComponentInParent<PlayerStart>();
+        if (PlayerSpawnPoint == null)
+            PlayerSpawnPoint = _roomPool[0].RoomStartPosition.GetComponentInParent<PlayerStart>();
 
         ChangeRoom(null);
         MoveCameraToNextRoom();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -632,7 +632,7 @@ MonoBehaviour:
   _worldsToLoad:
   - SCN_World_Biringan
   _startingWorld: SCN_World_Hub
-  DEBUG_LoadRooms: 1
+  DEBUG_LoadRooms: 0
 --- !u!1 &1535381876
 GameObject:
   m_ObjectHideFlags: 0

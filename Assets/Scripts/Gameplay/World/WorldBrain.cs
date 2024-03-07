@@ -36,21 +36,16 @@ public class WorldBrain : MonoBehaviour
 
     private void Start()
     {
+        if (_roomsPrefabs.Count > 0 && !HasCustomRooms)
+            SpawnRooms();
+
         if (WorldManager.Instance.CurrentWorld == null)
             WorldManager.Instance.ChangeWorld(this, () =>
             {
                 PlayerSpawnPoint.TeleportPlayer();
             });
 
-        WorldManager.Instance.OnWorldChange += WorldStart;
-
-    }
-
-    private void WorldStart(WorldBrain brain)
-    {
-
-        if (_roomsPrefabs.Count > 0 && !HasCustomRooms)
-            SpawnRooms();
+        // WorldManager.Instance.OnWorldChange += WorldStart;
     }
 
     public void SpawnRooms()
@@ -67,6 +62,9 @@ public class WorldBrain : MonoBehaviour
 
         if (_bossRoomPrefab)
             _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * transform.right, Quaternion.identity).GetComponent<Room>());
+
+        // get player start in first room
+        PlayerSpawnPoint = _roomPool[0].RoomStartPosition.GetComponentInParent<PlayerStart>();
 
         ChangeRoom(null);
         MoveCameraToNextRoom();

@@ -38,7 +38,8 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        _spawners = GetComponentsInChildren<EnemySpawner>().ToList();
+        if (_spawners.Count == 0)
+            _spawners = GetComponentsInChildren<EnemySpawner>().ToList();
     }
 
     public void StartRoom()

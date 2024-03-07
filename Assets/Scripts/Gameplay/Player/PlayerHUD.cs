@@ -22,11 +22,13 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
+        Initialize(WorldManager.Instance.CurrentWorld);
         WorldManager.Instance.OnWorldChange += Initialize;
     }
 
     private void Initialize(WorldBrain brain)
     {
+        print("initialized hud");
         _currentWorld = WorldManager.Instance.CurrentWorld;
         _currentWorld.OnChangeRoom += ChangeRoom;
         Player.Instance.OnHurt += PlayerHurt;

@@ -53,4 +53,9 @@ public class LivingBeing : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
     }
+
+    void Update()
+    {
+        if (transform.position.y <= -10) Die();
+    }
 }

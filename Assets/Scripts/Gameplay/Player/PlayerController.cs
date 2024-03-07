@@ -45,6 +45,9 @@ public class PlayerController : SingletonBehaviour<PlayerController>
     Vector3 _vel;
     float _radius;
 
+    [Header("Debug")]
+    [SerializeField] bool debug_showMovementInfo = true;
+
     void Start()
     {
         PlayerInputs.Instance.Actions.Jump.performed += OnJump;
@@ -219,6 +222,7 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 #if UNITY_EDITOR
     private void OnGUI()
     {
+        if (!debug_showMovementInfo) return;
         var vel = _rb.velocity;
         GUI.Label(new Rect(20, 20, 1000, 100), $"Vel: {vel.x:0.00} | {vel.y:0.00} | {vel.z:0.00}\nSpeed: {_rb.velocity.magnitude}\nIs Grounded: {IsGrounded}\nIs On Slope: {IsOnSlope()}");
     }

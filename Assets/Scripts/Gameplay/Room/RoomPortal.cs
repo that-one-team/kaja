@@ -9,6 +9,7 @@ public class RoomPortal : SingletonBehaviour<RoomPortal>
     private void Start()
     {
         WorldManager.Instance.OnWorldChange += Init;
+        Door.IsLocked = true;
     }
 
     private void Init(WorldBrain brain)

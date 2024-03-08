@@ -17,19 +17,15 @@ public class Weapon : Item
 
     // too lazy to rewrite this to Data.Offset LMAO
     Vector3 _offset;
-    bool _hasBeenEquipped;
 
     private void Start()
     {
-        if (!_hasBeenEquipped)
-            Ammo = Data.InitialAmmo;
         _timer = Data.FireRate;
         _source = GetComponent<AudioSource>();
 
         _offset = Data.Offset;
 
         transform.localScale = Vector3.one * Data.Scale;
-        _hasBeenEquipped = true;
     }
 
     public void Equip()
@@ -73,6 +69,7 @@ public class Weapon : Item
             var vfx = Instantiate(Data.UseItemVFX, Camera.main.transform.position + Camera.main.transform.forward * 1f, Quaternion.identity).GetComponent<ItemVFX>();
             vfx.DoVFX(Data, vfx.transform.position, endpoint);
         }
+
         if (Data.InitialAmmo != 0)
             Ammo--;
     }

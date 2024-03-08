@@ -31,6 +31,7 @@ public class Notifications : SingletonBehaviour<Notifications>
 
             var text = item.GetComponent<TextMeshProUGUI>();
             text.text = message;
+            text.color = Color.white;
             item.SetActive(true);
             text.DOFade(0, 0.5f).SetDelay(duration).OnComplete(() => item.SetActive(false));
             break;

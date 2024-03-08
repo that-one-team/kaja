@@ -8,9 +8,13 @@ public class VendingMachine : Interactable
 {
     [SerializeField]
     AudioClip _vendingMachineUseSFX;
+    [SerializeField]
+    AudioClip _invalidSFX;
 
     [SerializeField]
-    List<Skill> _skillsToDrop = new();
+    List<WeightedDrop> _itemsToDrop = new();
+
+    public int ScoreCost;
 
     AudioSource _source;
 
@@ -18,13 +22,18 @@ public class VendingMachine : Interactable
     {
         _source = GetComponent<AudioSource>();
         _source.spatialBlend = 1;
+        ScoreCost = 100;
     }
 
     public override void Interact()
     {
-        if (!IsInteractable) return;
+        if (!IsInteractable || PlayerScore.Instance.Score < ScoreCost)
+        {
+            _source.PlayOneShot(_invalidSFX);
+            return;
+        }
+
         _source.PlayOneShot(_vendingMachineUseSFX);
-        IsInteractable = false;
         ShowOutlines(false);
 
         StartCoroutine(DoGacha());
@@ -32,21 +41,21 @@ public class VendingMachine : Interactable
 
     IEnumerator DoGacha()
     {
+        IsInteractable = false;
         yield return new WaitForSeconds(6);
-        var skillToDrop = _skillsToDrop.SelectRandom();
-        // print("GACHA! " + skillToDrop.name);
+        var item = _itemsToDrop.SelectRandom();
 
-        var dropped = Instantiate(skillToDrop.gameObject, transform.position + transform.forward, Quaternion.identity);
-        dropped.GetComponent<Skill>().enabled = false;
+        var dropped = Instantiate(item.Item, transform.position + Vector3.up + transform.forward, Quaternion.identity);
         var rb = dropped.GetComponent<Rigidbody>();
         var col = dropped.GetComponent<Collider>();
         col.isTrigger = false;
         rb.useGravity = true;
         rb.AddForce((transform.forward + transform.up) * 5, ForceMode.Impulse);
+
         yield return new WaitForSeconds(0.6f);
-        dropped.GetComponent<Skill>().enabled = true;
         rb.useGravity = false;
         rb.isKinematic = true;
         col.isTrigger = true;
+        IsInteractable = true;
     }
 }

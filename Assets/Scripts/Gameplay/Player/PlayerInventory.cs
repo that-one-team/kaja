@@ -31,7 +31,6 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     public event Action<Weapon> OnWeaponEquip;
     public event Action<Item> OnItemAdd;
-    public event Action<Item> OnReplaceItem;
 
     public bool IsReplacingItem { get; private set; } = false;
 
@@ -51,15 +50,17 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     {
         if (itemToAdd.Data.Type == ItemType.WEAPON)
         {
-            if (Weapons.Count == MAX_WEAPON_COUNT)
-            {
-                // StartCoroutine(ReplaceItem(itemToAdd));
-                // !Play *Source engine disabled button sound*
-                return;
-            }
-
             if (!Weapons.Contains(itemToAdd.Data))
+            {
+                if (Weapons.Count == MAX_WEAPON_COUNT)
+                {
+                    // StartCoroutine(ReplaceItem(itemToAdd));
+                    // !Play *Source engine disabled button sound*
+                    return;
+                }
+
                 Weapons.Add(itemToAdd.Data);
+            }
             else
                 AddAmmoToWeapon(itemToAdd.Data);
 
@@ -77,27 +78,6 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         Destroy(itemToAdd.gameObject);
     }
 
-    IEnumerator ReplaceItem(Item item)
-    {
-        IsReplacingItem = true;
-        while (IsReplacingItem)
-        {
-            OnReplaceItem?.Invoke(item);
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                DropWeapon(0);
-                Weapons[0] = item.Data;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-        IsReplacingItem = false;
-        yield break;
-    }
-
-    public void DropWeapon(int index)
-    {
-    }
-
     void UpdateWeaponsVisuals()
     {
         for (int i = 0; i < Weapons.Count; i++)
@@ -105,8 +85,11 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             var wep = Weapons[i];
             var onHand = _spawnedWeapons[i];
 
-            onHand.GetComponent<Weapon>().Data = wep;
-            onHand.GetComponent<Weapon>().UpdateVisuals();
+            var weapon = onHand.GetComponent<Weapon>();
+            weapon.Data = wep;
+            if (weapon.Ammo == 0)
+                weapon.Ammo = wep.InitialAmmo;
+            weapon.UpdateVisuals();
         }
 
         if (CurrentWeaponIndex == -1 && Weapons.Count > 0)
@@ -140,10 +123,16 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     void AddAmmoToWeapon(ItemData weapon)
     {
+        print(weapon.FriendlyName + " in inventory. Adding ammo..");
         foreach (var weap in _spawnedWeapons)
         {
             var wep = weap.GetComponent<Weapon>();
-            wep.Ammo += weapon.InitialAmmo;
+            if (wep.Data.FriendlyName == weapon.FriendlyName)
+            {
+                print(weapon.InitialAmmo);
+                wep.Ammo += weapon.InitialAmmo;
+                return;
+            }
         }
     }
 }

@@ -44,8 +44,6 @@ public class WorldBrain : MonoBehaviour
             {
                 PlayerSpawnPoint.TeleportPlayer();
             });
-
-        // WorldManager.Instance.OnWorldChange += WorldStart;
     }
 
     public void SpawnRooms()

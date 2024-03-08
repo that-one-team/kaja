@@ -31,8 +31,6 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _rb.useGravity = true;
-        if (_knockbackForce != 0)
-            DoExplosion();
 
         if (other.collider.TryGetComponent(out LivingBeing being) && !other.collider.CompareTag(_undamageable))
             being.Damage(_damage);
@@ -41,26 +39,29 @@ public class Projectile : MonoBehaviour
             Instantiate(_hitVFX, transform.position, Quaternion.identity);
 
 
-        if (_speedRequirement > 0 && _rb.velocity.magnitude >= _speedRequirement)
-            Destroy(gameObject);
+        if (_knockbackForce != 0)
+            DoExplosion();
     }
 
     void DoExplosion()
     {
-        Collider[] cols = { };
+        Collider[] cols = new Collider[10];
         int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, cols);
         for (int i = 0; i < count; i++)
         {
             var obj = cols[i];
-            if (!obj.TryGetComponent(out Rigidbody rb)) return;
-            rb.AddExplosionForce(_knockbackForce * 2, transform.position, _explosionRadius, 2, ForceMode.Impulse);
+            print("explode");
+            if (obj.TryGetComponent(out Rigidbody rb))
+                rb.AddExplosionForce(_knockbackForce * 0.1f, transform.position, _explosionRadius, 0.5f, ForceMode.Impulse);
 
-            if (obj.TryGetComponent(out LivingBeing being))
+            if (obj.TryGetComponent(out LivingBeing being) && !obj.CompareTag(_undamageable))
             {
                 float relativeDamage = Mathf.Lerp(_damage, 1, Vector3.Distance(transform.position, obj.transform.position) / _explosionRadius);
                 being.Damage((int)relativeDamage);
             }
         }
+
+        Destroy(gameObject);
 
     }
 }

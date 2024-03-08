@@ -51,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
         var size = transform.localScale / 2;
         var offset = 1;
         var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
+        print(loc);
 
         var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
         e.OnDie += OnEnemyDie;

@@ -1602,6 +1602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb7212ade4f07b4799440a7623641f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hurtSfx: []
+  _roomFinishedSfx: {fileID: 8300000, guid: fd9c8991bd4cb334b9c97113ec5896d8, type: 3}
   _footstepSounds:
   - {fileID: 8300000, guid: 9f1ede2bd8e30b94baed2d2ded0dd7d1, type: 3}
   - {fileID: 8300000, guid: 23d4b364964257f4793e3a4c03cf5420, type: 3}

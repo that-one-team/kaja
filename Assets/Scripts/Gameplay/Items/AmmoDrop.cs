@@ -11,6 +11,8 @@ public class AmmoDrop : Interactable
     public int AmmoToGive;
     [SerializeField] LayerMask _mask;
 
+    int _colCount = 2;
+
     private void OnValidate()
     {
         if (Data == null || Data.AmmoSprite == null) return;
@@ -20,6 +22,7 @@ public class AmmoDrop : Interactable
 
     private void Start()
     {
+        GetComponent<Outline>().enabled = false;
         var rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         GetComponent<Collider>().isTrigger = false;
@@ -42,11 +45,16 @@ public class AmmoDrop : Interactable
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Ammo") || other.collider.CompareTag("Enemy")) return;
+        if (other.collider.CompareTag("Ammo") || other.collider.CompareTag("Enemy") || _colCount > 0)
+        {
+            _colCount--;
+            return;
+        }
         GetComponent<Collider>().isTrigger = true;
         var rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     public override void Interact()

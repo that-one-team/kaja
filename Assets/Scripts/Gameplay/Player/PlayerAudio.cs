@@ -2,8 +2,15 @@ using TOT.Common;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class PlayerFootsteps : MonoBehaviour
+public class PlayerAudio : SingletonBehaviour<PlayerAudio>
 {
+    [Header("Gameplay")]
+    [SerializeField] AudioClip[] _hurtSfx;
+
+    [Header("World")]
+    [SerializeField] AudioClip _roomFinishedSfx;
+
+    [Header("Footsteps")]
     [SerializeField] AudioClip[] _footstepSounds;
     [SerializeField] Vector2 _timeBetweenSteps = new(0.3f, 0.6f);
 
@@ -19,6 +26,13 @@ public class PlayerFootsteps : MonoBehaviour
         _player = GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody>();
         _source = GetComponent<AudioSource>();
+
+        WorldManager.Instance.OnWorldChange += OnWorldChange;
+    }
+
+    private void OnWorldChange(WorldBrain brain)
+    {
+        brain.OnRoomComplete += () => _source.PlayOneShot(_roomFinishedSfx, 2);
     }
 
     void Update()
@@ -33,8 +47,5 @@ public class PlayerFootsteps : MonoBehaviour
 
             _timeSinceLastStep = Time.time;
         }
-
     }
-
-
 }

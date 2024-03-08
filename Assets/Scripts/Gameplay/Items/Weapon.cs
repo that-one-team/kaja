@@ -92,12 +92,12 @@ public class Weapon : Item
 
         var player = PlayerController.Instance.gameObject;
         var forceMult = player.GetComponent<Rigidbody>().velocity.magnitude > 0 ? 0.5f : 1;
-        player.GetComponent<Rigidbody>().AddForce(-player.transform.forward * Data.KnockbackForce * forceMult, ForceMode.Impulse);
+        player.GetComponent<Rigidbody>().AddForce(Data.KnockbackForce * forceMult * -player.transform.forward, ForceMode.Impulse);
     }
 
     protected virtual void HitscanShoot(ref Vector3 endpoint)
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 1000, _layerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, Data.Range, _layerMask))
         {
             if (hit.collider.TryGetComponent(out LivingBeing being))
             {

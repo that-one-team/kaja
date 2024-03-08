@@ -76,11 +76,5 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable.InteractionType != InteractionType.COLLIDE) return;
             interactable.Interact();
         }
-
-        if (other.TryGetComponent(out Skill skill))
-        {
-            if (skill.InteractionType != InteractionType.COLLIDE) return;
-            skill.Interact();
-        }
     }
 }

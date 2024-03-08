@@ -29,7 +29,9 @@ public class VendingMachine : Interactable
     {
         if (!IsInteractable || PlayerScore.Instance.Score < ScoreCost)
         {
-            _source.PlayOneShot(_invalidSFX);
+            _source.PlayOneShot(_invalidSFX, 0.2f);
+            if (PlayerScore.Instance.Score < ScoreCost)
+                Notifications.Instance.Notify($"You dont have enough score. Cost: {ScoreCost}");
             return;
         }
 

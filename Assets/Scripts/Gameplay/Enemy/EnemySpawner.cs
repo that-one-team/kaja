@@ -19,7 +19,10 @@ public class EnemySpawner : MonoBehaviour
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
-        int maxSpawn = Room.CurrentWave * Mathf.Max(PlayerScore.Instance.Score / 100, 1);
+        int maxSpawn = Mathf.RoundToInt(_spawnRange.Min * Mathf.Pow(1 + Room.CurrentWave, 1));
+
+        print("Spawning " + maxSpawn + " enemies");
+
         _enemiesToSpawn = maxSpawn;
         StartCoroutine(StartSpawning(enemies));
         return maxSpawn;
@@ -35,8 +38,9 @@ public class EnemySpawner : MonoBehaviour
                 if (dice > enemy.Chance) continue;
 
                 SpawnEnemy(enemy.EnemyToSpawn);
+                _enemiesToSpawn--;
             }
-            _enemiesToSpawn--;
+            _spawnInterval = Random.Range(_spawnInterval, _spawnInterval + 5);
             yield return new WaitForSeconds(_spawnInterval);
         }
         _spawnInterval *= 0.9f;
@@ -45,7 +49,6 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         var size = transform.localScale / 2;
-        // TODO replace 1 with 0 once using actual models
         var offset = 1;
         var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
 

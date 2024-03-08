@@ -13,8 +13,6 @@ public class Item : MonoBehaviour
         var col = GetComponent<SphereCollider>();
         col.isTrigger = true;
         col.radius = 1;
-
-        // UpdateVisuals();
     }
 
     [Button("Update visuals")]

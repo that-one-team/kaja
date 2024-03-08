@@ -15,8 +15,10 @@ MonoBehaviour:
   FriendlyName: Kiwig
   Spritesheet: {fileID: 0}
   ScoreRequirement: 0
+  ScoreToGive: 10
   MoveSpeed: 5
   AttackType: 0
-  Damage: 20
+  Damage: 18
+  AttackDelay: 0.5
   FireRate: 1
   StunDuration: 2

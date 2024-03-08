@@ -54,6 +54,12 @@ public class Projectile : MonoBehaviour
             var obj = cols[i];
             if (!obj.TryGetComponent(out Rigidbody rb)) return;
             rb.AddExplosionForce(_knockbackForce * 2, transform.position, _explosionRadius, 2, ForceMode.Impulse);
+
+            if (obj.TryGetComponent(out LivingBeing being))
+            {
+                float relativeDamage = Mathf.Lerp(_damage, 1, Vector3.Distance(transform.position, obj.transform.position) / _explosionRadius);
+                being.Damage((int)relativeDamage);
+            }
         }
 
     }

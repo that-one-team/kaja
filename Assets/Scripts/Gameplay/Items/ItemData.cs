@@ -31,6 +31,12 @@ public class ItemData : ScriptableObject
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]
+    public Texture2D AmmoSprite;
+
+
+
+    [ShowIf("Type", ItemType.WEAPON)]
+    [AllowNesting]
     public Sprite UISprite;
 
     [ShowIf("Type", ItemType.WEAPON)]
@@ -61,6 +67,10 @@ public class ItemData : ScriptableObject
     [Header("Weapon settings")]
     [AllowNesting]
     public float FireRate = 0.5f;
+
+    [Header("Weapon settings")]
+    [AllowNesting]
+    public float Range = 1000f;
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]

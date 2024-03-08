@@ -28,6 +28,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     [SerializeField] GameObject _weaponPrefab;
     [SerializeField] Transform _weaponHolder;
     [SerializeField] ItemData _startingWeapon;
+    [SerializeField] AudioClip _genericPickupSfx;
 
     public event Action<Weapon> OnWeaponEquip;
     public event Action<Item> OnItemAdd;
@@ -48,6 +49,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     public void AddItem(Item itemToAdd)
     {
+        bool showNotif = true;
         if (itemToAdd.Data.Type == ItemType.WEAPON)
         {
             if (!Weapons.Contains(itemToAdd.Data))
@@ -62,19 +64,21 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
                 Weapons.Add(itemToAdd.Data);
             }
             else
-                AddAmmoToWeapon(itemToAdd.Data);
+            {
+                TryAddAmmo(itemToAdd.Data);
+                showNotif = false;
+            }
 
             UpdateWeaponsVisuals();
         }
 
         // pickup sound
-        if (itemToAdd.Data.PickupAudio != null)
-        {
-            GetComponent<AudioSource>().PlayOneShot(itemToAdd.Data.PickupAudio, 0.3f);
-        }
+        var pickupSfx = itemToAdd.Data.PickupAudio != null ? itemToAdd.Data.PickupAudio : _genericPickupSfx;
+        GetComponent<AudioSource>().PlayOneShot(pickupSfx, 0.3f);
 
         OnItemAdd?.Invoke(itemToAdd);
-        Notifications.Instance.Notify("Picked up " + itemToAdd.Data.FriendlyName);
+        if (showNotif)
+            Notifications.Instance.Notify("Picked up " + itemToAdd.Data.FriendlyName);
         Destroy(itemToAdd.gameObject);
     }
 
@@ -114,25 +118,30 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
         var weapon = _spawnedWeapons[index].GetComponent<Weapon>();
         if (CurrentWeapon != weapon)
-            CurrentWeapon?.Unequip();
+            CurrentWeapon.Unequip();
 
         CurrentWeaponIndex = index;
         OnWeaponEquip?.Invoke(weapon);
         weapon.Equip();
     }
 
-    void AddAmmoToWeapon(ItemData weapon)
+    public bool TryAddAmmo(ItemData weapon, int ammo = 0)
     {
-        print(weapon.FriendlyName + " in inventory. Adding ammo..");
         foreach (var weap in _spawnedWeapons)
         {
             var wep = weap.GetComponent<Weapon>();
+            if (wep.Data == null) break;
             if (wep.Data.FriendlyName == weapon.FriendlyName)
             {
-                print(weapon.InitialAmmo);
-                wep.Ammo += weapon.InitialAmmo;
-                return;
+                var ammoToAdd = ammo == 0 ? weapon.InitialAmmo : ammo;
+                wep.Ammo += ammoToAdd;
+
+                Notifications.Instance.Notify($"Picked up {ammoToAdd} {weapon.FriendlyName} ammo");
+                GetComponent<AudioSource>().PlayOneShot(_genericPickupSfx, 0.3f);
+                return true;
             }
         }
+
+        return false;
     }
 }

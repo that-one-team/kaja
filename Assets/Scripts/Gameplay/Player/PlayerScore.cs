@@ -1,10 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class PlayerScore : SingletonBehaviour<PlayerScore>
 {
+    [ShowNativeProperty]
     public int Score { get; private set; }
 
     public Action<int> OnAddScore;

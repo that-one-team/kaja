@@ -19,3 +19,4 @@ MonoBehaviour:
   Duration: 10
   Cooldown: 100
   PickupIndicatorColor: {r: 0, g: 0, b: 1, a: 0.5}
+  PickupSfx: {fileID: 8300000, guid: bf3ef7d4b8e204b4f9dc0efe202b0ed8, type: 3}

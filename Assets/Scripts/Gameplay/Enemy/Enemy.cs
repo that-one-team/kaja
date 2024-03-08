@@ -26,6 +26,7 @@ public class Enemy : LivingBeing
 
     public EnemyState CurrentState { get; protected set; }
     Coroutine _currentStateRoutine;
+    Coroutine _stateSubroutine;
 
     protected NavMeshAgent Agent;
     protected Rigidbody RB;
@@ -38,6 +39,7 @@ public class Enemy : LivingBeing
     SpritesheetAnimation _anim;
 
     [Header("FX")]
+    [SerializeField] GameObject _itemDropPrefab;
     [SerializeField] AudioClip[] _gruntsSfx;
     [SerializeField] AudioClip[] _deathSfx;
     [SerializeField] AudioClip _attackSfx;
@@ -79,7 +81,11 @@ public class Enemy : LivingBeing
     public override void Die()
     {
         Instantiate(_deathGib, transform.position + Vector3.up, Quaternion.identity).GetComponent<GibVFX>().DoGib(_deathSfx.SelectRandom());
-        PlayerScore.Instance.AddScore(Mathf.RoundToInt(Data.ScoreToGive * Mathf.Pow(1.05f, GameStopwatch.Instance.CurrentTime)));
+        PlayerScore.Instance.AddScore(Mathf.RoundToInt(Data.ScoreToGive * Mathf.Pow(1, GameStopwatch.Instance.CurrentTime)));
+
+        var dropChance = Random.value;
+        if (dropChance < 0.7f)
+            Instantiate(_itemDropPrefab, transform.position, Quaternion.identity);
         base.Die();
     }
 
@@ -102,7 +108,6 @@ public class Enemy : LivingBeing
             case EnemyState.STUNNED:
                 SetState(StunnedState());
                 break;
-
         }
     }
 
@@ -113,8 +118,20 @@ public class Enemy : LivingBeing
             StopCoroutine(_currentStateRoutine);
             _currentStateRoutine = null;
         }
+        SetSubroutine(null);
 
         _currentStateRoutine = StartCoroutine(routine);
+    }
+
+    void SetSubroutine(IEnumerator routine)
+    {
+        if (_stateSubroutine != null)
+        {
+            StopCoroutine(_stateSubroutine);
+            _stateSubroutine = null;
+        }
+        if (routine != null)
+            _stateSubroutine = StartCoroutine(routine);
     }
 
     protected virtual IEnumerator MoveState()
@@ -137,7 +154,7 @@ public class Enemy : LivingBeing
     protected virtual IEnumerator AttackState()
     {
         _anim.SetAnimation(AnimationIndex.ATTACK);
-        StartCoroutine(Data.AttackType == EnemyAttackType.MELEE ? AttackMelee() : AttackRanged());
+        SetSubroutine(Data.AttackType == EnemyAttackType.MELEE ? AttackMelee() : AttackRanged());
         yield return new WaitForSeconds(Data.FireRate);
         ChangeState(EnemyState.MOVING);
     }

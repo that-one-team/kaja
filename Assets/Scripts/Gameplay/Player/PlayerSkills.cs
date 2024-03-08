@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class PlayerSkills : SingletonBehaviour<PlayerSkills>
@@ -10,7 +11,6 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
 
     public void AddSkill(SkillData skill)
     {
-        OnSkillPickup?.Invoke(skill);
         if (Skills.Contains(skill))
         {
             if (skill.IsStackable)
@@ -19,6 +19,9 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
             return;
         }
 
+        OnSkillPickup?.Invoke(skill);
+
+        GetComponent<AudioSource>().PlayOneShot(skill.PickupSfx, 0.3f);
         Skills.Add(skill);
     }
 }

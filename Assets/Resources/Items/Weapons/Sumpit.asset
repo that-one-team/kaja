@@ -31,7 +31,7 @@ MonoBehaviour:
   ShootAudio: {fileID: 8300000, guid: b02e5b528f9bf1646b814652f27d42b9, type: 3}
   FireRate: 0.5
   Range: 1000
-  InitialAmmo: 15
+  InitialAmmo: 17
   Damage: 50
   KnockbackForce: 10
   IsProjectile: 0

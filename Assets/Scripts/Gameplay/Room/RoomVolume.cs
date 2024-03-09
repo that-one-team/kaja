@@ -10,7 +10,7 @@ public class RoomVolume : Volume
 {
     [Dropdown("GetRooms")]
     [SerializeField] Room _room;
-    [SerializeField] List<Transform> _blockerSpawnZones;
+    [SerializeField] List<Transform> _blockerSpawnZones = new();
     public GameObject BlockerPrefab;
     [SerializeField] AudioClip _blockerSfx;
     [SerializeField] bool _spawnBlockers = true;
@@ -36,6 +36,7 @@ public class RoomVolume : Volume
         _source = GetComponent<AudioSource>();
         _source.spatialBlend = 0.75f;
 
+        if (_blockerSpawnZones.Count == 0) return;
         foreach (var spawn in _blockerSpawnZones)
         {
             var blocker = Instantiate(BlockerPrefab, spawn.transform.position, spawn.transform.rotation, spawn);

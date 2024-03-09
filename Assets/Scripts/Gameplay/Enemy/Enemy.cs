@@ -137,7 +137,14 @@ public class Enemy : LivingBeing
     protected virtual IEnumerator MoveState()
     {
         _anim.SetAnimation(AnimationIndex.MOVE);
-        yield break;
+        Freeze(false);
+        while (Vector3.Distance(transform.position, Target.position) > 3f)
+        {
+            Agent.SetDestination(Target.position);
+            yield return new WaitForEndOfFrame();
+        }
+        Freeze(true);
+        ChangeState(EnemyState.ATTACKING);
     }
 
     protected virtual IEnumerator StunnedState()

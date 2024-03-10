@@ -1503,7 +1503,7 @@ MonoBehaviour:
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners: []
-  <RoomStartPosition>k__BackingField: {fileID: 0}
+  _roomStartPositions: []
   <PortalSpawn>k__BackingField: {fileID: 0}
 --- !u!1001 &2040775379
 PrefabInstance:
@@ -1690,7 +1690,7 @@ PrefabInstance:
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8540256
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
@@ -1700,7 +1700,7 @@ PrefabInstance:
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.52023095
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
@@ -1715,7 +1715,7 @@ PrefabInstance:
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -62.695
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
@@ -2190,8 +2190,8 @@ Transform:
   m_GameObject: {fileID: 2097264942}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000045153808, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.041924, y: 2.2869427, z: -48.91096}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -50.041924, y: 2.2869427, z: -49.3505}
+  m_LocalScale: {x: 1, y: 1, z: 1.755}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

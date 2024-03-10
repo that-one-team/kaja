@@ -12,11 +12,13 @@ public class PlayerStart : MonoBehaviour
         if (PlayerController.Instance == null)
             Instantiate(_playerPrefab, transform.position, Quaternion.identity);
 
+        var player = PlayerController.Instance.transform.parent;
         var rb = PlayerController.Instance.GetComponent<Rigidbody>();
         rb.MovePosition(transform.position);
         rb.MoveRotation(transform.rotation);
-        var player = PlayerController.Instance.transform;
-        player.rotation = transform.rotation; // stupid ass code fuck you unity not working
+
+        // TODO fix player start rotation shit
+        // player.Rotate(Vector3.up, -Quaternion.Angle(transform.rotation, player.rotation));
     }
 
     private void OnDrawGizmos()

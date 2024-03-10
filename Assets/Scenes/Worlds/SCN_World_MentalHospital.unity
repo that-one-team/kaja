@@ -41535,7 +41535,7 @@ MonoBehaviour:
   - {fileID: 1516492805}
   - {fileID: 1140780979}
   - {fileID: 803380006}
-  <RoomStartPosition>k__BackingField: {fileID: 0}
+  _roomStartPositions: []
   <PortalSpawn>k__BackingField: {fileID: 0}
 --- !u!1 &926814379
 GameObject:
@@ -69326,7 +69326,7 @@ MonoBehaviour:
   - {fileID: 205265388}
   - {fileID: 1429864059}
   - {fileID: 704851513}
-  <RoomStartPosition>k__BackingField: {fileID: 0}
+  _roomStartPositions: []
   <PortalSpawn>k__BackingField: {fileID: 0}
 --- !u!1001 &1904828840
 PrefabInstance:
@@ -70604,7 +70604,8 @@ MonoBehaviour:
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners: []
-  <RoomStartPosition>k__BackingField: {fileID: 0}
+  _roomStartPositions:
+  - {fileID: 686052960}
   <PortalSpawn>k__BackingField: {fileID: 0}
 --- !u!4 &2036812513 stripped
 Transform:

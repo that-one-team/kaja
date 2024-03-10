@@ -55,7 +55,8 @@ MonoBehaviour:
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners: []
-  <RoomStartPosition>k__BackingField: {fileID: 1207150898979891001}
+  _roomStartPositions:
+  - {fileID: 6775744479147238494}
   <PortalSpawn>k__BackingField: {fileID: 754826906704805866}
 --- !u!1 &4729471410150481881
 GameObject:
@@ -13153,12 +13154,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8947460e5716164449d050c9c810672d, type: 3}
---- !u!4 &1207150898979891001 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2408130781055466058, guid: 8947460e5716164449d050c9c810672d,
+--- !u!114 &6775744479147238494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8044423732038564141, guid: 8947460e5716164449d050c9c810672d,
     type: 3}
   m_PrefabInstance: {fileID: 3579182439060462963}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62a52f35fefea14d972da53c1b7d36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7300759457267718121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,

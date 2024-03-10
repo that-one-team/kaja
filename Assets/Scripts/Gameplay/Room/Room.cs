@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
+using TOT.Common;
 using UnityEngine;
 
 [Serializable]
@@ -27,7 +28,20 @@ public class Room : MonoBehaviour
 
     [SerializeField] List<EnemySpawner> _spawners = new();
 
-    [field: SerializeField] public Transform RoomStartPosition { get; private set; }
+    Transform _roomStart;
+    public Transform RoomStartPosition
+    {
+        get
+        {
+            if (_roomStart == null)
+                _roomStart = _roomStartPositions.SelectRandom().transform.GetChild(0);
+
+            return _roomStart;
+        }
+    }
+
+    [SerializeField] List<PlayerStart> _roomStartPositions;
+
     [field: SerializeField] public Transform PortalSpawn { get; private set; }
 
     public bool IsRoomActive { get; private set; }

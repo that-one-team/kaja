@@ -18,7 +18,7 @@ MonoBehaviour:
   ScoreToGive: 10
   MoveSpeed: 5
   AttackType: 0
-  Damage: 18
+  Damage: 50
   AttackDelay: 0.5
   FireRate: 1
   StunDuration: 2

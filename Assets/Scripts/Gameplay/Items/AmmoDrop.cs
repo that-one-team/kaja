@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class AmmoDrop : Interactable
     public int AmmoToGive;
     [SerializeField] LayerMask _mask;
 
-    int _colCount = 2;
+    bool _shouldFreeze = false;
 
     private void OnValidate()
     {
@@ -41,24 +42,29 @@ public class AmmoDrop : Interactable
 
         AmmoToGive = Random.Range(Data.InitialAmmo, Data.InitialAmmo + (int)(1 + PlayerScore.Instance.Score * 0.005f));
         Data.InitialAmmo = AmmoToGive;
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Ammo") || other.collider.CompareTag("Enemy") || _colCount > 0)
+        StartCoroutine(DelayDrop());
+
+        IEnumerator DelayDrop()
         {
-            _colCount--;
-            return;
+            yield return new WaitForSeconds(0.1f);
+            _shouldFreeze = true;
         }
-        GetComponent<Collider>().isTrigger = true;
-        var rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
-        rb.useGravity = false;
-        rb.isKinematic = true;
     }
 
     public override void Interact()
     {
         if (PlayerInventory.Instance.TryAddAmmo(Data, AmmoToGive)) Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!_shouldFreeze) return;
+        GetComponent<Collider>().isTrigger = true;
+        var rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.useGravity = false;
+        rb.isKinematic = true;
+
     }
 }

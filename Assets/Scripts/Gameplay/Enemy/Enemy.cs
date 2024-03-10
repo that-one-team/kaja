@@ -36,7 +36,7 @@ public class Enemy : LivingBeing
 
     Transform _visual;
 
-    SpritesheetAnimation _anim;
+    protected SpritesheetAnimation Anim;
 
     [Header("FX")]
     [SerializeField] GameObject _itemDropPrefab;
@@ -58,7 +58,7 @@ public class Enemy : LivingBeing
     private void Awake()
     {
         OnValidate();
-        _anim = GetComponent<SpritesheetAnimation>();
+        Anim = GetComponent<SpritesheetAnimation>();
         _audio = GetComponent<AudioSource>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Data.MoveSpeed;
@@ -74,13 +74,14 @@ public class Enemy : LivingBeing
     void OnHurtEvent(int remainingHealth)
     {
         ChangeState(EnemyState.STUNNED);
-        if (_hurtGib != null)
+        if (_hurtGib != null && _gruntsSfx.Length > 0)
             Instantiate(_hurtGib, transform.position + Vector3.up, Quaternion.LookRotation(transform.forward)).GetComponent<GibVFX>().DoGib(_gruntsSfx.SelectRandom());
     }
 
     public override void Die()
     {
-        Instantiate(_deathGib, transform.position + Vector3.up, Quaternion.identity).GetComponent<GibVFX>().DoGib(_deathSfx.SelectRandom());
+        if (_deathGib != null)
+            Instantiate(_deathGib, transform.position + Vector3.up, Quaternion.identity).GetComponent<GibVFX>().DoGib(_deathSfx.SelectRandom());
         PlayerScore.Instance.AddScore(Mathf.RoundToInt(Data.ScoreToGive * Mathf.Pow(1, GameStopwatch.Instance.CurrentTime)));
 
         var dropChance = Random.value;
@@ -111,7 +112,7 @@ public class Enemy : LivingBeing
         }
     }
 
-    void SetState(IEnumerator routine)
+    protected void SetState(IEnumerator routine)
     {
         if (_currentStateRoutine != null)
         {
@@ -136,31 +137,33 @@ public class Enemy : LivingBeing
 
     protected virtual IEnumerator MoveState()
     {
-        _anim.SetAnimation(AnimationIndex.MOVE);
+        Anim.SetAnimation(AnimationIndex.MOVE);
         Freeze(false);
-        while (Vector3.Distance(transform.position, Target.position) > 3f)
+        while (!IsInAttackRange())
         {
             Agent.SetDestination(Target.position);
             yield return new WaitForEndOfFrame();
         }
         Freeze(true);
-        ChangeState(EnemyState.ATTACKING);
+        Anim.IsFrozen = true;
+        yield return new WaitForSeconds(Data.AttackDelay);
+        ChangeState(IsInAttackRange() ? EnemyState.ATTACKING : EnemyState.MOVING);
     }
 
     protected virtual IEnumerator StunnedState()
     {
         Freeze(true);
 
-        _anim.SetAnimation(AnimationIndex.STUNNED);
+        Anim.SetAnimation(AnimationIndex.STUNNED);
         yield return new WaitForSeconds(Data.StunDuration);
         Freeze(false);
-        _anim.SetAnimation(AnimationIndex.MOVE);
+        Anim.SetAnimation(AnimationIndex.MOVE);
         ChangeState(EnemyState.MOVING);
     }
 
     protected virtual IEnumerator AttackState()
     {
-        _anim.SetAnimation(AnimationIndex.ATTACK);
+        Anim.SetAnimation(AnimationIndex.ATTACK);
         SetSubroutine(Data.AttackType == EnemyAttackType.MELEE ? AttackMelee() : AttackRanged());
         yield return new WaitForSeconds(Data.FireRate);
         ChangeState(EnemyState.MOVING);
@@ -191,6 +194,8 @@ public class Enemy : LivingBeing
         RB.isKinematic = !isFrozen;
         Agent.enabled = !isFrozen;
     }
+
+    protected bool IsInAttackRange() => Vector3.Distance(transform.position, Target.position) < 3f;
 
     private void OnDrawGizmos()
     {

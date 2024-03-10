@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 public class EnemySpawner : MonoBehaviour
 {
     [Dropdown("GetRooms")]
@@ -19,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
-        int maxSpawn = Mathf.RoundToInt(_spawnRange.Min * Mathf.Pow(1 + Room.CurrentWave, 1));
+        int maxSpawn = Mathf.RoundToInt(_spawnRange.Max * Mathf.Pow(Room.CurrentWave, GameStopwatch.Instance.CurrentTime));
 
         print("Spawning " + maxSpawn + " enemies");
 
@@ -38,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
                 if (dice > enemy.Chance) continue;
 
                 SpawnEnemy(enemy.EnemyToSpawn);
-                _enemiesToSpawn--;
             }
             _spawnInterval = Random.Range(_spawnInterval, _spawnInterval + 5);
             yield return new WaitForSeconds(_spawnInterval);
@@ -48,12 +49,17 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        var size = transform.localScale / 2;
-        var offset = 1;
-        var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
+        var toSpawn = Mathf.Min(Random.Range(_spawnRange.Min / 2, _spawnRange.Min), _enemiesToSpawn);
+        for (int i = 0; i < Mathf.FloorToInt(toSpawn); i++)
+        {
+            var size = transform.localScale / 2;
+            var offset = 1;
+            var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
 
-        var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
-        e.OnDie += OnEnemyDie;
+            var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
+            e.OnDie += OnEnemyDie;
+            _enemiesToSpawn--;
+        }
     }
 
     void OnEnemyDie(LivingBeing e)

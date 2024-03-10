@@ -50,7 +50,6 @@ public class Projectile : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var obj = cols[i];
-            print("explode");
             if (obj.TryGetComponent(out Rigidbody rb))
                 rb.AddExplosionForce(_knockbackForce * 0.1f, transform.position, _explosionRadius, 0.5f, ForceMode.Impulse);
 

@@ -184,7 +184,8 @@ public class PlayerController : SingletonBehaviour<PlayerController>
 
     void SetHeight()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, IsSliding ? _slideHeight : _startHeight, transform.localScale.z), 20 * Time.deltaTime);
+        var height = IsSliding ? _slideHeight : _startHeight;
+        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, height, transform.localScale.z), 20 * Time.deltaTime);
     }
 
     void ControlSpeed()

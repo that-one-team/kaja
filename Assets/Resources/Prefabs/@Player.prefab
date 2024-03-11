@@ -1539,7 +1539,7 @@ MonoBehaviour:
   _stepSmooth: 0.1
   _slopeSpeedMultiplier: 20
   _slopeStickForce: 100
-  _minSlopeAngle: 10
+  _minSlopeAngle: 20
   debug_showMovementInfo: 0
 --- !u!114 &7220526332737560645
 MonoBehaviour:

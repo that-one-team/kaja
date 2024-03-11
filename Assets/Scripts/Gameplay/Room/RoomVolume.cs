@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class RoomVolume : Volume
 {
-    [Dropdown("GetRooms")]
+    // [Dropdown("GetRooms")]
     [SerializeField] Room _room;
     [SerializeField] List<Transform> _blockerSpawnZones = new();
     public GameObject BlockerPrefab;

@@ -18,7 +18,9 @@ public class PlayerStart : MonoBehaviour
         rb.MoveRotation(transform.rotation);
 
         // TODO fix player start rotation shit
-        // player.Rotate(Vector3.up, -Quaternion.Angle(transform.rotation, player.rotation));
+        var angle = -Quaternion.Angle(transform.rotation, player.rotation);
+        player.Rotate(Vector3.up, angle);
+        PlayerController.Instance.GetComponent<PlayerLook>().AngleOffset = -angle;
     }
 
     private void OnDrawGizmos()

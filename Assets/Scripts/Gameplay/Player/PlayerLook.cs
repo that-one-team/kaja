@@ -15,7 +15,7 @@ public class PlayerLook : MonoBehaviour
     Rigidbody _rb;
     Vector2 _look;
     float _tilt;
-    Quaternion _initialRot;
+    public float AngleOffset { get; set; }
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerLook : MonoBehaviour
         _mouseVec.y = Mathf.Clamp(_mouseVec.y, -90, 90);
         Camera.main.transform.localRotation = Quaternion.Euler(_mouseVec.y, _mouseVec.x, _tilt);
 
-        _rb.MoveRotation(Quaternion.Euler(0, _mouseVec.x, 0));
+        _rb.MoveRotation(Quaternion.Euler(0, _mouseVec.x - AngleOffset, 0));
     }
 
     float GetCameraTilt(float input)

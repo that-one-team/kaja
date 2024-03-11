@@ -26,7 +26,7 @@ public class RoomPortal : SingletonBehaviour<RoomPortal>
 
     public void MoveToRoom(Room room)
     {
-        if (room == null) return;
+        if (room == null || room.PortalSpawn == null) return;
         Door.Interact();
         Door.IsLocked = true;
         transform.SetPositionAndRotation(room.PortalSpawn.position, room.PortalSpawn.rotation);

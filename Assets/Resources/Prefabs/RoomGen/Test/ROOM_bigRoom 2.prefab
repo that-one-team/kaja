@@ -6503,7 +6503,7 @@ MonoBehaviour:
   <WaveCooldown>k__BackingField: 5
   _spawners:
   - {fileID: 4706532668208823211}
-  <RoomStartPosition>k__BackingField: {fileID: 8479399503745407764}
+  _roomStartPositions: []
   <PortalSpawn>k__BackingField: {fileID: 1360474213554571156}
 --- !u!1 &7479978268321320183
 GameObject:

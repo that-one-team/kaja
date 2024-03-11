@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         var toSpawn = Mathf.Min(Random.Range(_spawnRange.Min / 2, _spawnRange.Min), _enemiesToSpawn);
-        for (int i = 0; i < Mathf.FloorToInt(toSpawn); i++)
+        for (int i = 0; i < Mathf.CeilToInt(toSpawn); i++)
         {
             var size = transform.localScale / 2;
             var offset = 1;

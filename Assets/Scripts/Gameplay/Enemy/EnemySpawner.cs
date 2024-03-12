@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.ProBuilder;
 public class EnemySpawner : MonoBehaviour
 {
     [Dropdown("GetRooms")]
@@ -54,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        var size = transform.localScale / 2;
+        var size = GetComponent<Renderer>().bounds.extents;
         var offset = 1;
         var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
 

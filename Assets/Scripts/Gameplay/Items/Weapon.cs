@@ -15,6 +15,8 @@ public class Weapon : Item
     AudioSource _source;
     [SerializeField] LayerMask _layerMask;
 
+    public GameObject Target;
+
     // too lazy to rewrite this to Data.Offset LMAO
     Vector3 _offset;
 
@@ -97,6 +99,18 @@ public class Weapon : Item
 
     protected virtual void HitscanShoot(ref Vector3 endpoint)
     {
+        if (Target)
+        {
+            if (Target.TryGetComponent(out LivingBeing being))
+            {
+                being.Damage(Data.Damage);
+                if (being is Enemy)
+                    (being as Enemy).Knockback(transform.forward * Data.KnockbackForce);
+                endpoint = being.transform.position + Vector3.up;
+            }
+            return;
+        }
+
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, Data.Range, _layerMask))
         {
             if (hit.collider.TryGetComponent(out LivingBeing being))

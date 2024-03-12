@@ -27,6 +27,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     [Header("Settings")]
     [SerializeField] GameObject _weaponPrefab;
     [SerializeField] Transform _weaponHolder;
+    [SerializeField] Transform _itemsHolder;
     [SerializeField] ItemData _startingWeapon;
     [SerializeField] AudioClip _genericPickupSfx;
 
@@ -54,13 +55,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         {
             if (!Weapons.Contains(itemToAdd.Data))
             {
-                if (Weapons.Count == MAX_WEAPON_COUNT)
-                {
-                    // StartCoroutine(ReplaceItem(itemToAdd));
-                    // !Play *Source engine disabled button sound*
-                    return;
-                }
-
+                if (Weapons.Count == MAX_WEAPON_COUNT) return;
                 Weapons.Add(itemToAdd.Data);
             }
             else
@@ -70,6 +65,14 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             }
 
             UpdateWeaponsVisuals();
+        }
+        else
+        {
+            var item = itemToAdd.Data;
+            if (Items.Contains(item) && !item.IsStackable) return;
+
+            Items.Add(item);
+            if (item.PickupObject != null) Instantiate(item.PickupObject, _itemsHolder);
         }
 
         // pickup sound
@@ -143,5 +146,14 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         }
 
         return false;
+    }
+
+    public void ClearWeaponTargets()
+    {
+        foreach (var weap in _spawnedWeapons)
+        {
+            var weapon = weap.GetComponent<Weapon>();
+            weapon.Target = null;
+        }
     }
 }

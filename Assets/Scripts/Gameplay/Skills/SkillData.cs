@@ -12,5 +12,6 @@ public class SkillData : ScriptableObject
     public float CurrentDuration { get; set; }
 
     public Color PickupIndicatorColor = new(0, 0, 1, 0.5f);
+    public GameObject SkillBehaviour;
     public AudioClip PickupSfx;
 }

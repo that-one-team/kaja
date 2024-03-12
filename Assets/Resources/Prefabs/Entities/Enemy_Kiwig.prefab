@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4298431200722025189}
   - component: {fileID: 3855461761699852976}
   - component: {fileID: 3261200514644829740}
-  - component: {fileID: 8496044147200818566}
+  - component: {fileID: 6436856261475173894}
   m_Layer: 0
   m_Name: Enemy_Kiwig
   m_TagString: Enemy
@@ -133,8 +133,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8747778243170470014}
   - {fileID: 8098404349677461350}
+  - {fileID: 8747778243170470014}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &706556547838729028
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationSpeed: 6
---- !u!114 &8496044147200818566
+--- !u!114 &6436856261475173894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,25 +327,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7433149801036346582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b4a6e746df11594a80d8f7f92e67a18, type: 3}
+  m_Script: {fileID: 11500000, guid: 77edac4ee4d0c9a47abf7bcd8cdc06b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 130
-  Data: {fileID: 11400000, guid: c03bcaa8f72865e4dac741e9e705d956, type: 2}
+  MaxHealth: 100
+  Data: {fileID: 11400000, guid: 8d1cc4b7a0fb1df4b90a8364a32be65e, type: 2}
   _attackBoxSize: 1
   _attackLayer:
     serializedVersion: 2
     m_Bits: 4
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
-  _gruntsSfx: []
-  _deathSfx: []
-  _attackSfx: {fileID: 0}
-  _attackGib: {fileID: 0}
-  _deathGib: {fileID: 0}
+  _gruntsSfx:
+  - {fileID: 8300000, guid: 9077e5e9f40d4d64e9417c6bd272ce07, type: 3}
+  - {fileID: 8300000, guid: f77d976c6ce707941ba970281c99a7fe, type: 3}
+  - {fileID: 8300000, guid: 6a82ac134f8c2844a823aa2cdf61029d, type: 3}
+  - {fileID: 8300000, guid: a88837298fc65fc46b9c930decd96859, type: 3}
+  - {fileID: 8300000, guid: 5f364e4b18af24043b9393683500f690, type: 3}
+  _deathSfx:
+  - {fileID: 8300000, guid: d3fe8c86a6b5b704bb14495a34a3c426, type: 3}
+  - {fileID: 8300000, guid: 56e39bbcb228e02499f979eee51b5bdb, type: 3}
+  - {fileID: 8300000, guid: bdc67d494a869964094624e33abd8b51, type: 3}
+  - {fileID: 8300000, guid: 92120c5742414d646a1af081b525286f, type: 3}
+  - {fileID: 8300000, guid: cf9e29c36c4d30d47bace5876df15eaf, type: 3}
+  _attackSfx: {fileID: 8300000, guid: 785d33917670feb429449ecc737d31bd, type: 3}
+  _attackGib: {fileID: 5239413943325640167, guid: 55cf2e8f20e5f1b428befaf03401742b,
+    type: 3}
+  _deathGib: {fileID: 4122459857451818459, guid: ff9bdd6ca1429174f8117cf4f0734e33,
+    type: 3}
   _hurtGib: {fileID: 3897552783870387739, guid: a067379b913d4c6458ab6fdddd886151,
     type: 3}
-  _explosionRadius: 0
 --- !u!1 &8674310029886387657
 GameObject:
   m_ObjectHideFlags: 0

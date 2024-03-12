@@ -1,27 +1,51 @@
 using System;
 using System.Collections.Generic;
-using NaughtyAttributes;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlayerSkills : SingletonBehaviour<PlayerSkills>
 {
-    public List<SkillData> Skills { get; private set; } = new();
-
+    [SerializeField] Transform _skillContainer;
+    public Dictionary<string, SkillData> Skills { get; private set; } = new();
     public event Action<SkillData> OnSkillPickup;
+
+    readonly string[] _keybinds = { "Q", "E", "R" };
+
+    AudioSource _source;
+
+    void Start()
+    {
+        _source = GetComponent<AudioSource>();
+    }
 
     public void AddSkill(SkillData skill)
     {
-        if (Skills.Contains(skill))
+        OnSkillPickup?.Invoke(skill);
+        GetComponent<AudioSource>().PlayOneShot(skill.PickupSfx, 0.2f);
+        if (Skills.ContainsValue(skill))
         {
             if (skill.IsStackable)
-                Skills.Find(s => s.name == skill.name).CurrentDuration += skill.Duration;
+                Skills.Where(s => s.Value.name == skill.name).FirstOrDefault().Value.CurrentDuration += skill.Duration;
 
             return;
         }
 
-        OnSkillPickup?.Invoke(skill);
+        var kb = _keybinds[Skills.Count];
+        var ui = Instantiate(skill.SkillBehaviour, _skillContainer);
+        ui.GetComponentInChildren<TextMeshProUGUI>().text = kb;
+        var behaviour = ui.GetComponent<Skill>();
+        behaviour.UseKeybind = (KeyCode)Enum.Parse(typeof(KeyCode), kb, true);
+        behaviour.Data = skill;
+        Skills.Add(kb, skill);
+    }
 
-        GetComponent<AudioSource>().PlayOneShot(skill.PickupSfx, 0.3f);
-        Skills.Add(skill);
+    /// <summary>
+    /// Only plays the sound for now
+    /// </summary>
+    /// <param name="skill"></param>
+    public void UseSkill(SkillData skill)
+    {
+        _source.PlayOneShot(skill.PickupSfx, 0.5f);
     }
 }

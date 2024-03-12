@@ -133,12 +133,12 @@ GameObject:
   - component: {fileID: 4479667183270935118}
   - component: {fileID: 4879899068659475817}
   - component: {fileID: 7280066026647028446}
-  - component: {fileID: 1660711368285822483}
   - component: {fileID: 3877427851039478217}
   - component: {fileID: 5640285820241475285}
   - component: {fileID: 1731077242480857824}
+  - component: {fileID: 4394285088442878550}
   m_Layer: 6
-  m_Name: OCD
+  m_Name: SkillPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,21 +226,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1660711368285822483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684209633415517246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b27e0eb19e73841ad2de542cc15432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractionType: 1
-  _showOutlineOnHover: 1
-  Data: {fileID: 11400000, guid: 7df26fdedf919fe42bea49107a8e1de9, type: 2}
 --- !u!108 &3877427851039478217
 Light:
   m_ObjectHideFlags: 0
@@ -439,3 +424,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4394285088442878550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684209633415517246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc06495c8c4720143ad81042e9dcfce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractionType: 1
+  _showOutlineOnHover: 1
+  Data: {fileID: 11400000, guid: 7df26fdedf919fe42bea49107a8e1de9, type: 2}

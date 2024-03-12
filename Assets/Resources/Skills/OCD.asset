@@ -16,7 +16,9 @@ MonoBehaviour:
   Description: Become hypervigilant. See your environment more clearly. 50% chance
     of deflecting bullets
   IsStackable: 0
-  Duration: 10
+  Duration: 5
   Cooldown: 100
   PickupIndicatorColor: {r: 0, g: 0, b: 1, a: 0.5}
+  SkillBehaviour: {fileID: 8859558353607844849, guid: ca2df91c0b3eefe44b3e7bc6d738d9cb,
+    type: 3}
   PickupSfx: {fileID: 8300000, guid: bf3ef7d4b8e204b4f9dc0efe202b0ed8, type: 3}

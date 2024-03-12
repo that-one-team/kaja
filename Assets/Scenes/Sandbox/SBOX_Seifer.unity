@@ -135,6 +135,89 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9102948448478804547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &428205767
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1731077242480857824, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 55.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383627135841978057, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684209633415517246, guid: c06419dd4e9823040aeda0da685a1c30,
+        type: 3}
+      propertyPath: m_Name
+      value: OCD_Pickup
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c06419dd4e9823040aeda0da685a1c30, type: 3}
 --- !u!1 &524864216
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +567,7 @@ Transform:
   m_GameObject: {fileID: 524864216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.75, y: 3.25, z: 58.62}
+  m_LocalPosition: {x: -17.75, y: 3.25, z: 59.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -655,7 +738,7 @@ MonoBehaviour:
   <PlayerSpawnPoint>k__BackingField: {fileID: 1614073636}
   HasCustomRooms: 1
   IsHub: 0
-  _maxRooms: 3
+  _maxRooms: 1
   _roomSpacing: 50
   _roomsPrefabs:
   - {fileID: 5846155450853869045, guid: 14c079c0a32ea9a4593e70c7d63688e6, type: 3}
@@ -2294,10 +2377,10 @@ MonoBehaviour:
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 6421111052992651314, guid: 8822a92e4fbb4b84a8990c39fe074698,
       type: 3}
-    Chance: 50
+    Chance: 0
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
       type: 3}
-    Chance: 50
+    Chance: 100
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners:
@@ -2458,6 +2541,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CAM_RoomPortal
       objectReference: {fileID: 0}
+    - target: {fileID: 3875657749514285787, guid: 50e89da4e9a63e949a15794a6f111a6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4150571025874811017, guid: 50e89da4e9a63e949a15794a6f111a6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2523,3 +2611,4 @@ SceneRoots:
   - {fileID: 8855946674146505582}
   - {fileID: 1522885978}
   - {fileID: 524864222}
+  - {fileID: 428205767}

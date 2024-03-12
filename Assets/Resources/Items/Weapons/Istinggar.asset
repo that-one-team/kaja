@@ -16,7 +16,9 @@ MonoBehaviour:
   Type: 1
   InteractionType: 1
   IsStackable: 0
+  IsActive: 0
   WorldSprite: {fileID: 2800000, guid: 025a0e49ff307664fb5356a3f6f314da, type: 3}
+  PickupObject: {fileID: 0}
   HandSprite: {fileID: 2800000, guid: 025a0e49ff307664fb5356a3f6f314da, type: 3}
   AmmoSprite: {fileID: 2800000, guid: 4df6a704ede1c484eb7480c6e4203df7, type: 3}
   UISprite: {fileID: 21300000, guid: 56db7f9028dadc84eb0c4721f65e5d26, type: 3}

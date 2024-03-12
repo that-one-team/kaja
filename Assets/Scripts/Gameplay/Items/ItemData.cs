@@ -21,9 +21,11 @@ public class ItemData : ScriptableObject
     public ItemType Type;
     public InteractionType InteractionType = InteractionType.COLLIDE;
     public bool IsStackable = false;
+    public bool IsActive = false;
 
     [Header("Visuals")]
     public Texture2D WorldSprite;
+    public GameObject PickupObject;
 
     [ShowIf("Type", ItemType.WEAPON)]
     [AllowNesting]

@@ -34,13 +34,18 @@ public class EnemySpawner : MonoBehaviour
     {
         while (_enemiesToSpawn > 0)
         {
-            foreach (var enemy in enemies)
+            var toSpawn = Mathf.Min(Random.Range(_spawnRange.Min / 2, _spawnRange.Min), _enemiesToSpawn);
+            for (int i = 0; i < Mathf.CeilToInt(toSpawn); i++)
             {
-                var dice = Random.Range(0, 100);
-                if (dice > enemy.Chance) continue;
+                foreach (var enemy in enemies)
+                {
+                    var dice = Random.Range(0, 100);
+                    if (dice > enemy.Chance) continue;
 
-                SpawnEnemy(enemy.EnemyToSpawn);
+                    SpawnEnemy(enemy.EnemyToSpawn);
+                }
             }
+
             _spawnInterval = Random.Range(_spawnInterval, _spawnInterval + 5);
             yield return new WaitForSeconds(_spawnInterval);
         }
@@ -49,17 +54,13 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        var toSpawn = Mathf.Min(Random.Range(_spawnRange.Min / 2, _spawnRange.Min), _enemiesToSpawn);
-        for (int i = 0; i < Mathf.CeilToInt(toSpawn); i++)
-        {
-            var size = transform.localScale / 2;
-            var offset = 1;
-            var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
+        var size = transform.localScale / 2;
+        var offset = 1;
+        var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
 
-            var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
-            e.OnDie += OnEnemyDie;
-            _enemiesToSpawn--;
-        }
+        var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
+        e.OnDie += OnEnemyDie;
+        _enemiesToSpawn--;
     }
 
     void OnEnemyDie(LivingBeing e)

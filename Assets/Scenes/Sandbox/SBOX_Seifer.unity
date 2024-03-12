@@ -484,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 524864216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.75, y: 3.25, z: 54.75}
+  m_LocalPosition: {x: -17.75, y: 3.25, z: 58.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2294,7 +2294,10 @@ MonoBehaviour:
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 6421111052992651314, guid: 8822a92e4fbb4b84a8990c39fe074698,
       type: 3}
-    Chance: 100
+    Chance: 50
+  - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
+      type: 3}
+    Chance: 50
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners:
@@ -2390,7 +2393,7 @@ PrefabInstance:
     - target: {fileID: 6870371927386437851, guid: d949ac4e5b6973e4796b427b726ef4fa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5
+      value: -16.77
       objectReference: {fileID: 0}
     - target: {fileID: 6870371927386437851, guid: d949ac4e5b6973e4796b427b726ef4fa,
         type: 3}
@@ -2400,7 +2403,7 @@ PrefabInstance:
     - target: {fileID: 6870371927386437851, guid: d949ac4e5b6973e4796b427b726ef4fa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.5
+      value: 55.4
       objectReference: {fileID: 0}
     - target: {fileID: 6870371927386437851, guid: d949ac4e5b6973e4796b427b726ef4fa,
         type: 3}

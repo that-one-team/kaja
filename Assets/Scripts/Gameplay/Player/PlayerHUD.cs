@@ -48,6 +48,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void OnItemAdd(ItemData item)
     {
+        if (item.Type != ItemType.ITEM) return;
         var slot = _itemSlots.Where(i => i.transform.childCount < 3).FirstOrDefault();
         if (slot == null) return;
 

@@ -33,7 +33,7 @@ public class PlayerLook : MonoBehaviour
         _mouseVec.x += _look.x * MouseSensitivity;
         _mouseVec.y -= _look.y * MouseSensitivity;
         _mouseVec.y = Mathf.Clamp(_mouseVec.y, -90, 90);
-        Camera.main.transform.localRotation = Quaternion.Euler(_mouseVec.y, _mouseVec.x, _tilt);
+        Camera.main.transform.localRotation = Quaternion.Euler(_mouseVec.y, _mouseVec.x - AngleOffset, _tilt);
 
         _rb.MoveRotation(Quaternion.Euler(0, _mouseVec.x - AngleOffset, 0));
     }

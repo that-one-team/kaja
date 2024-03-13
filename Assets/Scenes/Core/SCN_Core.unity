@@ -745,7 +745,7 @@ MonoBehaviour:
   _worldsToLoad:
   - SCN_World_Biringan
   _startingWorld: SCN_World_Hub
-  DEBUG_LoadRooms: 0
+  DEBUG_LoadRooms: 1
 --- !u!114 &1091931481
 MonoBehaviour:
   m_ObjectHideFlags: 0

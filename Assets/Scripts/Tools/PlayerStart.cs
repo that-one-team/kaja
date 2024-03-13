@@ -19,7 +19,6 @@ public class PlayerStart : MonoBehaviour
 
         // TODO fix player start rotation shit
         var angle = -Quaternion.Angle(transform.rotation, player.rotation);
-        player.Rotate(Vector3.up, angle);
         PlayerController.Instance.GetComponent<PlayerLook>().AngleOffset = -angle;
     }
 

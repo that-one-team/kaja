@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
@@ -25,6 +26,11 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI _currentWeaponText;
     [SerializeField] TextMeshProUGUI _currentWeaponAmmo;
 
+    [Header("Items")]
+    [SerializeField] GameObject _itemUIPrefab;
+    [SerializeField] Transform[] _itemSlots;
+    ItemSlot[] _slots;
+
     WorldBrain _currentWorld;
 
     GameStopwatch _timer;
@@ -35,8 +41,27 @@ public class PlayerHUD : MonoBehaviour
         WorldManager.Instance.OnWorldChange += Initialize;
         PlayerScore.Instance.OnAddScore += (int score) => _scoreText.text = score.ToString();
         PlayerInventory.Instance.OnWeaponEquip += EquipWeapon;
+        PlayerInventory.Instance.OnItemAdd += OnItemAdd;
+        PlayerInventory.Instance.OnItemRemove += OnItemRemove;
         _timer = GameStopwatch.Instance;
     }
+
+    private void OnItemAdd(ItemData item)
+    {
+        var slot = _itemSlots.Where(i => i.transform.childCount < 3).FirstOrDefault();
+        if (slot == null) return;
+
+        var addedItem = Instantiate(_itemUIPrefab, slot).GetComponent<ItemSlot>();
+        addedItem.name = item.FriendlyName;
+        addedItem.QuantityUI.text = "";
+        addedItem.ImageUI.sprite = item.UISprite;
+    }
+
+    private void OnItemRemove(ItemData item) =>
+        _itemSlots.SelectMany(slot => slot.Cast<Transform>())
+            .Where(itemSlot => itemSlot.name == item.FriendlyName)
+            .ToList()
+            .ForEach(ItemSlot => Destroy(ItemSlot.gameObject));
 
     private void EquipWeapon(Weapon weapon)
     {
@@ -46,10 +71,9 @@ public class PlayerHUD : MonoBehaviour
 
     private void Initialize(WorldBrain brain)
     {
-        print("initialized hud");
         _currentWorld = WorldManager.Instance.CurrentWorld;
         _currentWorld.OnChangeRoom += ChangeRoom;
-        Player.Instance.OnHurt += PlayerHurt;
+        Player.Instance.OnHealthChanged += PlayerHurt;
         PlayerSkills.Instance.OnSkillPickup += SkillPickup;
     }
 
@@ -60,7 +84,7 @@ public class PlayerHUD : MonoBehaviour
         _skillPickupIndicator.DOFade(0, 0.5f).SetDelay(0.5f).OnComplete(() => _skillPickupIndicator.gameObject.SetActive(false));
     }
 
-    void PlayerHurt(int remaining)
+    void PlayerHurt(int changed, int remaining)
     {
         _hpText.text = remaining.ToString();
 

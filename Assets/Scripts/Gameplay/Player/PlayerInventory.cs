@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -32,7 +33,8 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     [SerializeField] AudioClip _genericPickupSfx;
 
     public event Action<Weapon> OnWeaponEquip;
-    public event Action<Item> OnItemAdd;
+    public event Action<ItemData> OnItemAdd;
+    public event Action<ItemData> OnItemRemove;
 
     public bool IsReplacingItem { get; private set; } = false;
 
@@ -79,7 +81,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         var pickupSfx = itemToAdd.Data.PickupAudio != null ? itemToAdd.Data.PickupAudio : _genericPickupSfx;
         GetComponent<AudioSource>().PlayOneShot(pickupSfx, 0.3f);
 
-        OnItemAdd?.Invoke(itemToAdd);
+        OnItemAdd?.Invoke(itemToAdd.Data);
         if (showNotif)
             Notifications.Instance.Notify("Picked up " + itemToAdd.Data.FriendlyName);
         Destroy(itemToAdd.gameObject);
@@ -146,6 +148,16 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         }
 
         return false;
+    }
+
+    public bool RemoveItem(string itemName)
+    {
+        var item = Items.Where(i => i.FriendlyName == itemName).FirstOrDefault();
+        if (item == null) return false;
+
+        OnItemRemove?.Invoke(item);
+        Items.Remove(item);
+        return true;
     }
 
     public void ClearWeaponTargets()

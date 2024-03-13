@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class Pluma : MonoBehaviour
+public class PlumaItem : MonoBehaviour
 {
     int _plumaLeft = 4;
     [SerializeField] GameObject _vfx;
@@ -49,10 +49,7 @@ public class Pluma : MonoBehaviour
             _plumaLeft--;
 
             if (_plumaLeft <= 0)
-            {
-                var plumaItem = PlayerInventory.Instance.Items.Where(i => i.FriendlyName == "Rizal's Feathered Pluma").FirstOrDefault();
-                PlayerInventory.Instance.Items.Remove(plumaItem);
-            }
+                PlayerInventory.Instance.RemoveItem("Rizal's Feathered Pluma");
         }
     }
 }

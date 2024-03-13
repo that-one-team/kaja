@@ -35,10 +35,6 @@ public class ItemData : ScriptableObject
     [AllowNesting]
     public Texture2D AmmoSprite;
 
-
-
-    [ShowIf("Type", ItemType.WEAPON)]
-    [AllowNesting]
     public Sprite UISprite;
 
     [ShowIf("Type", ItemType.WEAPON)]

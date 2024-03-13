@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class LivingBeing : MonoBehaviour
 {
-    public event Action<LivingBeing> OnDie;
 
     public int MaxHealth = 100;
     public int Health { get; protected set; }
 
-    public event Action<int> OnHurt;
+    public event Action<int, int> OnHealthChanged;
+    public event Action<LivingBeing> OnDie;
 
     private void OnEnable()
     {
@@ -23,6 +23,8 @@ public class LivingBeing : MonoBehaviour
 
         if (Health > MaxHealth)
             StartCoroutine(Overheal());
+
+        OnHealthChanged?.Invoke(health, Health);
     }
 
     public void Damage(int damage)
@@ -30,7 +32,7 @@ public class LivingBeing : MonoBehaviour
         if (Health <= 0) return;
 
         Health -= damage;
-        OnHurt?.Invoke(Health);
+        OnHealthChanged(-damage, Health);
         if (Health <= 0)
             Die();
     }
@@ -50,6 +52,7 @@ public class LivingBeing : MonoBehaviour
         while (Health > MaxHealth)
         {
             Health--;
+            OnHealthChanged?.Invoke(Health, Health);
             yield return new WaitForSeconds(1.5f);
         }
     }

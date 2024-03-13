@@ -12,7 +12,7 @@ public class AmmoDrop : Interactable
     public int AmmoToGive;
     [SerializeField] LayerMask _mask;
 
-    bool _shouldFreeze = false;
+    bool _shouldFreeze = false, _isFrozen = false;
 
     private void OnValidate()
     {
@@ -65,6 +65,16 @@ public class AmmoDrop : Interactable
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
         rb.isKinematic = true;
+        _isFrozen = true;
+    }
 
+    void Update()
+    {
+        if (!_isFrozen) return;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1000, LayerMask.GetMask("Default")))
+        {
+            transform.position = hit.point + Vector3.up * 0.5f;
+        }
     }
 }

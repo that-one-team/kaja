@@ -437,5 +437,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionType: 1
-  _showOutlineOnHover: 1
-  Data: {fileID: 11400000, guid: 7df26fdedf919fe42bea49107a8e1de9, type: 2}
+  _showOutlineOnHover: 0
+  Data: {fileID: 0}

@@ -64,14 +64,14 @@ public class Enemy : LivingBeing
         Agent.speed = Data.MoveSpeed;
         Agent.angularSpeed = 0;
 
-        OnHurt += OnHurtEvent;
+        OnHealthChanged += OnHurtEvent;
 
         RB.isKinematic = true;
         Target = PlayerController.Instance.transform; // :middle_finger:
         ChangeState(EnemyState.MOVING);
     }
 
-    void OnHurtEvent(int remainingHealth)
+    void OnHurtEvent(int changed, int remainingHealth)
     {
         ChangeState(EnemyState.STUNNED);
         if (_hurtGib != null && _gruntsSfx.Length > 0)

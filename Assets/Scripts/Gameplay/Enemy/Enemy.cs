@@ -1,7 +1,6 @@
 using System.Collections;
 using NaughtyAttributes;
 using TOT.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,7 +33,7 @@ public class Enemy : LivingBeing
     protected Transform Target;
     AudioSource _audio;
 
-    Transform _visual;
+    protected Transform Visuals;
 
     protected SpritesheetAnimation Anim;
 
@@ -52,7 +51,7 @@ public class Enemy : LivingBeing
         RB = GetComponent<Rigidbody>();
         RB.freezeRotation = true;
         RB.mass = 2;
-        _visual = transform.GetChild(0);
+        Visuals = transform.GetChild(0);
     }
 
     private void Awake()
@@ -65,8 +64,8 @@ public class Enemy : LivingBeing
         Agent.angularSpeed = 0;
 
         OnHealthChanged += OnHurtEvent;
-
         RB.isKinematic = true;
+
         Target = PlayerController.Instance.transform; // :middle_finger:
         ChangeState(EnemyState.MOVING);
     }
@@ -145,7 +144,6 @@ public class Enemy : LivingBeing
             yield return new WaitForEndOfFrame();
         }
         Freeze(true);
-        Anim.IsFrozen = true;
         yield return new WaitForSeconds(Data.AttackDelay);
         ChangeState(IsInAttackRange() ? EnemyState.ATTACKING : EnemyState.MOVING);
     }
@@ -172,16 +170,16 @@ public class Enemy : LivingBeing
     protected virtual IEnumerator AttackMelee()
     {
         yield return new WaitForSeconds(Data.AttackDelay);
-        var pos = transform.position + _visual.forward + Vector3.up;
-        if (Physics.Raycast(transform.position + transform.up, _visual.forward, out RaycastHit hit, 3, _attackLayer))
+        var pos = transform.position + Visuals.forward + Vector3.up;
+        if (Physics.Raycast(transform.position + transform.up, Visuals.forward, out RaycastHit hit, 3, _attackLayer))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 hit.collider.GetComponent<Player>().Damage(Data.Damage);
-                pos = hit.point - (_visual.forward * 0.9f);
+                pos = hit.point - (Visuals.forward * 0.9f);
             }
         }
-        Instantiate(_attackGib, pos, Quaternion.LookRotation(_visual.forward)).GetComponent<GibVFX>().DoGib(_attackSfx);
+        Instantiate(_attackGib, pos, Quaternion.LookRotation(Visuals.forward)).GetComponent<GibVFX>().DoGib(_attackSfx);
     }
 
     protected virtual IEnumerator AttackRanged()
@@ -192,14 +190,23 @@ public class Enemy : LivingBeing
     protected void Freeze(bool isFrozen)
     {
         RB.isKinematic = !isFrozen;
-        Agent.enabled = !isFrozen;
+        // Agent.enabled = !isFrozen;
+        Agent.isStopped = isFrozen;
+        Anim.IsFrozen = isFrozen;
     }
 
-    protected bool IsInAttackRange() => Vector3.Distance(transform.position, Target.position) < 3f;
+    protected bool IsInAttackRange()
+    {
+        var trg = Target.position;
+        trg.y = 0;
+        var me = transform.position;
+        me.y = 0;
+        return Vector3.Distance(me, trg) < Data.AttackRange;
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + _visual.forward + transform.up, _attackBoxSize);
+        Gizmos.DrawWireSphere(transform.position + Visuals.forward + transform.up, _attackBoxSize);
     }
 }

@@ -19,6 +19,7 @@ public class EnemyData : ScriptableObject
     [Header("Attacks")]
     public EnemyAttackType AttackType;
     public int Damage = 10;
+    public float AttackRange = 3f;
     public float AttackDelay = 0.5f;
     public float FireRate = 1;
     public float StunDuration = 1;

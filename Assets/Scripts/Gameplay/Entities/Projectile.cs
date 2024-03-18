@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -11,17 +12,17 @@ public class Projectile : MonoBehaviour
     [SerializeField] GameObject _hitVFX;
     int _damage = 10;
     [SerializeField] float _knockbackForce;
+    [SerializeField] bool _canBeDestroyed = true;
 
     Rigidbody _rb;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
     public void Spawn(int damage, Vector3 shootDir)
     {
-        Start();
         _damage = damage;
         _rb.useGravity = false;
 
@@ -31,16 +32,23 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _rb.useGravity = true;
+        DoProjectileThing(other.collider);
+    }
 
-        if (other.collider.TryGetComponent(out LivingBeing being) && !other.collider.CompareTag(_undamageable))
+
+    private void OnTriggerEnter(Collider other) => DoProjectileThing(other);
+
+    void DoProjectileThing(Collider col)
+    {
+        if (col.TryGetComponent(out LivingBeing being) && !col.CompareTag(_undamageable))
             being.Damage(_damage);
 
         if (_hitVFX != null)
             Instantiate(_hitVFX, transform.position, Quaternion.identity);
 
-
         if (_knockbackForce != 0)
             DoExplosion();
+
     }
 
     void DoExplosion()
@@ -60,7 +68,6 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
-
+        Destroy(gameObject, _canBeDestroyed ? 0 : 1);
     }
 }

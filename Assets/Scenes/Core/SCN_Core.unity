@@ -744,6 +744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldsToLoad:
   - SCN_World_Biringan
+  - SCN_World_MentalHospital
   _startingWorld: SCN_World_Hub
   DEBUG_LoadRooms: 0
 --- !u!114 &1091931481

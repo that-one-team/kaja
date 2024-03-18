@@ -2429,6 +2429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: test
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 1676658203263871317, guid: 2253d000cf24f674a87de0305f8715a2,

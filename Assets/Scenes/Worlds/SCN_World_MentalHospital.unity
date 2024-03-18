@@ -41523,6 +41523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: Hallways
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
@@ -69318,6 +69319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: ...
+  IsSubRoom: 0
   IsBossRoom: 1
   _spawnableEnemies: []
   <MaxWaves>k__BackingField: 1
@@ -69953,22 +69955,22 @@ PrefabInstance:
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.759045
+      value: -111.79
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.64
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.911522
+      value: 56.211357
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.60876197
+      value: 0.7071071
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
@@ -69978,7 +69980,7 @@ PrefabInstance:
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7933529
+      value: 0.7071065
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
@@ -69993,7 +69995,7 @@ PrefabInstance:
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 105
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9006777928374630771, guid: e56a816907c195546962f88cb882b2ed,
         type: 3}
@@ -70596,6 +70598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: Reception
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,

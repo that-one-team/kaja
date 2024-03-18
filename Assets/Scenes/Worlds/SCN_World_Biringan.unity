@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.045011215, g: 0.050466426, b: 0.08132988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,12 +136,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1010460826}
+      objectReference: {fileID: 872055129}
     - target: {fileID: 3178755242086503831, guid: 2b3c114ca58b6734c865b1a05fef5f61,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1903156333}
+      objectReference: {fileID: 1104556382}
     - target: {fileID: 5219191584351207999, guid: 2b3c114ca58b6734c865b1a05fef5f61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,17 +201,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1903156333}
+      objectReference: {fileID: 1104556382}
     - target: {fileID: 8525175046234664463, guid: 2b3c114ca58b6734c865b1a05fef5f61,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1903156333}
+      objectReference: {fileID: 1104556382}
     - target: {fileID: 8906511949334680733, guid: 2b3c114ca58b6734c865b1a05fef5f61,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1010460826}
+      objectReference: {fileID: 872055129}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -421,13 +421,13 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!43 &1010460826
+--- !u!43 &872055129
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-220568
+  m_Name: pb_Mesh-329656
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -586,13 +586,13 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &1903156333
+--- !u!43 &1104556382
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-220548
+  m_Name: pb_Mesh-329636
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

@@ -577,7 +577,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2426
+  m_VersionIndex: 2429
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -931,7 +931,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3366
+  m_VersionIndex: 3369
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3260
+  m_VersionIndex: 3263
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5181,7 +5181,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9278
+  m_VersionIndex: 9281
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6568,7 +6568,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9490
+  m_VersionIndex: 9493
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6929,7 +6929,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1228
+  m_VersionIndex: 1231
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10175,7 +10175,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4980
+  m_VersionIndex: 4983
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10338,6 +10338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: The Garden
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
@@ -13909,7 +13910,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9269
+  m_VersionIndex: 9272
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14323,7 +14324,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3477
+  m_VersionIndex: 3480
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14725,7 +14726,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1186
+  m_VersionIndex: 1189
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15145,7 +15146,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1452
+  m_VersionIndex: 1455
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15313,6 +15314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: Floating Island
+  IsSubRoom: 1
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
@@ -15576,7 +15578,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2208
+  m_VersionIndex: 2211
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -16160,7 +16162,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1291
+  m_VersionIndex: 1294
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -16756,7 +16758,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2491
+  m_VersionIndex: 2494
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -16909,6 +16911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: Floating Island
+  IsSubRoom: 1
   IsBossRoom: 0
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 7433149801036346582, guid: c0020e738c000dd4d903b62df0fc58d8,
@@ -17211,7 +17214,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 887
+  m_VersionIndex: 890
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -17621,7 +17624,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2091
+  m_VersionIndex: 2094
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -20681,7 +20684,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4980
+  m_VersionIndex: 4983
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

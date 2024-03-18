@@ -26,7 +26,9 @@ public class WorldBrain : MonoBehaviour
     [SerializeField] GameObject _bossRoomPrefab;
     [SerializeField] List<Room> _roomPool = new();
 
+    [field: ShowNonSerializedField]
     public Room NextRoom { get; private set; }
+    [field: ShowNonSerializedField]
     public Room CurrentRoom { get; private set; }
 
     int _lastRoomIdx = -1;
@@ -94,4 +96,10 @@ public class WorldBrain : MonoBehaviour
 
         _roomPortalCamera.GetComponent<RoomCamera>().SetPositionInRoom(NextRoom);
     }
+
+    public void HidePreviousRoom()
+    {
+        CurrentRoom.gameObject.SetActive(false);
+    }
 }
+

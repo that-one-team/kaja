@@ -16,6 +16,7 @@ public struct RoomSpawnable
 public class Room : MonoBehaviour
 {
     [field: SerializeField] public string FriendlyName { get; private set; }
+    public bool IsSubRoom = false;
     public bool IsBossRoom = false;
     [SerializeField] List<RoomSpawnable> _spawnableEnemies = new();
 
@@ -62,7 +63,8 @@ public class Room : MonoBehaviour
 
         OnRoomStart?.Invoke(0);
         IsRoomActive = true;
-        WorldManager.Instance.CurrentWorld.ChangeRoom(this);
+        if (!IsSubRoom)
+            WorldManager.Instance.CurrentWorld.ChangeRoom(this);
 
         NextWave();
     }
@@ -104,7 +106,7 @@ public class Room : MonoBehaviour
         print("[ROOM] " + FriendlyName + " complete!");
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
-        WorldManager.Instance.CurrentWorld.ChangeRoom(null);
+        // WorldManager.Instance.CurrentWorld.ChangeRoom(null);
         WorldManager.Instance.CurrentWorld.CompleteRoom();
         IsRoomComplete = true;
     }

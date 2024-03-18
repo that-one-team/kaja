@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class WorldManager : SingletonBehaviour<WorldManager>
 {
+    [field: ShowNonSerializedField]
     public WorldBrain CurrentWorld { get; private set; }
     public event Action<WorldBrain> OnWorldChange;
 
@@ -91,4 +92,5 @@ public class WorldManager : SingletonBehaviour<WorldManager>
         onWorldChange?.Invoke();
         OnWorldChange?.Invoke(world);
     }
+
 }

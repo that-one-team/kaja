@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77edac4ee4d0c9a47abf7bcd8cdc06b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 150
   Data: {fileID: 11400000, guid: 8d1cc4b7a0fb1df4b90a8364a32be65e, type: 2}
   _attackBoxSize: 1
   _attackLayer:

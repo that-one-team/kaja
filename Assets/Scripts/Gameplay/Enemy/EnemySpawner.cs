@@ -56,8 +56,11 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         var size = GetComponent<Renderer>().bounds.extents;
+        var center = GetComponent<Renderer>().bounds.center;
         var offset = 1;
-        var loc = new Vector3(transform.position.x + Random.Range(-size.x, size.x), transform.position.y + offset, transform.position.z + Random.Range(-size.z, size.z));
+        var x = Random.Range(center.x - size.x, center.x + size.x);
+        var z = Random.Range(center.z - size.z, center.z + size.z);
+        var loc = new Vector3(x, transform.position.y + offset, z);
 
         var e = Instantiate(enemy, loc, Quaternion.identity).GetComponent<Enemy>();
         e.OnDie += OnEnemyDie;

@@ -21,12 +21,24 @@ public class RoomTeleporter : MonoBehaviour
 
     private void Update()
     {
-        if (!_isPlayerEnter) return;
-        var portalOffset = _player.position - transform.position;
-        float dot = Vector3.Dot(transform.up, portalOffset);
+        // if (!_isPlayerEnter) return;
+        // float dot = Vector3.Dot(transform.up, portalOffset);
 
-        if (dot < 0)
+        // if (dot < 0)
+        // {
+
+
+        //     _isPlayerEnter = false;
+        // }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (GetComponentInParent<RoomPortal>().Door.IsLocked) return;
+        if (other.CompareTag("Player"))
         {
+            var portalOffset = _player.position - transform.position;
+
             var rot = -Quaternion.Angle(transform.rotation, _world.NextRoom.RoomStartPosition.rotation);
             rot += 180;
 
@@ -34,15 +46,10 @@ public class RoomTeleporter : MonoBehaviour
 
             var pos = Quaternion.Euler(0, rot, 0) * portalOffset;
             _player.position = _world.NextRoom.RoomStartPosition.position + pos;
+            _isPlayerEnter = true;
 
-            _isPlayerEnter = false;
+            WorldManager.Instance.CurrentWorld.HidePreviousRoom();
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (GetComponentInParent<RoomPortal>().Door.IsLocked) return;
-        if (other.CompareTag("Player")) _isPlayerEnter = true;
     }
 
 

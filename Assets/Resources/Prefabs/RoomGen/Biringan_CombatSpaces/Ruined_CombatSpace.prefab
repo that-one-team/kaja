@@ -20266,6 +20266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: Ruins
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies: []
   <MaxWaves>k__BackingField: 1

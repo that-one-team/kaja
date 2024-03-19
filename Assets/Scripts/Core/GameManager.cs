@@ -63,6 +63,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         GameStopwatch.Instance.IsActive = false;
         WorldManager.Instance.ResetWorldPool();
+        PlayerScore.Instance.AddScore(-Mathf.RoundToInt(PlayerScore.Instance.Score * 0.1f));
         PauseGame(false);
     }
 

@@ -42,7 +42,7 @@ public class PlayerAudio : SingletonBehaviour<PlayerAudio>
     private void OnHurt(int changed, int current)
     {
         if (changed > 0) return;
-        _audio.PlayOneShot(_hurtSfx.SelectRandom(), 3);
+        _audio.PlayOneShot(_hurtSfx.SelectRandom());
     }
 
     private void OnDisable()

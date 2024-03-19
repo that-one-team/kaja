@@ -40,9 +40,6 @@ public class AmmoDrop : Interactable
         rend.material.mainTexture = Data.AmmoSprite;
         rend.material.SetTexture("_EmissionMap", Data.AmmoSprite);
 
-        AmmoToGive = Random.Range(Data.InitialAmmo, Data.InitialAmmo + (int)(1 + PlayerScore.Instance.Score * 0.005f));
-        Data.InitialAmmo = AmmoToGive;
-
         StartCoroutine(DelayDrop());
 
         IEnumerator DelayDrop()

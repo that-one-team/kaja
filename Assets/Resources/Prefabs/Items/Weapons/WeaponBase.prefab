@@ -140,6 +140,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 49
+  Target: {fileID: 0}
+  FireRateMultiplier: 1
 --- !u!82 &3052578279209117318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -149,7 +151,8 @@ AudioSource:
   m_GameObject: {fileID: 5275148716733515225}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 57cbc5e0c3a33c14eb54aa0fb1e48d96,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.27

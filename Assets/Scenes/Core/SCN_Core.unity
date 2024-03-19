@@ -1980,7 +1980,7 @@ MonoBehaviour:
   _worldsToLoad:
   - SBOX_Seifer
   _startingWorld: SCN_World_Hub
-  DEBUG_LoadRooms: 0
+  DEBUG_LoadRooms: 1
 --- !u!114 &1091931481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2105,9 +2105,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 805258111}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.67
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

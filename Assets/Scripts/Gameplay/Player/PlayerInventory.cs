@@ -168,4 +168,9 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             weapon.Target = null;
         }
     }
+
+    public void ClearInventory()
+    {
+
+    }
 }

@@ -29,12 +29,11 @@ public class PlayerAudio : SingletonBehaviour<PlayerAudio>
         _rb = GetComponent<Rigidbody>();
         _audio = GetComponent<AudioSource>();
         Player.Instance.OnHealthChanged += OnHurt;
-        Player.Instance.OnDie += OnDie;
 
         WorldManager.Instance.OnWorldChange += OnWorldChange;
     }
 
-    private void OnDie(LivingBeing being)
+    public void PlayDeath()
     {
         _audio.PlayOneShot(_deathSfx);
     }
@@ -49,7 +48,6 @@ public class PlayerAudio : SingletonBehaviour<PlayerAudio>
     {
         WorldManager.Instance.OnWorldChange -= OnWorldChange;
         Player.Instance.OnHealthChanged -= OnHurt;
-        Player.Instance.OnDie -= OnDie;
     }
 
     private void OnWorldChange(WorldBrain brain)

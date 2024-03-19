@@ -28,22 +28,17 @@ public class GameSettings : SingletonBehaviour<GameSettings>
     public void ChangeVolume(float vol)
     {
         AudioVolume = vol;
+
+        if (AudioVolume < 1)
+            AudioVolume = 0.001f;
+
         PlayerPrefs.SetFloat("game_volume", AudioVolume);
+        // _mixer.SetFloat("Master", Mathf.Log10(AudioVolume / 100) * 20f);
     }
 
     public void ChangeSens(float sens)
     {
         MouseSensitivity = sens;
         PlayerPrefs.SetFloat("mouse_sensitivity", MouseSensitivity);
-    }
-
-    void Update()
-    {
-        if (!Mathf.Approximately(AudioVolume, _prevVolume))
-        {
-            _mixer.SetFloat("Master", AudioVolume);
-        }
-
-        _prevVolume = AudioVolume;
     }
 }

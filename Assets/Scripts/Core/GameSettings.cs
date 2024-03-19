@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class GameSettings : SingletonBehaviour<GameSettings>
 {
@@ -14,8 +15,8 @@ public class GameSettings : SingletonBehaviour<GameSettings>
 
     private void Start()
     {
-        MouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 3);
-        AudioVolume = PlayerPrefs.GetFloat("audio_volume", 3);
+        MouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.5f);
+        AudioVolume = PlayerPrefs.GetFloat("audio_volume", 1);
     }
 
     public void ChangeVolume(float vol)

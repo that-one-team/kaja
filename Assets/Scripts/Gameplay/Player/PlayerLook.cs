@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    [Range(0, 1)] public float MouseSensitivity = 0.5f;
     [SerializeField] float _cameraMaxTiltDeg = 45f;
     [SerializeField] float _tiltAngle = 5;
     [SerializeField] float _tiltSpeed = 5;
@@ -30,8 +29,8 @@ public class PlayerLook : MonoBehaviour
         var _kb = PlayerInputs.Instance.Actions.Move.ReadValue<Vector2>();
         _tilt = GetCameraTilt(_kb.x);
 
-        _mouseVec.x += _look.x * MouseSensitivity;
-        _mouseVec.y -= _look.y * MouseSensitivity;
+        _mouseVec.x += _look.x * GameSettings.Instance.MouseSensitivity;
+        _mouseVec.y -= _look.y * GameSettings.Instance.MouseSensitivity;
         _mouseVec.y = Mathf.Clamp(_mouseVec.y, -90, 90);
         Camera.main.transform.localRotation = Quaternion.Euler(_mouseVec.y, _mouseVec.x - AngleOffset, _tilt);
 

@@ -8,6 +8,7 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
 {
     [SerializeField] Transform _skillContainer;
     public Dictionary<string, SkillData> Skills { get; private set; } = new();
+    public List<Skill> SkillBehaviours { get; private set; } = new();
     public event Action<SkillData> OnSkillPickup;
 
     readonly string[] _keybinds = { "Q", "E", "R" };
@@ -21,15 +22,11 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
 
     public void AddSkill(SkillData skill)
     {
-        OnSkillPickup?.Invoke(skill);
         GetComponent<AudioSource>().PlayOneShot(skill.PickupSfx, 0.2f);
         if (Skills.ContainsValue(skill))
         {
             if (skill.IsStackable)
-            {
                 Skills.Where(s => s.Value.name == skill.name).FirstOrDefault().Value.CurrentDuration += skill.Duration;
-            }
-
             return;
         }
 
@@ -39,7 +36,9 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
         var behaviour = ui.GetComponent<Skill>();
         behaviour.UseKeybind = (KeyCode)Enum.Parse(typeof(KeyCode), kb, true);
         behaviour.Data = skill;
+        SkillBehaviours.Add(behaviour);
         Skills.Add(kb, skill);
+        OnSkillPickup?.Invoke(skill);
     }
 
     /// <summary>

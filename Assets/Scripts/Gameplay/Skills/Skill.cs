@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class Skill : MonoBehaviour
     public SkillData Data;
     protected bool IsSkillActive;
     protected float CooldownTimer;
+    public float CooldownMultiplier = 1;
 
     [Header("Cooldown")]
     [SerializeField] TextMeshProUGUI _cooldownText;
@@ -38,7 +40,7 @@ public class Skill : MonoBehaviour
 
     protected virtual void OnSkillStart()
     {
-        CooldownTimer = Data.Cooldown;
+        CooldownTimer = Data.Cooldown * CooldownMultiplier;
 
         if (_particlesFX != null)
         {

@@ -20,6 +20,8 @@ public class Weapon : Item
     // too lazy to rewrite this to Data.Offset LMAO
     Vector3 _offset;
 
+    public float FireRateMultiplier = 1;
+
     private void Start()
     {
         _timer = Data.FireRate;
@@ -57,7 +59,7 @@ public class Weapon : Item
         if (PlayerInventory.Instance.CurrentWeapon != this) return;
 
         _isShooting = true;
-        _timer = Data.FireRate;
+        _timer = Data.FireRate * FireRateMultiplier;
         _source.PlayOneShot(Data.ShootAudio);
         Vector3 endpoint = transform.forward * 10000;
         DoAnimation();

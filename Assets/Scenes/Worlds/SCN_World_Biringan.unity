@@ -804,10 +804,11 @@ MonoBehaviour:
   HasCustomRooms: 0
   IsHub: 0
   _maxRooms: 5
-  _roomSpacing: 150
+  _roomSpacing: 200
   _roomsPrefabs:
   - {fileID: 3782545246020489590, guid: 8735d6a5e05b67f47b647e6e8e227722, type: 3}
   - {fileID: 2311948967394741412, guid: 962c2d45514138746bf870c6b30dab88, type: 3}
+  - {fileID: 3988305764143504795, guid: b900b837bb84ecd4abdc927fd1556893, type: 3}
   _bossRoomPrefab: {fileID: 0}
   _roomPool: []
 --- !u!1660057539 &9223372036854775807

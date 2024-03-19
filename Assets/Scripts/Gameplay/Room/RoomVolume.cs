@@ -45,6 +45,12 @@ public class RoomVolume : Volume
         }
     }
 
+    private void OnDisable()
+    {
+        _room.OnRoomStart -= OnRoomStart;
+        _room.OnRoomEnd -= OnRoomEnd;
+    }
+
     public override void OnEnter()
     {
         if (_room.IsRoomActive) return;

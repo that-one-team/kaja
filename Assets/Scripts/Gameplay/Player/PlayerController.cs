@@ -63,6 +63,11 @@ public class PlayerController : SingletonBehaviour<PlayerController>
         _stepRayUpper.position = new(_stepRayUpper.position.x, _stepHeight, _stepRayUpper.position.z);
     }
 
+    private void OnDisable()
+    {
+        PlayerInputs.Instance.Actions.Jump.performed -= OnJump;
+    }
+
     void OnJump(InputAction.CallbackContext ctx)
     {
         if (!IsGrounded || GameManager.Instance.IsFrozen) return;

@@ -18,6 +18,11 @@ public class RoomPortal : SingletonBehaviour<RoomPortal>
         brain.OnRoomComplete += CompletedRoom;
     }
 
+    private void OnDisable()
+    {
+        WorldManager.Instance.OnWorldChange -= Init;
+    }
+
     private void CompletedRoom()
     {
         Door.IsLocked = false;

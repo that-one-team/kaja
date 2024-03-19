@@ -62,6 +62,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         GameStopwatch.Instance.IsActive = false;
         WorldManager.Instance.ResetWorldPool();
+        PauseGame(false);
     }
 
 }

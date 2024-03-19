@@ -10,16 +10,23 @@ public class RoomCamera : MonoBehaviour
 
     void Start()
     {
-        WorldManager.Instance.OnWorldChange += (WorldBrain world) =>
-        {
-            _playerCam = Camera.main.transform;
-            Camera cam = GetComponent<Camera>();
+        WorldManager.Instance.OnWorldChange += Init;
+    }
 
-            if (_renderTextureMaterial != null) cam.targetTexture.Release();
+    private void OnDisable()
+    {
+        WorldManager.Instance.OnWorldChange -= Init;
+    }
 
-            cam.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-            _renderTextureMaterial.mainTexture = cam.targetTexture;
-        };
+    void Init(WorldBrain world)
+    {
+        _playerCam = Camera.main.transform;
+        Camera cam = GetComponent<Camera>();
+
+        if (_renderTextureMaterial != null) cam.targetTexture.Release();
+
+        cam.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        _renderTextureMaterial.mainTexture = cam.targetTexture;
     }
 
     public void SetPositionInRoom(Room room)

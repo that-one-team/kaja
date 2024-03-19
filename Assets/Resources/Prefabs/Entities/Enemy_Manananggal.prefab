@@ -237,7 +237,7 @@ MonoBehaviour:
   _attackBoxSize: 1.36
   _attackLayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 256
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
   _idleSfx:

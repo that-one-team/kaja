@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3159372299819379127}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: StepCheckUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5303114963865425765}
   - component: {fileID: 7783497613218880021}
   - component: {fileID: 2343791973470225387}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SkillPickupIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 7895295817790922717}
   - component: {fileID: 954232696675549057}
   - component: {fileID: 1609189121824975130}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Weapon Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 7410441417331625735}
   - component: {fileID: 171965904980369736}
   - component: {fileID: 627223053905568493}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TopBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,8 +328,7 @@ GameObject:
   - component: {fileID: 1676287474843406702}
   - component: {fileID: 7752727535540885562}
   - component: {fileID: 2411586232625883271}
-  - component: {fileID: 1649139133075717539}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -345,12 +344,12 @@ Transform:
   m_GameObject: {fileID: 366743692255005713}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1612636842972646048}
-  m_Father: {fileID: 6083171140544227957}
+  m_Father: {fileID: 80026441728787144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1676287474843406702
 Camera:
@@ -456,19 +455,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &1649139133075717539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366743692255005713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae77fb2f92f825848aeb4cadb3b582f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cameraPos: {fileID: 6342687072501282380}
 --- !u!1 &1443729968188314544
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +467,7 @@ GameObject:
   - component: {fileID: 5084574897597135967}
   - component: {fileID: 6054570993050425055}
   - component: {fileID: 1891014643834235664}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431728476047505132}
   - component: {fileID: 9018607297517150539}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Player HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6083171140544227957}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '@Player'
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -660,7 +646,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5819536081426740591}
-  - {fileID: 7387951577817698358}
+  - {fileID: 80026441728787144}
   - {fileID: 5854769363145494577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -676,7 +662,7 @@ GameObject:
   - component: {fileID: 4967215388482113205}
   - component: {fileID: 24286208537043862}
   - component: {fileID: 2509731004873025257}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +811,7 @@ GameObject:
   - component: {fileID: 1998902461690849788}
   - component: {fileID: 893651554748675600}
   - component: {fileID: 5095456898482766190}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Notifications
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3319864627033181315}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +921,7 @@ GameObject:
   - component: {fileID: 1088008664501681629}
   - component: {fileID: 3101521329431560202}
   - component: {fileID: 3773257411447167836}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1022,7 @@ GameObject:
   - component: {fileID: 3919449123444974020}
   - component: {fileID: 196479472580810824}
   - component: {fileID: 239765529620883861}
-  m_Layer: 1
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1105,7 @@ GameObject:
   - component: {fileID: 5458805136479867281}
   - component: {fileID: 3637831730780304337}
   - component: {fileID: 2799540132725641976}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1180,7 @@ GameObject:
   - component: {fileID: 3751034541344887279}
   - component: {fileID: 3379628820867483039}
   - component: {fileID: 7665764352924957402}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1258,7 @@ GameObject:
   - component: {fileID: 1341214533245643639}
   - component: {fileID: 1764814842929620689}
   - component: {fileID: 4205751119209314675}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1346,7 +1332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177202571132949365}
   - component: {fileID: 7433075869712600120}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1411,7 +1397,7 @@ GameObject:
   - component: {fileID: 8827328988086184386}
   - component: {fileID: 6333400056966147965}
   - component: {fileID: 3624708219923932109}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1528,7 +1514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1434118857892045763}
   - component: {fileID: 8609840178514612860}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1574,7 +1560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6023478490314758897}
   - component: {fileID: 1417141829183579109}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ItemSlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1631,7 @@ GameObject:
   - component: {fileID: 5912176361873513197}
   - component: {fileID: 1325983086048742821}
   - component: {fileID: 1051767320629330106}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1963,7 +1949,7 @@ GameObject:
   - component: {fileID: 5306596899765987017}
   - component: {fileID: 2227954669712594301}
   - component: {fileID: 2891784347999784616}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Weapon Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,7 +2096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173367928354299013}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: StepCheckLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2141,7 +2127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1612636842972646048}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2176,7 +2162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361285832436444232}
   - component: {fileID: 392268594685918609}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2239,7 +2225,7 @@ GameObject:
   - component: {fileID: 4617862029049841589}
   - component: {fileID: 3591454059857416365}
   - component: {fileID: 548754353115010052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2307,7 +2293,7 @@ GameObject:
   - component: {fileID: 3703634993988198925}
   - component: {fileID: 6336241937090129076}
   - component: {fileID: 1435161715286007939}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2441,7 +2427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685611491122228167}
   - component: {fileID: 5535975869424015408}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: New Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2493,7 +2479,7 @@ GameObject:
   - component: {fileID: 4184278771271598863}
   - component: {fileID: 5889976475405088830}
   - component: {fileID: 790691082133235009}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: World Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2640,7 +2626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404369900360985183}
   - component: {fileID: 4337609849502537174}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Game HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2711,7 +2697,7 @@ GameObject:
   - component: {fileID: 1429201560228166498}
   - component: {fileID: 8408203916316337095}
   - component: {fileID: 8893395369524574961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Death Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2870,7 +2856,7 @@ GameObject:
   - component: {fileID: 6679830553076285974}
   - component: {fileID: 4666484317321674442}
   - component: {fileID: 4419958033728857125}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: HP Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3017,7 +3003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6342687072501282380}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3039,6 +3025,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5854769363145494577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7504763387732442865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 80026441728787144}
+  - component: {fileID: 6761054164083282431}
+  m_Layer: 8
+  m_Name: Camera Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &80026441728787144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504763387732442865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7387951577817698358}
+  m_Father: {fileID: 6083171140544227957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6761054164083282431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504763387732442865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae77fb2f92f825848aeb4cadb3b582f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraPos: {fileID: 6342687072501282380}
 --- !u!1 &7606680855687790505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,7 +3083,7 @@ GameObject:
   - component: {fileID: 6197224712301559764}
   - component: {fileID: 5375724858133199867}
   - component: {fileID: 8450479221538781556}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Room Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3199,7 +3231,7 @@ GameObject:
   - component: {fileID: 867527119216856099}
   - component: {fileID: 4723700108110214882}
   - component: {fileID: 5021001232671634374}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3274,7 +3306,7 @@ GameObject:
   - component: {fileID: 2916836429613868510}
   - component: {fileID: 7111915157626808045}
   - component: {fileID: 4535803618655934473}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Weapon Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3349,7 +3381,7 @@ GameObject:
   - component: {fileID: 2745511412079384828}
   - component: {fileID: 4783055930596581834}
   - component: {fileID: 163371977133998974}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Hand Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3476,7 +3508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224014313337585736}
   - component: {fileID: 7718557035128022036}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ItemSlot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

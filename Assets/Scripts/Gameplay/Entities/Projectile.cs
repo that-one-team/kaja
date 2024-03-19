@@ -27,6 +27,11 @@ public class Projectile : MonoBehaviour
         _damage = damage;
         _rb.useGravity = false;
         _rb.AddForce(shootDir, ForceMode.Impulse);
+
+        if (!_canHitPlayer)
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), PlayerController.Instance.GetComponent<Collider>());
+        }
     }
 
     private void OnCollisionEnter(Collision other)

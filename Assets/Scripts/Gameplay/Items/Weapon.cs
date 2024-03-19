@@ -28,8 +28,8 @@ public class Weapon : Item
         _source = GetComponent<AudioSource>();
 
         _offset = Data.Offset;
-
         transform.localScale = Vector3.one * Data.Scale;
+        GetComponent<Collider>().enabled = false;
     }
 
     public void Equip()

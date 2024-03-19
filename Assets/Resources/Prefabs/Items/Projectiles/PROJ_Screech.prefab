@@ -137,6 +137,7 @@ MonoBehaviour:
   _hitVFX: {fileID: 0}
   _knockbackForce: 20
   _canBeDestroyed: 0
+  _canHitPlayer: 1
 --- !u!54 &8222422149481736472
 Rigidbody:
   m_ObjectHideFlags: 0

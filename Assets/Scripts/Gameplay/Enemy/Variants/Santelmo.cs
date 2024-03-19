@@ -40,6 +40,9 @@ public class Santelmo : Enemy
             {
                 float relativeDamage = Mathf.Lerp(Data.Damage, 1, Vector3.Distance(transform.position, obj.transform.position) / (_explosionRadius * 3f));
                 being.Damage((int)relativeDamage);
+
+                if (obj.CompareTag("Player"))
+                    CameraFollow.Instance.Shake();
             }
         }
         yield return new WaitForSeconds(0.2f);

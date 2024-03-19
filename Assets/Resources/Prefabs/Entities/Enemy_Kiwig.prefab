@@ -335,9 +335,10 @@ MonoBehaviour:
   _attackBoxSize: 1
   _attackLayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 256
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
+  _idleSfx: []
   _gruntsSfx:
   - {fileID: 8300000, guid: 9077e5e9f40d4d64e9417c6bd272ce07, type: 3}
   - {fileID: 8300000, guid: f77d976c6ce707941ba970281c99a7fe, type: 3}

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TOT.Common;
 using UnityEngine;
 
 public class Player : LivingBeing
@@ -7,10 +9,6 @@ public class Player : LivingBeing
     [SerializeField] GameObject _deathCamera;
     public static Player Instance { get; private set; }
     public bool IsAlive { get => Health > 0; }
-
-    [Header("SFX")]
-    [SerializeField] List<AudioClip> _hurtSFX;
-    [SerializeField] AudioClip _deathSFX;
 
     private void Awake()
     {

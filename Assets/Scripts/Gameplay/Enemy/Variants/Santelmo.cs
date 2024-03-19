@@ -8,11 +8,18 @@ public class Santelmo : Enemy
     [SerializeField] AudioClip _explosionSFX;
     [SerializeField] GameObject _explosionGib;
 
+    protected override void OnHurt(int changed, int remainingHealth)
+    {
+        base.OnHurt(changed, remainingHealth);
+
+        ChangeState(EnemyState.ATTACKING);
+    }
+
     protected override IEnumerator AttackState()
     {
         Anim.IsFrozen = true;
         Audio.PlayOneShot(_chargeSFX);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Anim.IsFrozen = false;
         Anim.SetAnimation(AnimationIndex.ATTACK, 4);
         yield return new WaitForSeconds(0.3f);

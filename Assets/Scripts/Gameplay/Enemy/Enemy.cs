@@ -70,14 +70,14 @@ public class Enemy : LivingBeing
         Agent.speed = Data.MoveSpeed;
         Agent.angularSpeed = 0;
 
-        OnHealthChanged += OnHurtEvent;
+        OnHealthChanged += OnHurt;
         RB.isKinematic = true;
 
         Target = PlayerController.Instance.transform; // :middle_finger:
         ChangeState(EnemyState.MOVING);
     }
 
-    void OnHurtEvent(int changed, int remainingHealth)
+    protected virtual void OnHurt(int changed, int remainingHealth)
     {
         ChangeState(EnemyState.STUNNED);
         if (_hurtGib != null && _gruntsSfx.Length > 0)
@@ -159,8 +159,11 @@ public class Enemy : LivingBeing
     IEnumerator PlayRandomIdle()
     {
         if (_idleSfx.Length == 0) yield return null;
-        yield return new WaitForSeconds(Random.value * 10);
-        Audio.PlayOneShot(_idleSfx.SelectRandom());
+        while (CurrentState == EnemyState.MOVING)
+        {
+            yield return new WaitForSeconds(Random.value * 10);
+            Audio.PlayOneShot(_idleSfx.SelectRandom());
+        }
     }
 
     protected virtual IEnumerator StunnedState()

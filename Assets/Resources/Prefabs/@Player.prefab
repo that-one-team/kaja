@@ -1833,8 +1833,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   _deathCamera: {fileID: 6892126825792436173}
-  _hurtSFX: []
-  _deathSFX: {fileID: 0}
   _hud: {fileID: 4337609849502537174}
 --- !u!114 &5067538135687279070
 MonoBehaviour:
@@ -1928,7 +1926,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb7212ade4f07b4799440a7623641f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hurtSfx: []
+  _hurtSfx:
+  - {fileID: 8300000, guid: f8db79d588e4da04f80f1f4a3be0fdd9, type: 3}
+  - {fileID: 8300000, guid: 4d6bc1d5856216645b38d23701fc52c8, type: 3}
+  - {fileID: 8300000, guid: 41c309cad5f91594eadec76134cee318, type: 3}
+  _deathSfx: {fileID: 8300000, guid: d293a043f7015d24ab3a0cea87877239, type: 3}
   _roomFinishedSfx: {fileID: 8300000, guid: fd9c8991bd4cb334b9c97113ec5896d8, type: 3}
   _footstepSounds:
   - {fileID: 8300000, guid: 9f1ede2bd8e30b94baed2d2ded0dd7d1, type: 3}

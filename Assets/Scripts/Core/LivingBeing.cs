@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
+public delegate void HealthChangedEvent(int changed, int current);
 public class LivingBeing : MonoBehaviour
 {
-
     public int MaxHealth = 100;
     public int Health { get; protected set; }
 
-    public event Action<int, int> OnHealthChanged;
+    public event HealthChangedEvent OnHealthChanged;
     public event Action<LivingBeing> OnDie;
 
     private void OnEnable()

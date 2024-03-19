@@ -2048,6 +2048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bcf43759c7b5048a7331413ac518cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sensSlider: {fileID: 1292484701}
+  _audioSlider: {fileID: 1097619461}
   _mixer: {fileID: 24100000, guid: 57cbc5e0c3a33c14eb54aa0fb1e48d96, type: 2}
 --- !u!1 &1097619459
 GameObject:

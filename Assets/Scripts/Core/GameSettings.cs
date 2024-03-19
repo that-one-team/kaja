@@ -10,6 +10,9 @@ public class GameSettings : SingletonBehaviour<GameSettings>
     public float MouseSensitivity { get; set; }
     public float AudioVolume { get; private set; }
 
+    [SerializeField] Slider _sensSlider;
+    [SerializeField] Slider _audioSlider;
+
     [SerializeField] AudioMixer _mixer;
     float _prevVolume;
 
@@ -17,6 +20,9 @@ public class GameSettings : SingletonBehaviour<GameSettings>
     {
         MouseSensitivity = PlayerPrefs.GetFloat("mouse_sensitivity", 0.5f);
         AudioVolume = PlayerPrefs.GetFloat("audio_volume", 1);
+
+        _sensSlider.value = MouseSensitivity;
+        _audioSlider.value = AudioVolume;
     }
 
     public void ChangeVolume(float vol)
@@ -28,7 +34,7 @@ public class GameSettings : SingletonBehaviour<GameSettings>
     public void ChangeSens(float sens)
     {
         MouseSensitivity = sens;
-        PlayerPrefs.SetFloat("mouse_sensitivity", AudioVolume);
+        PlayerPrefs.SetFloat("mouse_sensitivity", MouseSensitivity);
     }
 
     void Update()

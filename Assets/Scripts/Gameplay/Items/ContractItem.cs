@@ -25,6 +25,7 @@ public class ContractItem : MonoBehaviour
     {
         if (health > 0 || _isUsed) return;
 
+        Notifications.Instance.Notify("<b><color=\"yellow\">You have been given another chance...</color></b>");
         Player.Instance.Heal(Player.Instance.MaxHealth + Mathf.Abs(changed));
         _audio.PlayOneShot(_healAudio, 0.6f);
         _isUsed = true;

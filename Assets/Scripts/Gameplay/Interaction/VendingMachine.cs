@@ -35,6 +35,7 @@ public class VendingMachine : Interactable
             return;
         }
 
+        PlayerScore.Instance.AddScore(-ScoreCost);
         _source.PlayOneShot(_vendingMachineUseSFX);
         ShowOutlines(false);
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fe77a6151630845ae84c440cac48bd, type: 3}
   m_Name: Santelmo
   m_EditorClassIdentifier: 
+  StartingHealth: 50
   FriendlyName: Santelmo
   Spritesheet: {fileID: 0}
   ScoreRequirement: 0
@@ -19,6 +20,7 @@ MonoBehaviour:
   MoveSpeed: 5
   AttackType: 0
   Damage: 50
+  AttackRange: 3
   AttackDelay: 0.5
   FireRate: 1
   StunDuration: 2

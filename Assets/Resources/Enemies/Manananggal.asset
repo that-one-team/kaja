@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fe77a6151630845ae84c440cac48bd, type: 3}
   m_Name: Manananggal
   m_EditorClassIdentifier: 
+  StartingHealth: 400
   FriendlyName: Manananggal
   Spritesheet: {fileID: 0}
   ScoreRequirement: 0
-  ScoreToGive: 30
+  ScoreToGive: 70
   MoveSpeed: 5
   AttackType: 1
   Damage: 18

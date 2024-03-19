@@ -39,6 +39,7 @@ public class Enemy : LivingBeing
 
     [Header("FX")]
     [SerializeField] GameObject _itemDropPrefab;
+    [SerializeField] AudioClip[] _idleSfx;
     [SerializeField] AudioClip[] _gruntsSfx;
     [SerializeField] AudioClip[] _deathSfx;
     [SerializeField] AudioClip _attackSfx;
@@ -52,6 +53,12 @@ public class Enemy : LivingBeing
         RB.freezeRotation = true;
         RB.mass = 2;
         Visuals = transform.GetChild(0);
+    }
+
+    private void OnEnable()
+    {
+        MaxHealth = Data.StartingHealth;
+        Health = MaxHealth;
     }
 
     private void Awake()
@@ -136,6 +143,7 @@ public class Enemy : LivingBeing
 
     protected virtual IEnumerator MoveState()
     {
+        SetSubroutine(PlayRandomIdle());
         Anim.SetAnimation(AnimationIndex.MOVE);
         Freeze(false);
         while (!IsInAttackRange())
@@ -146,6 +154,13 @@ public class Enemy : LivingBeing
         Freeze(true);
         yield return new WaitForSeconds(Data.AttackDelay);
         ChangeState(IsInAttackRange() ? EnemyState.ATTACKING : EnemyState.MOVING);
+    }
+
+    IEnumerator PlayRandomIdle()
+    {
+        if (_idleSfx.Length == 0) yield return null;
+        yield return new WaitForSeconds(Random.value * 10);
+        _audio.PlayOneShot(_idleSfx.SelectRandom());
     }
 
     protected virtual IEnumerator StunnedState()

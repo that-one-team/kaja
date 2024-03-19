@@ -10,6 +10,7 @@ public enum EnemyAttackType
 public class EnemyData : ScriptableObject
 {
     [Header("General")]
+    public int StartingHealth;
     public string FriendlyName;
     public Texture Spritesheet;
     public int ScoreRequirement = 0;

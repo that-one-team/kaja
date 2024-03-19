@@ -130,8 +130,8 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
+  DopplerLevel: 0
+  MinDistance: 6.9010963
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -240,8 +240,14 @@ MonoBehaviour:
     m_Bits: 4
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
-  _gruntsSfx: []
-  _deathSfx: []
+  _idleSfx:
+  - {fileID: 8300000, guid: a86256f18c7afeb4a93cdec0d69f600b, type: 3}
+  - {fileID: 8300000, guid: c7f68f61edf9f664cbf8d45ad8e3a950, type: 3}
+  _gruntsSfx:
+  - {fileID: 8300000, guid: 7b0bf9431231a1443bcaccb5fe67d2d8, type: 3}
+  - {fileID: 8300000, guid: 451929ac76336224aa6d4ca0ce0abb46, type: 3}
+  _deathSfx:
+  - {fileID: 8300000, guid: 84d5888bca4c45140869927080c2de76, type: 3}
   _attackSfx: {fileID: 0}
   _attackGib: {fileID: 0}
   _deathGib: {fileID: 0}

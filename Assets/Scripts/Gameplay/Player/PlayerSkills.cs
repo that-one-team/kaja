@@ -26,7 +26,9 @@ public class PlayerSkills : SingletonBehaviour<PlayerSkills>
         if (Skills.ContainsValue(skill))
         {
             if (skill.IsStackable)
+            {
                 Skills.Where(s => s.Value.name == skill.name).FirstOrDefault().Value.CurrentDuration += skill.Duration;
+            }
 
             return;
         }

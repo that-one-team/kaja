@@ -12,7 +12,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     public List<ItemData> Weapons { get; private set; } = new();
     public List<ItemData> Items { get; private set; } = new();
 
-    private readonly List<GameObject> _spawnedWeapons = new(MAX_WEAPON_COUNT);
+    public List<GameObject> SpawnedWeapons { get; } = new(MAX_WEAPON_COUNT);
     public int CurrentWeaponIndex { get; private set; } = -1;
 
     public Weapon CurrentWeapon
@@ -20,7 +20,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         get
         {
             if (CurrentWeaponIndex < Weapons.Count && CurrentWeaponIndex >= 0)
-                return _spawnedWeapons[CurrentWeaponIndex].GetComponent<Weapon>();
+                return SpawnedWeapons[CurrentWeaponIndex].GetComponent<Weapon>();
             return null;
         }
     }
@@ -44,7 +44,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         {
             var wep = Instantiate(_weaponPrefab, _weaponHolder).GetComponent<Weapon>();
             wep.gameObject.SetActive(false);
-            _spawnedWeapons.Add(wep.gameObject);
+            SpawnedWeapons.Add(wep.gameObject);
         }
         Weapons.Add(_startingWeapon);
         UpdateWeaponsVisuals();
@@ -92,7 +92,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
         for (int i = 0; i < Weapons.Count; i++)
         {
             var wep = Weapons[i];
-            var onHand = _spawnedWeapons[i];
+            var onHand = SpawnedWeapons[i];
 
             var weapon = onHand.GetComponent<Weapon>();
             weapon.Data = wep;
@@ -112,7 +112,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
     {
         if (index == 99)
         {
-            foreach (var weap in _spawnedWeapons)
+            foreach (var weap in SpawnedWeapons)
             {
                 weap.GetComponent<Weapon>().Unequip();
             }
@@ -121,7 +121,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
         if (Weapons.Count <= index || (CurrentWeaponIndex == index && !force)) return;
 
-        var weapon = _spawnedWeapons[index].GetComponent<Weapon>();
+        var weapon = SpawnedWeapons[index].GetComponent<Weapon>();
         if (CurrentWeapon != weapon)
             CurrentWeapon.Unequip();
 
@@ -132,7 +132,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     public bool TryAddAmmo(ItemData weapon, int ammo = 0)
     {
-        foreach (var weap in _spawnedWeapons)
+        foreach (var weap in SpawnedWeapons)
         {
             var wep = weap.GetComponent<Weapon>();
             if (wep.Data == null) break;
@@ -162,7 +162,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
 
     public void ClearWeaponTargets()
     {
-        foreach (var weap in _spawnedWeapons)
+        foreach (var weap in SpawnedWeapons)
         {
             var weapon = weap.GetComponent<Weapon>();
             weapon.Target = null;

@@ -1,18 +1,29 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class VickxItem : MonoBehaviour
 {
     Player _player;
-    float _timer;
     private void Start()
     {
         _player = Player.Instance;
-        _timer = 5;
+
+        StartCoroutine(HealPlayer());
     }
 
-    private void Update()
+    private IEnumerator HealPlayer()
     {
-        if (_player.Health == _player.MaxHealth) return;
-
+        while (Player.Instance.IsAlive)
+        {
+            if (Player.Instance.Health < Player.Instance.MaxHealth)
+            {
+                yield return new WaitForSeconds(3);
+                Player.Instance.Heal(4);
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
+
+
 }

@@ -39,4 +39,4 @@ MonoBehaviour:
   IsProjectile: 1
   ProjectilePrefab: {fileID: 6160370148663619508, guid: 97307fd85ac841541b68e4351ee66205,
     type: 3}
-  ProjectileForce: 50
+  ProjectileForce: 40

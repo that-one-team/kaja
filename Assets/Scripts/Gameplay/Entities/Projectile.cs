@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     int _damage = 10;
     [SerializeField] float _knockbackForce;
     [SerializeField] bool _canBeDestroyed = true;
+    [SerializeField] bool _canHitPlayer = true;
 
     Rigidbody _rb;
 
@@ -25,7 +26,6 @@ public class Projectile : MonoBehaviour
     {
         _damage = damage;
         _rb.useGravity = false;
-
         _rb.AddForce(shootDir, ForceMode.Impulse);
     }
 
@@ -48,7 +48,6 @@ public class Projectile : MonoBehaviour
 
         if (_knockbackForce != 0)
             DoExplosion();
-
     }
 
     void DoExplosion()

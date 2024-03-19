@@ -2221,6 +2221,74 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1001 &1959107335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.714592
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.305
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 53.59041
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434564124987416525, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113412451497501978, guid: e98695ed8031cc742991d49b3eeab1ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Cetbang
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e98695ed8031cc742991d49b3eeab1ee, type: 3}
 --- !u!21 &1973304412
 Material:
   serializedVersion: 8
@@ -3780,3 +3848,4 @@ SceneRoots:
   - {fileID: 2103674417}
   - {fileID: 3314622247535489683}
   - {fileID: 5476128225891471177}
+  - {fileID: 1959107335}

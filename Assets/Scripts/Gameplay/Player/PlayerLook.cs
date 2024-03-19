@@ -24,7 +24,7 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsFrozen) return;
+        if (GameManager.Instance.IsFrozen || !Player.Instance.IsAlive) return;
         _look = PlayerInputs.Instance.Actions.Look.ReadValue<Vector2>();
 
         var _kb = PlayerInputs.Instance.Actions.Move.ReadValue<Vector2>();

@@ -107,8 +107,8 @@ public class Room : MonoBehaviour
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
         // WorldManager.Instance.CurrentWorld.ChangeRoom(null);
-        WorldManager.Instance.CurrentWorld.CompleteRoom();
         IsRoomComplete = true;
+        WorldManager.Instance.CurrentWorld.CompleteRoom();
     }
 
     public static DropdownList<Room> GetRoomValues()

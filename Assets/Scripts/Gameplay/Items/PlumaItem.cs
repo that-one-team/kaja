@@ -24,7 +24,7 @@ public class PlumaItem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && _plumaLeft > 0)
+        if (Input.GetMouseButtonDown(1) && _plumaLeft > 0 && Player.Instance.IsAlive)
         {
             var seq = DOTween.Sequence();
             var pluma = transform.GetChild(_plumaLeft - 1);

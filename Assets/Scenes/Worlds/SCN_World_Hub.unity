@@ -1498,6 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendlyName>k__BackingField: The Gray
+  IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies: []
   <MaxWaves>k__BackingField: 1
@@ -1690,22 +1691,22 @@ PrefabInstance:
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8540256
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.52023095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
@@ -1715,7 +1716,7 @@ PrefabInstance:
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -62.695
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6123291840810044058, guid: 8947460e5716164449d050c9c810672d,
         type: 3}

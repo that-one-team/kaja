@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TOT.Common;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class WorldManager : SingletonBehaviour<WorldManager>
@@ -25,6 +26,21 @@ public class WorldManager : SingletonBehaviour<WorldManager>
 #if UNITY_EDITOR
         if (!DEBUG_LoadRooms) return;
 #endif
+
+        ResetWorldPool();
+    }
+
+    public void ResetWorldPool()
+    {
+        for (int i = 0; i < SceneManager.loadedSceneCount; i++)
+        {
+            var scn = SceneManager.GetSceneAt(i);
+            if (scn.name == "SCN_Core") continue;
+            SceneManager.UnloadSceneAsync(scn);
+        }
+        _worldPool.Clear();
+        // Clear spawned worlds
+
         var load = SceneManager.LoadSceneAsync(_startingWorld, LoadSceneMode.Additive);
         load.completed += (AsyncOperation op) =>
             {
@@ -37,10 +53,8 @@ public class WorldManager : SingletonBehaviour<WorldManager>
 
     public void LoadOtherWorlds()
     {
-        _worldPool.Clear();
         var shuffled = _worldsToLoad.Shuffle();
         foreach (var world in shuffled) _worldPool.Enqueue(world);
-        _worldPool.Enqueue(_startingWorld);
     }
 
     public void LoadNextWorld()

@@ -57,6 +57,12 @@ public class LivingBeing : MonoBehaviour
         }
     }
 
+    public virtual void Revive()
+    {
+        Health = MaxHealth;
+        OnHealthChanged?.Invoke(Health, Health);
+    }
+
     void Update()
     {
         if (transform.position.y <= -10) Die();

@@ -15,11 +15,11 @@ MonoBehaviour:
   FriendlyName: Manananggal
   Spritesheet: {fileID: 0}
   ScoreRequirement: 0
-  ScoreToGive: 10
+  ScoreToGive: 30
   MoveSpeed: 5
   AttackType: 1
   Damage: 18
   AttackRange: 20
   AttackDelay: 0.5
   FireRate: 1
-  StunDuration: 0.5
+  StunDuration: 0.1

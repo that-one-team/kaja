@@ -51,7 +51,7 @@ public class Weapon : Item
 
     public virtual void Shoot()
     {
-        if (!IsReady) return;
+        if (!IsReady || GameManager.Instance.IsPaused || !Player.Instance.IsAlive) return;
         if (_timer > 0 && _isShooting) return;
         if (Data.InitialAmmo != 0 && Ammo <= 0) return;
         if (PlayerInventory.Instance.CurrentWeapon != this) return;

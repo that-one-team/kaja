@@ -46,6 +46,15 @@ public class PlayerHUD : MonoBehaviour
         _timer = GameStopwatch.Instance;
     }
 
+    void OnDisable()
+    {
+        WorldManager.Instance.OnWorldChange -= Initialize;
+        PlayerScore.Instance.OnAddScore -= (int score) => _scoreText.text = score.ToString();
+        PlayerInventory.Instance.OnWeaponEquip -= EquipWeapon;
+        PlayerInventory.Instance.OnItemAdd -= OnItemAdd;
+        PlayerInventory.Instance.OnItemRemove -= OnItemRemove;
+    }
+
     private void OnItemAdd(ItemData item)
     {
         if (item.Type != ItemType.ITEM) return;
@@ -118,6 +127,8 @@ public class PlayerHUD : MonoBehaviour
         var currWeapon = PlayerInventory.Instance.CurrentWeapon;
         if (currWeapon != null)
             _currentWeaponAmmo.text = currWeapon.Data.InitialAmmo == 0 ? "-" : currWeapon.Ammo.ToSafeString();
+
+        _scoreText.text = PlayerScore.Instance.Score.ToString();
     }
 
 }

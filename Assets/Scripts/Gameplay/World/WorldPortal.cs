@@ -17,11 +17,17 @@ public class WorldPortal : MonoBehaviour
         };
         _door = GetComponentInChildren<DoorInteractable>();
         _door.IsLocked = true;
+
+        // i hate this bruteforcing but i dont have time
     }
 
     void Update()
     {
-        if (_player == null) return;
+        if (_player == null)
+        {
+            _player = PlayerController.Instance.transform;
+            return;
+        }
         var dist = Vector3.Distance(transform.position, _player.position);
         if (dist < 4 && !_hasLoaded)
         {

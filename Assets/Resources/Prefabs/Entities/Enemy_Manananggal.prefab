@@ -245,7 +245,8 @@ MonoBehaviour:
   _attackSfx: {fileID: 0}
   _attackGib: {fileID: 0}
   _deathGib: {fileID: 0}
-  _hurtGib: {fileID: 0}
+  _hurtGib: {fileID: 3897552783870387739, guid: a067379b913d4c6458ab6fdddd886151,
+    type: 3}
   _minHeight: 3
   _screechProjectile: {fileID: 7331539467677893317, guid: da9ddceeda55fb547830b358496bdd91,
     type: 3}

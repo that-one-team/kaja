@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
-        int maxSpawn = Mathf.RoundToInt(_spawnRange.Max * Mathf.Pow(Room.CurrentWave, GameStopwatch.Instance.CurrentTime));
+        int maxSpawn = Mathf.RoundToInt(Mathf.Pow(_spawnRange.Max + Room.CurrentWave, Room.CurrentWave));
 
         print("Spawning " + maxSpawn + " enemies");
 

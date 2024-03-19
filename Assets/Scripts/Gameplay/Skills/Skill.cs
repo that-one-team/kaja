@@ -61,7 +61,7 @@ public class Skill : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(UseKeybind) && !IsSkillActive && !_isCooldown)
+        if (Input.GetKeyUp(UseKeybind) && !IsSkillActive && !_isCooldown && Player.Instance.IsAlive)
         {
             PlayerSkills.Instance.UseSkill(Data);
             IsSkillActive = true;

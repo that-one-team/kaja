@@ -3,6 +3,7 @@ using TOT.Common;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicManager : SingletonBehaviour<MusicManager>
@@ -11,29 +12,47 @@ public class MusicManager : SingletonBehaviour<MusicManager>
     AudioSource _audio;
     float _startVol;
 
+    Queue<AudioClip> _musicQueue = new();
+
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
         _startVol = _audio.volume;
         WorldManager.Instance.OnWorldChange += OnWorldChange;
+
+        ReloadMusic();
+    }
+
+    void ReloadMusic()
+    {
+        var shuffled = _music.Shuffle();
+        foreach (var music in shuffled)
+        {
+            _musicQueue.Enqueue(music);
+        }
+        _audio.clip = _musicQueue.Dequeue();
+
     }
 
     private void OnWorldChange(WorldBrain brain)
     {
-        if (brain.SceneName != "SCN_World_Hub") PlayRandom();
+        if (brain.SceneName != "SCN_World_Hub") PlayMusic();
         else StopMusic();
     }
 
-    public void PlayRandom()
+    public void PlayMusic()
     {
-        var music = _music.SelectRandom();
-        _audio.DOFade(0, 0.2f).OnComplete(() =>
-        {
-            _audio.volume = _startVol;
-            _audio.Stop();
-            _audio.clip = music;
-            _audio.Play();
-        });
+        _audio.Play();
+        StartCoroutine(WaitTillEndOfMusic());
+    }
+
+    IEnumerator WaitTillEndOfMusic()
+    {
+        yield return new WaitUntil(() => !_audio.isPlaying);
+        yield return new WaitForSeconds(1);
+        if (_musicQueue.TryDequeue(out AudioClip clip))
+            _audio.clip = clip;
+        else ReloadMusic();
     }
 
     public void StopMusic()

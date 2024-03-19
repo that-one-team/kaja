@@ -1898,7 +1898,7 @@ MonoBehaviour:
     type: 3}
   _weaponHolder: {fileID: 1434118857892045763}
   _itemsHolder: {fileID: 3319864627033181315}
-  _startingWeapon: {fileID: 11400000, guid: e784fba61b1206c43a1322d71afa8450, type: 2}
+  _startingWeapon: {fileID: 11400000, guid: bedcdd2ebe4259a488e500f0e3679dbc, type: 2}
   _genericPickupSfx: {fileID: 8300000, guid: 5e5a4e0b40e973f4ba0ba518b4dfa817, type: 3}
 --- !u!114 &1325983086048742821
 MonoBehaviour:

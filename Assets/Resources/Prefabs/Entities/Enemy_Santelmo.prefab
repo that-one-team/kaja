@@ -240,7 +240,12 @@ MonoBehaviour:
     m_Bits: 4
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
-  _gruntsSfx: []
+  _idleSfx:
+  - {fileID: 8300000, guid: ec55013541969e2428198851ec34b96e, type: 3}
+  - {fileID: 8300000, guid: 0590a07ab6eca854db2d812db7f8f63b, type: 3}
+  _gruntsSfx:
+  - {fileID: 8300000, guid: 0590a07ab6eca854db2d812db7f8f63b, type: 3}
+  - {fileID: 8300000, guid: ec55013541969e2428198851ec34b96e, type: 3}
   _deathSfx: []
   _attackSfx: {fileID: 0}
   _attackGib: {fileID: 0}
@@ -248,6 +253,10 @@ MonoBehaviour:
   _hurtGib: {fileID: 3897552783870387739, guid: a067379b913d4c6458ab6fdddd886151,
     type: 3}
   _explosionRadius: 5
+  _chargeSFX: {fileID: 8300000, guid: fa377899eb0d3474791019b352de3cad, type: 3}
+  _explosionSFX: {fileID: 8300000, guid: 101dd1a64271cad46aa2f4863c21ad16, type: 3}
+  _explosionGib: {fileID: 87712509104611914, guid: 50cebe5af425bff42b796542356097e2,
+    type: 3}
 --- !u!1 &7073226166588802234
 GameObject:
   m_ObjectHideFlags: 0

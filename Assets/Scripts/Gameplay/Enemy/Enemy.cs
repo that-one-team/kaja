@@ -31,7 +31,7 @@ public class Enemy : LivingBeing
     protected Rigidbody RB;
 
     protected Transform Target;
-    AudioSource _audio;
+    protected AudioSource Audio;
 
     protected Transform Visuals;
 
@@ -65,7 +65,7 @@ public class Enemy : LivingBeing
     {
         OnValidate();
         Anim = GetComponent<SpritesheetAnimation>();
-        _audio = GetComponent<AudioSource>();
+        Audio = GetComponent<AudioSource>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Data.MoveSpeed;
         Agent.angularSpeed = 0;
@@ -160,7 +160,7 @@ public class Enemy : LivingBeing
     {
         if (_idleSfx.Length == 0) yield return null;
         yield return new WaitForSeconds(Random.value * 10);
-        _audio.PlayOneShot(_idleSfx.SelectRandom());
+        Audio.PlayOneShot(_idleSfx.SelectRandom());
     }
 
     protected virtual IEnumerator StunnedState()

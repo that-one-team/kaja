@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Room: {fileID: 2128232182}
   _spawnRange:
-    Min: 1
+    Min: 2
     Max: 1
 --- !u!64 &1522885973
 MeshCollider:
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   IsSubRoom: 0
   IsBossRoom: 0
   _spawnableEnemies:
-  - EnemyToSpawn: {fileID: 1676658203263871317, guid: 2253d000cf24f674a87de0305f8715a2,
+  - EnemyToSpawn: {fileID: 6421111052992651314, guid: 8822a92e4fbb4b84a8990c39fe074698,
       type: 3}
     Chance: 100
   <MaxWaves>k__BackingField: 1

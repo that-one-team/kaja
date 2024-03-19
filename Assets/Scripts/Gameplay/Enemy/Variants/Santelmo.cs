@@ -4,14 +4,20 @@ using UnityEngine;
 public class Santelmo : Enemy
 {
     [SerializeField] float _explosionRadius;
+    [SerializeField] AudioClip _chargeSFX;
+    [SerializeField] AudioClip _explosionSFX;
+    [SerializeField] GameObject _explosionGib;
 
     protected override IEnumerator AttackState()
     {
         Anim.IsFrozen = true;
+        Audio.PlayOneShot(_chargeSFX);
         yield return new WaitForSeconds(0.5f);
         Anim.IsFrozen = false;
         Anim.SetAnimation(AnimationIndex.ATTACK, 4);
         yield return new WaitForSeconds(0.3f);
+
+        Instantiate(_explosionGib, transform.position, Quaternion.identity).GetComponent<GibVFX>().DoGib(_explosionSFX);
 
         Collider[] cols = new Collider[10];
         int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, cols);
@@ -29,9 +35,7 @@ public class Santelmo : Enemy
                 being.Damage((int)relativeDamage);
             }
         }
-
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
-        Anim.SetAnimation(AnimationIndex.DEATH);
     }
 }

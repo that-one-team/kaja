@@ -3326,7 +3326,7 @@ MonoBehaviour:
   _spawnableEnemies:
   - EnemyToSpawn: {fileID: 6421111052992651314, guid: 8822a92e4fbb4b84a8990c39fe074698,
       type: 3}
-    Chance: 100
+    Chance: 0
   <MaxWaves>k__BackingField: 1
   <WaveCooldown>k__BackingField: 5
   _spawners:

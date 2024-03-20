@@ -43,20 +43,24 @@ public class MusicManager : SingletonBehaviour<MusicManager>
     {
         _audio.volume = _startVol;
         _audio.Play();
-        StartCoroutine(WaitTillEndOfMusic());
-    }
-
-    IEnumerator WaitTillEndOfMusic()
-    {
-        yield return new WaitUntil(() => !_audio.isPlaying);
-        yield return new WaitForSeconds(1);
-        if (_musicQueue.TryDequeue(out AudioClip clip))
-            _audio.clip = clip;
-        else ReloadMusic();
     }
 
     public void StopMusic()
     {
-        _audio.DOFade(0, 0.2f).OnComplete(() => _audio.Stop());
+        _audio.DOFade(0, 0.2f).OnComplete(() =>
+            _audio.Stop()
+        );
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) StopMusic();
+        if (_audio.isPlaying) return;
+        if (_musicQueue.TryDequeue(out AudioClip clip))
+            _audio.clip = clip;
+        else ReloadMusic();
+
+        _audio.Play();
+        _audio.volume = _startVol;
     }
 }

@@ -54,7 +54,9 @@ public class MusicManager : SingletonBehaviour<MusicManager>
 
     void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L)) StopMusic();
+#endif
         if (_audio.isPlaying) return;
         if (_musicQueue.TryDequeue(out AudioClip clip))
             _audio.clip = clip;

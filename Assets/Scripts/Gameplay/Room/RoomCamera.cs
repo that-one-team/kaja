@@ -37,7 +37,7 @@ public class RoomCamera : MonoBehaviour
 
     private void Update()
     {
-        if (_roomPortal == null || _prevPortal == null) return;
+        if (_roomPortal == null || _prevPortal == null || _playerCam == null) return;
         var offset = _playerCam.position - _prevPortal.position;
         transform.position = _roomPortal.position + offset;
 

@@ -31,7 +31,6 @@ public class MusicManager : SingletonBehaviour<MusicManager>
             _musicQueue.Enqueue(music);
         }
         _audio.clip = _musicQueue.Dequeue();
-
     }
 
     private void OnWorldChange(WorldBrain brain)
@@ -42,6 +41,7 @@ public class MusicManager : SingletonBehaviour<MusicManager>
 
     public void PlayMusic()
     {
+        _audio.volume = _startVol;
         _audio.Play();
         StartCoroutine(WaitTillEndOfMusic());
     }

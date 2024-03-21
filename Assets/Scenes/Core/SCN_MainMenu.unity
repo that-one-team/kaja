@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: a game by <color="yellow">g6</color>
+  m_text: a game by <color="yellow">that one team (6)</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91f8efea32fe29840bf88d3090075ada, type: 2}
   m_sharedMaterial: {fileID: 7369279900945263793, guid: 91f8efea32fe29840bf88d3090075ada,

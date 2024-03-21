@@ -4,6 +4,8 @@ if ur seeing this, u shouldn't be.
 
 *unless its required by law*
 
+please if the code is poopoo, please send a pr i wanna learn
+
 ---
 <details>
   <summary></summary>

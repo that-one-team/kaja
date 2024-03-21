@@ -20,3 +20,4 @@ please if the code is poopoo, please send a pr i wanna learn
 - [ ] rewrite AI to use fsm or goal oriented
 - [ ] rewrite world management system
 - [ ] run enemy AI on separate thread (check first if it alreayd does that tho idk)
+- [ ] rewrite player controller (please i dont like it its so FLOATY)

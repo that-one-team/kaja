@@ -12,9 +12,6 @@ public class JumpPad : MonoBehaviour
     [SerializeField][Layer] int _selfLayer;
 
     bool _isPlayerGrounded;
-    LineRenderer _line;
-
-    List<Vector3> _linePos = new();
 
     void Update()
     {

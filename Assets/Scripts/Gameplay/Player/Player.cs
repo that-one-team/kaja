@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TOT.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : LivingBeing
 {
@@ -42,7 +43,6 @@ public class Player : LivingBeing
         {
             yield return new WaitForSeconds(5);
             GameManager.Instance.Forfeit();
-            Instance.Revive();
         }
     }
 }

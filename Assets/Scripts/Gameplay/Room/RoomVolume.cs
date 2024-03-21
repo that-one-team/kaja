@@ -29,7 +29,6 @@ public class RoomVolume : Volume
 #endif
     }
 
-
     private void Start()
     {
         _room.OnRoomStart += OnRoomStart;

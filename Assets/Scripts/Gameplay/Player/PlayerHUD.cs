@@ -37,19 +37,30 @@ public class PlayerHUD : MonoBehaviour
 
     void Start()
     {
-        Initialize(WorldManager.Instance.CurrentWorld);
-        WorldManager.Instance.OnWorldChange += Initialize;
-        PlayerScore.Instance.OnAddScore += (int score) => _scoreText.text = score.ToString();
+        // Initialize(WorldManager.Instance.CurrentWorld); 
+        PlayerScore.Instance.OnAddScore += OnAddScore;
         PlayerInventory.Instance.OnWeaponEquip += EquipWeapon;
         PlayerInventory.Instance.OnItemAdd += OnItemAdd;
         PlayerInventory.Instance.OnItemRemove += OnItemRemove;
         _timer = GameStopwatch.Instance;
+        Player.Instance.OnHealthChanged += PlayerHurt;
+        PlayerSkills.Instance.OnSkillPickup += SkillPickup;
+    }
+
+    private void OnAddScore(int score)
+    {
+        _scoreText.text = score.ToString();
+    }
+
+    private void OnEnable()
+    {
+        WorldManager.Instance.OnWorldChange += Initialize;
     }
 
     void OnDisable()
     {
         WorldManager.Instance.OnWorldChange -= Initialize;
-        PlayerScore.Instance.OnAddScore -= (int score) => _scoreText.text = score.ToString();
+        PlayerScore.Instance.OnAddScore -= OnAddScore;
         PlayerInventory.Instance.OnWeaponEquip -= EquipWeapon;
         PlayerInventory.Instance.OnItemAdd -= OnItemAdd;
         PlayerInventory.Instance.OnItemRemove -= OnItemRemove;
@@ -81,10 +92,9 @@ public class PlayerHUD : MonoBehaviour
 
     private void Initialize(WorldBrain brain)
     {
+        if (_currentWorld != null) _currentWorld.OnChangeRoom -= ChangeRoom;
         _currentWorld = WorldManager.Instance.CurrentWorld;
         _currentWorld.OnChangeRoom += ChangeRoom;
-        Player.Instance.OnHealthChanged += PlayerHurt;
-        PlayerSkills.Instance.OnSkillPickup += SkillPickup;
     }
 
     void SkillPickup(SkillData skill)

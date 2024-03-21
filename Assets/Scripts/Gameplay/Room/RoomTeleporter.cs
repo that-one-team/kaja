@@ -1,22 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class RoomTeleporter : MonoBehaviour
 {
-    bool _isPlayerEnter;
     Transform _player;
 
     WorldBrain _world;
 
     private void Start()
     {
-        WorldManager.Instance.OnWorldChange += (WorldBrain brain) =>
-        {
-            _player = PlayerController.Instance.transform;
-            _world = WorldManager.Instance.CurrentWorld;
-        };
+        WorldManager.Instance.OnWorldChange += OnWorldChange;
+    }
+
+    private void OnWorldChange(WorldBrain brain)
+    {
+        _player = PlayerController.Instance.transform;
+        _world = WorldManager.Instance.CurrentWorld;
+    }
+
+    private void OnDisable()
+    {
+        WorldManager.Instance.OnWorldChange -= OnWorldChange;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +36,6 @@ public class RoomTeleporter : MonoBehaviour
 
             var pos = Quaternion.Euler(0, rot, 0) * portalOffset;
             _player.position = _world.NextRoom.RoomStartPosition.position + pos;
-            _isPlayerEnter = true;
 
             WorldManager.Instance.CurrentWorld.HidePreviousRoom();
         }

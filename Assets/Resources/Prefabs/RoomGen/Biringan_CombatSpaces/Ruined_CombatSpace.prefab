@@ -18376,7 +18376,7 @@ MonoBehaviour:
       type: 3}
     Chance: 10
   <MaxWaves>k__BackingField: 3
-  <WaveCooldown>k__BackingField: 20
+  <WaveCooldown>k__BackingField: 10
   _spawners:
   - {fileID: 3361232959669744576}
   - {fileID: 4569999373248148440}

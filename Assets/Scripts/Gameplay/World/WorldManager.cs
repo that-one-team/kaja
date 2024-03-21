@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using TOT.Common;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class WorldManager : SingletonBehaviour<WorldManager>

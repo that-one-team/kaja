@@ -14,6 +14,7 @@ public class WorldBrain : MonoBehaviour
 
     public Scene Scene { get => SceneManager.GetSceneByName(SceneName); }
 
+    [field: SerializeField] public GameObject RoomPortal { get; private set; }
     [SerializeField] Camera _roomPortalCamera;
     [SerializeField] GameObject _worldPortal;
     [field: SerializeField] public PlayerStart PlayerSpawnPoint { get; private set; }
@@ -81,7 +82,7 @@ public class WorldBrain : MonoBehaviour
         NextRoom = _roomPool.Count > 0 ? _roomPool.Dequeue() : null;
 
         if (IsHub || HasCustomRooms) return;
-        RoomPortal.Instance.gameObject.SetActive(NextRoom != null);
+        RoomPortal.SetActive(NextRoom != null);
         if (!_roomPool.TryPeek(out _) && NextRoom != null)
         {
             print("out of rooms! setting current room as world portal room");

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,17 @@ public class WorldPortal : MonoBehaviour
 
     void Start()
     {
-        WorldManager.Instance.OnWorldChange += (WorldBrain brain) =>
-        {
-            _player = PlayerController.Instance.transform;
-        };
-        Door.IsLocked = true;
+        WorldManager.Instance.OnWorldChange += OnWorldChange;
+    }
 
-        // i hate this bruteforcing but i dont have time
+    private void OnWorldChange(WorldBrain brain)
+    {
+        _player = PlayerController.Instance.transform;
+    }
+
+    private void OnDisable()
+    {
+        WorldManager.Instance.OnWorldChange -= OnWorldChange;
     }
 
     void Update()

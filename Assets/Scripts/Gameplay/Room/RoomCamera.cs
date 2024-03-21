@@ -32,7 +32,7 @@ public class RoomCamera : MonoBehaviour
     public void SetPositionInRoom(Room room)
     {
         _roomPortal = room.RoomStartPosition;
-        _prevPortal = RoomPortal.Instance.OffsetPos;
+        _prevPortal = WorldManager.Instance.CurrentWorld.RoomPortal.GetComponent<RoomPortal>().OffsetPos;
     }
 
     private void Update()

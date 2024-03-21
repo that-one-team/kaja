@@ -388,6 +388,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 217972826}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &217972828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6513197586307334494, guid: 2b3c114ca58b6734c865b1a05fef5f61,
+    type: 3}
+  m_PrefabInstance: {fileID: 217972826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &829358353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,12 +1251,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Biringan
   SceneName: SCN_World_Biringan
+  <RoomPortal>k__BackingField: {fileID: 217972828}
   _roomPortalCamera: {fileID: 829358355}
   _worldPortal: {fileID: 1929340583}
   <PlayerSpawnPoint>k__BackingField: {fileID: 0}
   HasCustomRooms: 0
   IsHub: 0
-  _maxRooms: 2
+  _maxRooms: 5
   _roomSpacing: 200
   _roomsPrefabs:
   - {fileID: 3782545246020489590, guid: 8735d6a5e05b67f47b647e6e8e227722, type: 3}

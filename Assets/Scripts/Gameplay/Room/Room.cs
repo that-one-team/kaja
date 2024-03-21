@@ -64,7 +64,12 @@ public class Room : MonoBehaviour
         OnRoomStart?.Invoke(0);
         IsRoomActive = true;
         if (!IsSubRoom)
+        {
             WorldManager.Instance.CurrentWorld.ChangeRoom(this);
+            // !! HARDCODED PLEASE DONT MIND I AM GIVING UP
+            WorldManager.Instance.CurrentWorld.RoomPortal.GetComponent<RoomPortal>().MoveToRoom(this);
+        }
+
 
         NextWave();
     }
@@ -127,7 +132,7 @@ public class Room : MonoBehaviour
         _worldPortal.SetActive(true);
         var portal = _worldPortal.GetComponent<WorldPortal>();
         portal.Door.ForceInteract(false);
-        portal.Door.IsLocked = true;
+        // portal.Door.IsLocked = true;
 
         portal.transform.SetPositionAndRotation(PortalSpawn.position, PortalSpawn.rotation);
         Misc.SnapToGround(portal.gameObject);

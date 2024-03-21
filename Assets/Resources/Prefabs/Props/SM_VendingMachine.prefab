@@ -378,6 +378,8 @@ MonoBehaviour:
     Chance: 80
   - Item: {fileID: 2668891509951430797, guid: 3d4381e256b98644a91258d3d64d64b6, type: 3}
     Chance: 80
+  - Item: {fileID: 2960147381528784513, guid: a85817ae53b719b45a74c62cb3dc7374, type: 3}
+    Chance: 40
   ScoreCost: 0
 --- !u!65 &2696196277243691590
 BoxCollider:

@@ -12,14 +12,15 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] Range<float> _spawnRange;
     int _enemiesToSpawn;
-    float _spawnInterval = 5;
+    [SerializeField] float _spawnInterval = 5;
 
     private void Start()
     {
         if (_spawnRange.Max == 0) _spawnRange = new(1, 1);
         if (Room == null) Room = GetComponentInParent<Room>();
 
-        _spawnRange.Max = _spawnRange.Min * 3;
+        if (_spawnRange.Max < _spawnRange.Min)
+            _spawnRange.Max = _spawnRange.Min * 2;
     }
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
@@ -49,10 +50,9 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            _spawnInterval = Random.Range(_spawnInterval, _spawnInterval + 5);
+            _spawnInterval = Random.Range(_spawnInterval, _spawnInterval + 2);
             yield return new WaitForSeconds(_spawnInterval);
         }
-        _spawnInterval *= 0.9f;
     }
 
     void SpawnEnemy(GameObject enemy)

@@ -25,6 +25,8 @@ public class RoomTeleporter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (GetComponentInParent<RoomPortal>().Door.IsLocked) return;
+        _player = PlayerController.Instance.transform;
+        _world = WorldManager.Instance.CurrentWorld;
         if (other.CompareTag("Player"))
         {
             var portalOffset = _player.position - transform.position;

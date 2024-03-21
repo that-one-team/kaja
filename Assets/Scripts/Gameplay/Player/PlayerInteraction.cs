@@ -18,6 +18,13 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInputs.Instance.Actions.Interact.performed += OnInteract;
     }
 
+    private void OnDisable()
+    {
+        PlayerInputs.Instance.Actions.Fire.performed -= OnShoot;
+        PlayerInputs.Instance.Items.SelectItem.performed -= OnItemSelect;
+        PlayerInputs.Instance.Actions.Interact.performed -= OnInteract;
+    }
+
     void OnShoot(InputAction.CallbackContext ctx)
     {
         var wep = PlayerInventory.Instance.CurrentWeapon;

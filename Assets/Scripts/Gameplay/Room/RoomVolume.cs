@@ -24,7 +24,9 @@ public class RoomVolume : Volume
         if (_room == null) return;
         name = "V_" + _room.FriendlyName + " Volume";
 
+#if UNITY_EDITOR
         _blockerSfx = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/Environment/sfx_treedoor.wav");
+#endif
     }
 
 

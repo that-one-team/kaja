@@ -1,6 +1,4 @@
-using System.Collections;
 using NaughtyAttributes;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour

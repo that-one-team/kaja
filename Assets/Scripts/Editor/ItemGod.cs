@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public static class ItemGod
+public class ItemGod
 {
     public static GameObject SpawnItem(ItemData item, Vector3 position)
     {
@@ -25,13 +25,5 @@ public static class ItemGod
         light.intensity = 5;
 
         return spawned;
-    }
-}
-
-public class ItemSpawner : SingletonBehaviour<ItemSpawner>
-{
-    public void SpawnItem(ItemData item, Vector3 position)
-    {
-        ItemGod.SpawnItem(item, position);
     }
 }

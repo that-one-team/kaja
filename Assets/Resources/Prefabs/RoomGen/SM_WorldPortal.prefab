@@ -131,7 +131,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3515
+  m_VersionIndex: 3518
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3364
+  m_VersionIndex: 3367
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -783,4 +783,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37edf39ce80d7284ead180bc405f0061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Door>k__BackingField: {fileID: 3053316514162091368}
+  Door: {fileID: 3053316514162091368}

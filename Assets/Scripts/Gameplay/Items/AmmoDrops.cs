@@ -9,7 +9,8 @@ public class AmmoDrops : MonoBehaviour
 
     private void Start()
     {
-        SpawnItems();
+        if (!_spawnInWorld)
+            SpawnItems();
         WorldManager.Instance.OnWorldChange += WorldChange;
     }
 

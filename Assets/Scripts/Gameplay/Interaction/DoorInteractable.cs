@@ -12,7 +12,7 @@ public class DoorInteractable : Interactable
 
     public bool IsLocked = false;
 
-    bool _isOpened = false;
+    bool _isOpen = false;
     float _y;
 
     AudioSource _source;
@@ -33,21 +33,21 @@ public class DoorInteractable : Interactable
     public override void Interact()
     {
         if (IsLocked) return;
-        if (_canOnlyOpenOnce && _isOpened) return;
+        if (_canOnlyOpenOnce && _isOpen) return;
 
+        _isOpen = !_isOpen;
         DoDoorAnimation();
-        _isOpened = !_isOpened;
     }
 
     public void ForceInteract(bool state)
     {
-        _isOpened = state;
+        _isOpen = state;
         DoDoorAnimation();
     }
     void DoDoorAnimation()
     {
         var sign = Mathf.Sign(Vector3.Dot(transform.forward, Camera.main.transform.forward));
-        var targ = _isOpened ? _y : _targetY * sign;
+        var targ = _isOpen ? _targetY * sign : _y;
         transform.DOLocalRotate(Vector3.up * targ, _openSpeed).SetEase(Ease.OutBack);
         _source.PlayOneShot(_doorSound);
     }

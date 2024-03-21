@@ -14482,6 +14482,7 @@ MonoBehaviour:
   _spawnRange:
     Min: 0
     Max: 0
+  _spawnInterval: 5
 --- !u!1 &5501991582588854246
 GameObject:
   m_ObjectHideFlags: 0
@@ -14902,6 +14903,7 @@ MonoBehaviour:
   _spawnRange:
     Min: 0
     Max: 0
+  _spawnInterval: 5
 --- !u!1 &5900230005794696085
 GameObject:
   m_ObjectHideFlags: 0
@@ -15346,6 +15348,7 @@ MonoBehaviour:
   _spawnRange:
     Min: 0
     Max: 0
+  _spawnInterval: 5
 --- !u!1 &6893187919434992967
 GameObject:
   m_ObjectHideFlags: 0

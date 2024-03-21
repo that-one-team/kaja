@@ -7,7 +7,7 @@ public class WorldPortal : MonoBehaviour
 {
     Transform _player;
     bool _hasLoaded;
-    [field: SerializeField] public DoorInteractable Door { get; private set; }
+    public DoorInteractable Door;
 
     void Start()
     {

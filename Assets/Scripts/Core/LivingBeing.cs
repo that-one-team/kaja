@@ -64,6 +64,6 @@ public class LivingBeing : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y <= -10 && Health > 0) Die();
+        if (transform.position.y <= -10 && Health > 0) Damage(Health + 1);
     }
 }

@@ -79,6 +79,11 @@ public class GameManager : SingletonBehaviour<GameManager>
                 e.GetComponent<Enemy>().Die();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            PlayerScore.Instance.AddScore(100);
+        }
     }
 #endif
 

@@ -17,7 +17,7 @@ public class DoorInteractable : Interactable
 
     AudioSource _source;
 
-    private void Start()
+    private void OnEnable()
     {
         _y = transform.localEulerAngles.y;
         _source = GetComponent<AudioSource>();

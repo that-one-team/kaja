@@ -31,7 +31,7 @@ MonoBehaviour:
   PickupAudio: {fileID: 0}
   EquipAudio: {fileID: 0}
   ShootAudio: {fileID: 8300000, guid: f0cdb00e2d3917845bee5921e51d9806, type: 3}
-  FireRate: 2
+  FireRate: 1
   Range: 1000
   InitialAmmo: 15
   Damage: 100

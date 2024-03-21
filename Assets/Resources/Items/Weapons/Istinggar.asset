@@ -34,7 +34,7 @@ MonoBehaviour:
   FireRate: 0.5
   Range: 1000
   InitialAmmo: 32
-  Damage: 100
+  Damage: 50
   KnockbackForce: 10
   IsProjectile: 0
   ProjectilePrefab: {fileID: 0}

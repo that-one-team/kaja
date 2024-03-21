@@ -23,12 +23,14 @@ public class DoorInteractable : Interactable
         _source = GetComponent<AudioSource>();
     }
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
         InteractionType = InteractionType.LOOK_AT;
         _source = GetComponent<AudioSource>();
         _source.spatialBlend = 1;
     }
+#endif
 
     public override void Interact()
     {

@@ -139,7 +139,7 @@ public class PlayerInventory : SingletonBehaviour<PlayerInventory>
             if (wep.Data.FriendlyName == weapon.FriendlyName)
             {
                 var ammoToAdd = ammo == 0 ? weapon.InitialAmmo : ammo;
-                wep.Ammo += ammoToAdd;
+                wep.Ammo += ammoToAdd / 2;
 
                 Notifications.Instance.Notify($"Picked up {ammoToAdd} {weapon.FriendlyName} ammo");
                 GetComponent<AudioSource>().PlayOneShot(_genericPickupSfx, 0.3f);

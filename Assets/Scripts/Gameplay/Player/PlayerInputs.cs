@@ -19,4 +19,9 @@ public class PlayerInputs : MonoBehaviour
         UI = _actions.UI;
         Items = _actions.Items;
     }
+
+    private void OnDisable()
+    {
+        _actions.Disable();
+    }
 }

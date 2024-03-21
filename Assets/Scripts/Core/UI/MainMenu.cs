@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnDisable()
     {
+        _actions.Disable();
         _actions.UI.Any.performed -= StartGame;
     }
 
@@ -27,5 +28,11 @@ public class MainMenu : MonoBehaviour
     {
         _anim.SetTrigger("Fade");
         SceneManager.LoadScene("SCN_Core");
+    }
+
+    public void Quit()
+    {
+        print("Quitting... If you see this... HELLO");
+        Application.Quit();
     }
 }

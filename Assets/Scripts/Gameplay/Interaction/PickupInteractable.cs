@@ -19,6 +19,11 @@ public class PickupInteractable : Interactable
         _cam = Camera.main.transform;
     }
 
+    private void OnDisable()
+    {
+        PlayerInputs.Instance.Actions.Fire.performed -= OnFire;
+    }
+
     public override void Interact()
     {
         _isBeingPickedUp = true;

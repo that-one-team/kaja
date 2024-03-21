@@ -106,7 +106,6 @@ public class Room : MonoBehaviour
         print("[ROOM] " + FriendlyName + " complete!");
         OnRoomEnd?.Invoke();
         IsRoomActive = false;
-        // WorldManager.Instance.CurrentWorld.ChangeRoom(null);
         IsRoomComplete = true;
         WorldManager.Instance.CurrentWorld.CompleteRoom();
     }
@@ -121,5 +120,16 @@ public class Room : MonoBehaviour
         }
 
         return list;
+    }
+
+    public void SetWorldPortal(GameObject _worldPortal)
+    {
+        _worldPortal.SetActive(true);
+        var portal = _worldPortal.GetComponent<WorldPortal>();
+        portal.Door.ForceInteract(false);
+        portal.Door.IsLocked = true;
+
+        portal.transform.SetPositionAndRotation(PortalSpawn.position, PortalSpawn.rotation);
+        Misc.SnapToGround(portal.gameObject);
     }
 }

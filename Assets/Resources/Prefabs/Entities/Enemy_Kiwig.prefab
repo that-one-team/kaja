@@ -338,7 +338,12 @@ MonoBehaviour:
     m_Bits: 256
   _itemDropPrefab: {fileID: 2729301277057877933, guid: 3f455691f4e8cfb4b889536793e380e5,
     type: 3}
-  _idleSfx: []
+  _idleSfx:
+  - {fileID: 8300000, guid: 9077e5e9f40d4d64e9417c6bd272ce07, type: 3}
+  - {fileID: 8300000, guid: f77d976c6ce707941ba970281c99a7fe, type: 3}
+  - {fileID: 8300000, guid: 6a82ac134f8c2844a823aa2cdf61029d, type: 3}
+  - {fileID: 8300000, guid: a88837298fc65fc46b9c930decd96859, type: 3}
+  - {fileID: 8300000, guid: 5f364e4b18af24043b9393683500f690, type: 3}
   _gruntsSfx:
   - {fileID: 8300000, guid: 9077e5e9f40d4d64e9417c6bd272ce07, type: 3}
   - {fileID: 8300000, guid: f77d976c6ce707941ba970281c99a7fe, type: 3}

@@ -19,19 +19,6 @@ public class RoomTeleporter : MonoBehaviour
         };
     }
 
-    private void Update()
-    {
-        // if (!_isPlayerEnter) return;
-        // float dot = Vector3.Dot(transform.up, portalOffset);
-
-        // if (dot < 0)
-        // {
-
-
-        //     _isPlayerEnter = false;
-        // }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (GetComponentInParent<RoomPortal>().Door.IsLocked) return;

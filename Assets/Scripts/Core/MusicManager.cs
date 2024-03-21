@@ -14,6 +14,8 @@ public class MusicManager : SingletonBehaviour<MusicManager>
 
     Queue<AudioClip> _musicQueue = new();
 
+    bool _allowMusic = true;
+
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
@@ -35,8 +37,12 @@ public class MusicManager : SingletonBehaviour<MusicManager>
 
     private void OnWorldChange(WorldBrain brain)
     {
-        if (brain.SceneName != "SCN_World_Hub") PlayMusic();
-        else StopMusic();
+        if (!brain.SceneName.Contains("Hub")) _allowMusic = true;
+        else
+        {
+            _allowMusic = false;
+            StopMusic();
+        }
     }
 
     public void PlayMusic()
@@ -57,7 +63,7 @@ public class MusicManager : SingletonBehaviour<MusicManager>
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L)) StopMusic();
 #endif
-        if (_audio.isPlaying) return;
+        if (_audio.isPlaying || !_allowMusic) return;
         if (_musicQueue.TryDequeue(out AudioClip clip))
             _audio.clip = clip;
         else ReloadMusic();

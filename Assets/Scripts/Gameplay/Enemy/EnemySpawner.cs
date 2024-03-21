@@ -18,11 +18,13 @@ public class EnemySpawner : MonoBehaviour
     {
         if (_spawnRange.Max == 0) _spawnRange = new(1, 1);
         if (Room == null) Room = GetComponentInParent<Room>();
+
+        _spawnRange.Max = _spawnRange.Min * 3;
     }
 
     public int SpawnEnemies(List<RoomSpawnable> enemies)
     {
-        int maxSpawn = Mathf.RoundToInt(Mathf.Pow(_spawnRange.Max + Room.CurrentWave, Room.CurrentWave));
+        int maxSpawn = (int)Mathf.Min(Mathf.RoundToInt(Mathf.Pow(_spawnRange.Max + Room.CurrentWave, Room.CurrentWave)), _spawnRange.Max);
 
         print("Spawning " + maxSpawn + " enemies");
 

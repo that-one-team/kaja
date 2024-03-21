@@ -15,6 +15,7 @@ public class WorldBrain : MonoBehaviour
     public Scene Scene { get => SceneManager.GetSceneByName(SceneName); }
 
     [SerializeField] Camera _roomPortalCamera;
+    [SerializeField] GameObject _worldPortal;
     [field: SerializeField] public PlayerStart PlayerSpawnPoint { get; private set; }
     public bool HasCustomRooms = true;
     public bool IsHub = false;
@@ -24,14 +25,12 @@ public class WorldBrain : MonoBehaviour
     [SerializeField] float _roomSpacing = 50;
     [SerializeField] List<GameObject> _roomsPrefabs;
     [SerializeField] GameObject _bossRoomPrefab;
-    [SerializeField] List<Room> _roomPool = new();
+    [SerializeField] Queue<Room> _roomPool = new();
 
     [field: ShowNonSerializedField]
     public Room NextRoom { get; private set; }
     [field: ShowNonSerializedField]
     public Room CurrentRoom { get; private set; }
-
-    int _lastRoomIdx = -1;
 
     public event Action<Room> OnChangeRoom;
     public event Action OnRoomComplete;
@@ -46,6 +45,9 @@ public class WorldBrain : MonoBehaviour
             {
                 PlayerSpawnPoint.TeleportPlayer();
             });
+
+        if (IsHub || HasCustomRooms) return;
+        _worldPortal.SetActive(false);
     }
 
     public void SpawnRooms()
@@ -57,15 +59,15 @@ public class WorldBrain : MonoBehaviour
         {
             var room = shuffled[i >= shuffled.Count ? 0 : i];
 
-            _roomPool.Add(Instantiate(room, _roomSpacing * i * transform.right, Quaternion.identity, transform).GetComponent<Room>());
+            _roomPool.Enqueue(Instantiate(room, _roomSpacing * i * transform.right, Quaternion.identity, transform).GetComponent<Room>());
         }
 
         if (_bossRoomPrefab)
-            _roomPool.Add(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * transform.right, Quaternion.identity).GetComponent<Room>());
+            _roomPool.Enqueue(Instantiate(_bossRoomPrefab, _roomSpacing * _maxRooms * transform.right, Quaternion.identity).GetComponent<Room>());
 
         // get player start in first room
         if (PlayerSpawnPoint == null)
-            PlayerSpawnPoint = _roomPool[0].RoomStartPosition.GetComponentInParent<PlayerStart>();
+            PlayerSpawnPoint = _roomPool.Peek().RoomStartPosition.GetComponentInParent<PlayerStart>();
 
         ChangeRoom(null);
         MoveCameraToNextRoom();
@@ -74,17 +76,23 @@ public class WorldBrain : MonoBehaviour
     public void ChangeRoom(Room room)
     {
         CurrentRoom = room;
-        if (room != null)
-            _lastRoomIdx = _roomPool.LastIndexOf(CurrentRoom);
         OnChangeRoom?.Invoke(room);
 
-        if (_roomPool.Count > 1)
-            NextRoom = _roomPool[_lastRoomIdx + 1];
+        NextRoom = _roomPool.Count > 0 ? _roomPool.Dequeue() : null;
+
+        if (IsHub || HasCustomRooms) return;
+        RoomPortal.Instance.gameObject.SetActive(NextRoom != null);
+        if (!_roomPool.TryPeek(out _) && NextRoom != null)
+        {
+            print("out of rooms! setting current room as world portal room");
+            NextRoom.SetWorldPortal(_worldPortal);
+        }
     }
 
     public void CompleteRoom()
     {
         OnRoomComplete?.Invoke();
+        if (HasCustomRooms) return;
         MoveCameraToNextRoom();
     }
 

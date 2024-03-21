@@ -67,4 +67,19 @@ public class GameManager : SingletonBehaviour<GameManager>
         PauseGame(false);
     }
 
+#if UNITY_EDITOR
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (var e in enemies)
+            {
+                e.GetComponent<Enemy>().Die();
+            }
+        }
+    }
+#endif
+
 }

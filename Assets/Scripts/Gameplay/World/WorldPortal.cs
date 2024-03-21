@@ -7,7 +7,7 @@ public class WorldPortal : MonoBehaviour
 {
     Transform _player;
     bool _hasLoaded;
-    DoorInteractable _door;
+    [field: SerializeField] public DoorInteractable Door { get; private set; }
 
     void Start()
     {
@@ -15,8 +15,7 @@ public class WorldPortal : MonoBehaviour
         {
             _player = PlayerController.Instance.transform;
         };
-        _door = GetComponentInChildren<DoorInteractable>();
-        _door.IsLocked = true;
+        Door.IsLocked = true;
 
         // i hate this bruteforcing but i dont have time
     }
@@ -33,7 +32,7 @@ public class WorldPortal : MonoBehaviour
         {
             WorldManager.Instance.LoadNextWorld();
             _hasLoaded = true;
-            _door.IsLocked = false;
+            Door.IsLocked = false;
         }
     }
 }

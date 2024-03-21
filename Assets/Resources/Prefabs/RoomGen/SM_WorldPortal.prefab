@@ -783,3 +783,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37edf39ce80d7284ead180bc405f0061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Door>k__BackingField: {fileID: 3053316514162091368}

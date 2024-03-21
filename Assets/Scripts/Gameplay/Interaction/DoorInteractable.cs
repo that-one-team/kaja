@@ -35,10 +35,20 @@ public class DoorInteractable : Interactable
         if (IsLocked) return;
         if (_canOnlyOpenOnce && _isOpened) return;
 
+        DoDoorAnimation();
+        _isOpened = !_isOpened;
+    }
+
+    public void ForceInteract(bool state)
+    {
+        _isOpened = state;
+        DoDoorAnimation();
+    }
+    void DoDoorAnimation()
+    {
         var sign = Mathf.Sign(Vector3.Dot(transform.forward, Camera.main.transform.forward));
         var targ = _isOpened ? _y : _targetY * sign;
         transform.DOLocalRotate(Vector3.up * targ, _openSpeed).SetEase(Ease.OutBack);
-        _isOpened = !_isOpened;
         _source.PlayOneShot(_doorSound);
     }
 

@@ -13,6 +13,7 @@ public class WorldManager : SingletonBehaviour<WorldManager>
     public event Action<WorldBrain> OnWorldChange;
 
     [SerializeField][Scene] List<string> _worldsToLoad;
+    [SerializeField][Scene] List<string> _specialWorlds;
     readonly Queue<string> _worldPool = new();
 
     [Scene]
@@ -32,6 +33,7 @@ public class WorldManager : SingletonBehaviour<WorldManager>
 
     public void ResetWorldPool()
     {
+        // Clear spawned worlds
         for (int i = 0; i < SceneManager.loadedSceneCount; i++)
         {
             var scn = SceneManager.GetSceneAt(i);
@@ -39,7 +41,6 @@ public class WorldManager : SingletonBehaviour<WorldManager>
             SceneManager.UnloadSceneAsync(scn);
         }
         _worldPool.Clear();
-        // Clear spawned worlds
 
         var load = SceneManager.LoadSceneAsync(_startingWorld, LoadSceneMode.Additive);
         load.completed += (AsyncOperation op) =>
@@ -55,6 +56,7 @@ public class WorldManager : SingletonBehaviour<WorldManager>
     {
         var shuffled = _worldsToLoad.Shuffle();
         foreach (var world in shuffled) _worldPool.Enqueue(world);
+        _worldPool.Enqueue(_specialWorlds.SelectRandom());
     }
 
     public void LoadNextWorld()
@@ -79,7 +81,6 @@ public class WorldManager : SingletonBehaviour<WorldManager>
                 }
             }
         };
-
     }
 
     public void UnloadPreviousWorld()
